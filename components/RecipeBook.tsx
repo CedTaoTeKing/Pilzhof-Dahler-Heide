@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { RECIPES } from '../constants';
 
 export const RecipeBook: React.FC = () => {
@@ -14,7 +15,7 @@ export const RecipeBook: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {RECIPES.map((recipe) => (
-                        <div key={recipe.id} className="group cursor-pointer">
+                        <Link key={recipe.id} to={`/rezepte/${recipe.id}`} className="group block">
                             <div className="relative overflow-hidden aspect-[3/4] mb-6 rounded-sm shadow-md">
                                 <img 
                                     src={recipe.image} 
@@ -24,9 +25,8 @@ export const RecipeBook: React.FC = () => {
                                 <div className="absolute top-4 right-4 bg-cream/90 backdrop-blur px-3 py-1 text-xs font-bold text-forest uppercase tracking-widest rounded-full">
                                     {recipe.time}
                                 </div>
-                                {/* Hover Overlay */}
                                 <div className="absolute inset-0 bg-forest/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <span className="text-cream border border-cream px-6 py-2 uppercase tracking-widest hover:bg-cream hover:text-forest transition-colors">
+                                    <span className="text-cream border border-cream px-6 py-2 uppercase tracking-widest group-hover:bg-cream group-hover:text-forest transition-colors">
                                         Rezept ansehen
                                     </span>
                                 </div>
@@ -37,14 +37,14 @@ export const RecipeBook: React.FC = () => {
                             <p className="text-forest/70 font-sans text-sm">
                                 {recipe.description}
                             </p>
-                        </div>
+                        </Link>
                     ))}
                 </div>
 
                 <div className="mt-16 text-center">
-                    <button className="inline-block border-b-2 border-forest text-forest pb-1 hover:text-gold hover:border-gold transition-colors font-serif italic text-xl">
+                    <a href="#recipes" className="inline-block border-b-2 border-forest text-forest pb-1 hover:text-gold hover:border-gold transition-colors font-serif italic text-xl">
                         Alle Rezepte ansehen
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>

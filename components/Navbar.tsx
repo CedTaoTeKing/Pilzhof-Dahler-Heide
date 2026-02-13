@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from './ui/Button';
+import { Link } from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -20,9 +20,9 @@ export const Navbar: React.FC = () => {
     return (
         <nav className={navClasses}>
             <div className="container mx-auto px-6 flex justify-between items-center">
-                <div className={`text-2xl font-serif font-bold tracking-wider ${textClasses}`}>
+                <Link to="/" className={`text-2xl font-serif font-bold tracking-wider ${textClasses}`}>
                     PILZHOF
-                </div>
+                </Link>
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex items-center space-x-8">
@@ -30,7 +30,7 @@ export const Navbar: React.FC = () => {
                     <a href="#signature" className={`text-sm tracking-widest uppercase hover:text-gold transition-colors ${textClasses}`}>Pilze</a>
                     <a href="#baba" className={`text-sm tracking-widest uppercase hover:text-baba transition-colors ${textClasses}`}>Baba Shrooms</a>
                     <a href="#recipes" className={`text-sm tracking-widest uppercase hover:text-gold transition-colors ${textClasses}`}>Rezepte</a>
-                    <Button variant="light" className="!py-2 !px-6">Kontakt</Button>
+                    <a href="#contact" className="inline-flex items-center justify-center px-6 py-2 text-sm font-semibold tracking-wide transition-all duration-300 ease-out bg-cream text-forest hover:bg-white shadow-md hover:shadow-lg border border-transparent rounded-sm">Kontakt</a>
                 </div>
 
                 {/* Mobile Hamburger */}
@@ -54,9 +54,7 @@ export const Navbar: React.FC = () => {
                      <a href="#signature" onClick={() => setMobileMenuOpen(false)} className="text-cream text-lg font-serif">Pilze</a>
                      <a href="#baba" onClick={() => setMobileMenuOpen(false)} className="text-cream text-lg font-serif text-baba">Baba Shrooms</a>
                      <a href="#recipes" onClick={() => setMobileMenuOpen(false)} className="text-cream text-lg font-serif">Rezepte</a>
-                     <div className="pt-4">
-                        <Button variant="light" fullWidth>Kontakt</Button>
-                     </div>
+                     <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="pt-4 flex items-center justify-center px-8 py-3 text-sm font-medium bg-cream text-forest hover:bg-white rounded-sm w-full">Kontakt</a>
                 </div>
             )}
         </nav>

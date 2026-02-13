@@ -1,7 +1,12 @@
+export type ProcessStepIcon = 'grain' | 'package' | 'hygiene' | 'inoculate' | 'growth' | 'fruit';
+
 export interface ProcessStep {
     number: string;
     title: string;
     description: string;
+    category?: string;
+    subHeading?: string;
+    icon?: ProcessStepIcon;
 }
 
 export interface FoodItem {

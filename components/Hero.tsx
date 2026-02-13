@@ -36,9 +36,11 @@ export const Hero: React.FC = () => {
                 </p>
 
                 <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-                    <Button variant="outline-light" className="min-w-[200px]">
-                        Entdecke unsere Pilze
-                    </Button>
+                    <a href="#signature">
+                        <Button variant="outline-light" className="min-w-[200px]">
+                            Entdecke unsere Pilze
+                        </Button>
+                    </a>
                     <a href="#recipes" className="text-cream hover:text-gold transition-colors text-sm uppercase tracking-widest border-b border-transparent hover:border-gold pb-1">
                         Zur Rezeptwelt
                     </a>

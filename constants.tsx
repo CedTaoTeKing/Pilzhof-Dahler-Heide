@@ -3,34 +3,52 @@ import React from 'react';
 
 export const PROCESS_STEPS: ProcessStep[] = [
     {
-        number: "01",
+        number: "1",
         title: "Nährboden",
-        description: "Regionale Dinkelspelzen bilden die Basis. Ein Nebenprodukt der lokalen Landwirtschaft wird zum Fundament für neues Leben."
+        description: "Lokale Dinkelspelzen aus der Region bilden die Grundlage unseres Substrats. Ein Nebenprodukt der Getreideproduktion wird zum wertvollen Nährboden.",
+        category: "NÄHRBODEN",
+        subHeading: "Regionale Dinkelspelzen",
+        icon: "grain"
     },
     {
-        number: "02",
+        number: "2",
         title: "Absacken",
-        description: "Das Substrat wird präzise portioniert und für die weitere Verarbeitung vorbereitet."
+        description: "Das Substrat wird präzise portioniert und für die weitere Verarbeitung vorbereitet.",
+        category: "VORBEREITUNG",
+        subHeading: "Absacken",
+        icon: "package"
     },
     {
-        number: "03",
+        number: "3",
         title: "Sterilisieren",
-        description: "Durch Hitze eliminieren wir Konkurrenzorganismen ohne chemische Zusätze. Reinheit ist unser oberstes Gebot."
+        description: "Durch Hitze eliminieren wir Konkurrenzorganismen ohne chemische Zusätze. Reinheit ist unser oberstes Gebot.",
+        category: "HYGIENE",
+        subHeading: "Sterilisieren",
+        icon: "hygiene"
     },
     {
-        number: "04",
+        number: "4",
         title: "Inokulieren",
-        description: "Das Herzstück: Wir impfen das Substrat mit unserer Edelkultur des Castanhen Seitlings."
+        description: "Das Herzstück: Wir impfen das Substrat mit unserer Edelkultur des Castanhen Seitlings.",
+        category: "IMPFUNG",
+        subHeading: "Inokulieren",
+        icon: "inoculate"
     },
     {
-        number: "05",
+        number: "5",
         title: "Sommerraum",
-        description: "In der Durchwachsphase breitet sich das Myzel vollständig aus. Ruhe und konstante Bedingungen sind hier entscheidend."
+        description: "In der Durchwachsphase breitet sich das Myzel vollständig aus. Ruhe und konstante Bedingungen sind hier entscheidend.",
+        category: "REIFUNG",
+        subHeading: "Sommerraum",
+        icon: "growth"
     },
     {
-        number: "06",
+        number: "6",
         title: "Herbsträume",
-        description: "Die Fruchtung beginnt. Wir simulieren den perfekten Herbsttag, um Pilze höchster Qualität zu ernten."
+        description: "Die Fruchtung beginnt. Wir simulieren den perfekten Herbsttag, um Pilze höchster Qualität zu ernten.",
+        category: "FRUKTUNG",
+        subHeading: "Herbsträume",
+        icon: "fruit"
     }
 ];
 
