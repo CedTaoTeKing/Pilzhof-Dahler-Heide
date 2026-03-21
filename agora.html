@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agora – Sonntägliche Begegnung | Pilzhof Dahler Heide</title>
+    <meta name="description"
+        content="Die Agora ist unser wöchentliches Ritual: Jeden Sonntag von 12 bis 17 Uhr öffnen wir den Pilzhof für Gespräche, Genuss und Gemeinschaft." />
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍄</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="subpage.css" />
+    <style>
+        .agora-page {
+            min-height: 100vh;
+            position: relative;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(93, 78, 40, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(61, 107, 74, 0.05) 0%, transparent 50%),
+                linear-gradient(170deg, #15201a 0%, #1a2b22 20%, #1e3028 45%, #1a2920 70%, #121d16 100%);
+        }
+
+        /* Marble vein texture */
+        .agora-page::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 800 1200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,300 Q200,280 400,310 T800,290' stroke='rgba(197,179,88,0.035)' fill='none' stroke-width='0.8'/%3E%3Cpath d='M0,600 Q150,630 350,590 T800,620' stroke='rgba(197,179,88,0.025)' fill='none' stroke-width='0.5'/%3E%3Cpath d='M0,900 Q250,880 500,920 T800,890' stroke='rgba(245,241,232,0.02)' fill='none' stroke-width='0.6'/%3E%3Cpath d='M200,0 Q210,300 190,600 T220,1200' stroke='rgba(197,179,88,0.02)' fill='none' stroke-width='0.4'/%3E%3Cpath d='M600,0 Q580,400 610,800 T590,1200' stroke='rgba(197,179,88,0.015)' fill='none' stroke-width='0.4'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .agora-page-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: clamp(8rem, 16vw, 12rem) var(--container-padding) clamp(6rem, 10vw, 8rem);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .agora-page-overline {
+            display: block;
+            font-family: 'Cinzel', var(--font-serif);
+            font-size: 0.6875rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(197, 179, 88, 0.5);
+            margin-bottom: 1.5rem;
+        }
+
+        .agora-page-headline {
+            font-family: 'Cinzel Decorative', 'Cinzel', var(--font-serif);
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            font-weight: 400;
+            color: var(--soft-cream);
+            letter-spacing: 0.03em;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 40px rgba(197, 179, 88, 0.08);
+        }
+
+        .agora-page-headline::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 1.5rem auto 3rem;
+            opacity: 0.4;
+        }
+
+        .agora-page-rule {
+            width: 100%;
+            max-width: 240px;
+            height: 1px;
+            position: relative;
+            background: linear-gradient(90deg,
+                    transparent 0%, rgba(197, 179, 88, 0.2) 20%, rgba(197, 179, 88, 0.45) 50%, rgba(197, 179, 88, 0.2) 80%, transparent 100%);
+            margin: 0 auto 3.236rem;
+        }
+
+        .agora-page-rule::after {
+            content: '◆';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.45rem;
+            color: rgba(197, 179, 88, 0.4);
+            background: #1a2b22;
+            padding: 0 0.6rem;
+            line-height: 1;
+        }
+
+        .agora-block {
+            margin-bottom: 3.236rem;
+        }
+
+        .agora-block-label {
+            display: block;
+            font-family: 'Cinzel', var(--font-serif);
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.25rem;
+        }
+
+        .agora-block p {
+            font-family: var(--font-serif);
+            font-size: 1.0625rem;
+            font-weight: 400;
+            color: rgba(245, 241, 232, 0.6);
+            line-height: 1.9;
+            margin-bottom: 0.75rem;
+        }
+
+        .agora-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .agora-block-emphasis {
+            font-family: 'Cinzel', var(--font-serif);
+            font-size: 1.375rem;
+            font-weight: 500;
+            color: var(--soft-cream);
+            line-height: 1.5;
+            font-style: normal;
+            letter-spacing: 0.01em;
+            margin-bottom: 1rem;
+        }
+
+        .agora-detail-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.75rem 1.5rem;
+            text-align: left;
+            max-width: 340px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            background: rgba(245, 241, 232, 0.03);
+            border: 1px solid rgba(197, 179, 88, 0.1);
+            border-radius: 4px;
+        }
+
+        .agora-detail-key {
+            font-family: 'Cinzel', var(--font-serif);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .agora-detail-value {
+            font-family: var(--font-serif);
+            font-size: 0.9375rem;
+            font-weight: 400;
+            color: rgba(245, 241, 232, 0.65);
+            font-style: italic;
+        }
+
+        .agora-page-quote {
+            padding: 2.5rem 1.5rem;
+            position: relative;
+            margin-bottom: 3.236rem;
+        }
+
+        .agora-page-quote::before {
+            content: '❝';
+            position: absolute;
+            top: -0.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            color: rgba(197, 179, 88, 0.12);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .agora-page-quote p {
+            font-family: 'Cinzel', var(--font-serif);
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--soft-cream);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        .agora-page-quote cite {
+            display: block;
+            font-family: var(--font-sans);
+            font-size: 0.6875rem;
+            font-weight: 400;
+            font-style: normal;
+            color: rgba(197, 179, 88, 0.4);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-top: 1rem;
+        }
+
+        .agora-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: rgba(245, 241, 232, 0.35);
+            transition: color 0.3s ease, transform 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .agora-back:hover {
+            color: var(--gold);
+            transform: translateX(-3px);
+        }
+
+        .agora-back svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .agora-dogs {
+            font-family: var(--font-serif);
+            font-size: 0.9375rem;
+            font-weight: 400;
+            font-style: italic;
+            color: rgba(197, 179, 88, 0.45);
+            margin-top: 1rem;
+        }
+
+        .agora-page .reveal-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(0.33, 1, 0.68, 1), transform 0.7s cubic-bezier(0.33, 1, 0.68, 1);
+            transition-delay: var(--delay, 0s);
+        }
+
+        .agora-page .reveal-up.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 640px) {
+            .agora-detail-grid {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
+                text-align: center;
+            }
+
+            .agora-detail-key {
+                margin-top: 0.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Grain Overlay -->
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <!-- NAVIGATION -->
+    <header id="site-header" class="site-header">
+        <nav class="nav-container" aria-label="Hauptnavigation">
+            <a href="index.html" class="nav-logo" id="nav-logo">
+                <span class="logo-icon">🍄</span>
+                <span class="logo-text">Pilzhof<span class="logo-accent"> Dahler Heide</span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="nav-link">Startseite</a></li>
+                <li><a href="index.html#baba-shrooms" class="nav-link">Baba Shrooms</a></li>
+                <li><a href="index.html#rezeptbuch" class="nav-link">Rezepte</a></li>
+                <li><a href="index.html#contact" class="nav-link nav-link--cta">Kontakt</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+                <span class="hamburger-line"></span><span class="hamburger-line"></span><span
+                    class="hamburger-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="agora-page">
+        <div class="agora-page-container">
+
+            <!-- Back -->
+            <a href="index.html#agora-preview" class="agora-back reveal-up" style="--delay: 0.05s">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M12 4l-6 6 6 6" />
+                </svg>
+                Zurück
+            </a>
+
+            <!-- Header -->
+            <span class="agora-page-overline reveal-up" style="--delay: 0.1s">Jeden Sonntag · 12:00 – 17:00 Uhr</span>
+            <h1 class="agora-page-headline reveal-up" style="--delay: 0.2s">Die Agora.</h1>
+            <div class="agora-page-rule reveal-up" style="--delay: 0.3s"></div>
+
+            <!-- What -->
+            <div class="agora-block reveal-up" style="--delay: 0.35s">
+                <span class="agora-block-label">Was ist die Agora?</span>
+                <p class="agora-block-emphasis">Ein wöchentliches Ritual des Zusammenkommens.</p>
+                <p>
+                    Jeden Sonntag öffnen wir unseren Pilzhof für alle, die mehr suchen als nur Essen.
+                    Die Agora ist ein Ort, an dem Gespräche entstehen, Ideen geteilt werden und Gemeinschaft gelebt
+                    wird.
+                </p>
+                <p>
+                    Der Baba-Shrooms-Foodtruck ist vor Ort – mit frischen, pflanzlichen Kreationen
+                    aus unseren eigenen Kastanienseitlingen.
+                </p>
+            </div>
+
+            <!-- When & Where -->
+            <div class="agora-block reveal-up" style="--delay: 0.45s">
+                <span class="agora-block-label">Wann & Wo</span>
+                <div class="agora-detail-grid">
+                    <span class="agora-detail-key">Tag</span>
+                    <span class="agora-detail-value">Jeden Sonntag</span>
+                    <span class="agora-detail-key">Zeit</span>
+                    <span class="agora-detail-value">12:00 – 17:00 Uhr</span>
+                    <span class="agora-detail-key">Ort</span>
+                    <span class="agora-detail-value">Pilzhof Dahler Heide</span>
+                </div>
+                <p class="agora-dogs">Hunde sind willkommen.</p>
+            </div>
+
+            <!-- Who -->
+            <div class="agora-block reveal-up" style="--delay: 0.55s">
+                <span class="agora-block-label">Für wen?</span>
+                <p>
+                    Für alle. Für Familien, Nachbarn, Neugierige, Freunde, Alleinstehende,
+                    Menschen, die gutes Essen und ehrliche Gespräche schätzen.
+                </p>
+                <p>Keine Anmeldung nötig. Einfach kommen.</p>
+            </div>
+
+            <!-- Why -->
+            <div class="agora-block reveal-up" style="--delay: 0.65s">
+                <span class="agora-block-label">Warum?</span>
+                <p>
+                    Wir glauben, dass der Ort, an dem Essen wächst, auch der Ort sein kann,
+                    an dem Gemeinschaft wächst. Die Agora ist unser Beitrag
+                    zu einer Kultur der Begegnung – jede Woche, ohne Eintritt, ohne Programm.
+                </p>
+                <p>Einfach da sein. Das reicht.</p>
+            </div>
+
+            <!-- Quote -->
+            <blockquote class="agora-page-quote reveal-up" style="--delay: 0.75s">
+                <p>„Im Gespräch liegt die Kraft der Wahrheit."</p>
+                <cite>– in Anlehnung an Platon</cite>
+            </blockquote>
+
+            <!-- Also Saturday -->
+            <div class="agora-block reveal-up" style="--delay: 0.85s">
+                <span class="agora-block-label">Auch samstags</span>
+                <p>
+                    Jeden Samstag findest du den Baba-Shrooms-Foodtruck
+                    auf dem Wochenmarkt Paderborn — von 7:00 bis 14:00 Uhr.
+                </p>
+            </div>
+
+            <!-- Final Rule -->
+            <div class="agora-page-rule reveal-up" style="--delay: 0.9s"></div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">🍄</span>
+                        <span class="logo-text">Pilzhof<span class="logo-accent"> Dahler Heide</span></span>
+                    </a>
+                    <p class="footer-tagline">Regenerative Bio-Pilze aus der Region.<br>Nachhaltig. Frisch.
+                        Bewusst.<br>Dahler heide 19, 33100 Paderborn</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; 2025 Pilzhof Dahler heide. Alle Rechte vorbehalten.</p>
+                <p class="footer-impressum-link" style="margin-top: 0.5rem;"><a href="index.html#impressum"
+                        style="color: var(--soft-cream); text-decoration: underline;">Impressum</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

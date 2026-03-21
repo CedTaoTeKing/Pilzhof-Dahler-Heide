@@ -1,73 +1,930 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pilzhof Dahl Heide</title>
-    <meta name="description" content="Regenerative Organic Mushroom Farm" />
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              forest: '#1C2B22',
-              earth: '#5A3E2B',
-              mushroom: '#E8E1D6',
-              cream: '#F5F1E8',
-              gold: '#C5B358', // Low saturation gold
-              baba: '#D44007', // Interpreted "RR4007" as a rich brick/chili red
-            },
-            fontFamily: {
-              serif: ['"Playfair Display"', 'serif'],
-              sans: ['"Inter"', 'sans-serif'],
-            },
-            backgroundImage: {
-              'grain': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      body {
-        background-color: #F5F1E8;
-        color: #1C2B22;
-      }
-      .grain-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 50;
-        background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.04%22/%3E%3C/svg%3E');
-      }
-      /* Smooth scrolling */
-      html {
-        scroll-behavior: smooth;
-      }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.4",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
-  }
-}
-</script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pilzhof Dahler Heide – Regenerative Bio-Pilze aus der Region</title>
+  <meta name="description"
+    content="Pilzhof Dahler Heide kultiviert Premium Bio-Pilze wie den Kastanienseitling in regenerativer Landwirtschaft. 100% vegan, regional & nachhaltig. Entdecke Baba Shrooms Streetfood." />
+  <meta name="keywords"
+    content="Kastanienseitling, Bio Pilze regional, Vegane Pilzgerichte, Nachhaltige Landwirtschaft, Regenerative Landwirtschaft, Pilzhof Dahler Heide, Baba Shrooms" />
+  <meta name="author" content="Pilzhof Dahler Heide" />
+  <meta property="og:title" content="Pilzhof Dahler Heide – Regenerative Bio-Pilze" />
+  <meta property="og:description" content="Mehr als Bio. Eine Vision aus Myzel, Nachhaltigkeit und Geschmack." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍄</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-  </body>
+
+<body>
+  <!-- Grain Overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- NAVIGATION -->
+  <!-- ═══════════════════════════════════════════ -->
+  <header id="site-header" class="site-header">
+    <nav class="nav-container" aria-label="Hauptnavigation">
+      <a href="#hero" class="nav-logo" id="nav-logo">
+        <span class="logo-text">Pilzhof<span class="logo-accent"> Dahler Heide</span></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#vision" class="nav-link">Vision</a></li>
+        <li><a href="#product" class="nav-link">Seitling</a></li>
+        <li><a href="#process" class="nav-link">Prozess</a></li>
+        <li><a href="#baba-shrooms" class="nav-link">Baba Shrooms</a></li>
+        <li><a href="#rezeptbuch" class="nav-link">Rezepte</a></li>
+        <li><a href="#contact" class="nav-link nav-link--cta">Kontakt</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 1 – HERO -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="hero" class="hero-section">
+      <div class="hero-bg">
+        <img src="image-17.pg.webp" alt="Pilzhof Dahler Heide Hero Bild" class="hero-bg-img" loading="eager" />
+        <div class="hero-mist"></div>
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-tagline-bar fade-up" style="--delay: 0.2s">
+          <span class="tagline-pill">100% Vegan</span>
+          <span class="tagline-divider">|</span>
+          <span class="tagline-pill">Regional</span>
+          <span class="tagline-divider">|</span>
+          <span class="tagline-pill">Regenerativ</span>
+          <span class="tagline-divider">|</span>
+          <span class="tagline-pill">Transparente Prozesse</span>
+        </div>
+        <h1 class="hero-headline fade-up" style="--delay: 0.4s">Pilzhof Dahler Heide</h1>
+        <p class="hero-sub fade-up" style="--delay: 0.6s">
+          Mehr als Bio. Eine Vision aus Myzel, Nachhaltigkeit und Geschmack.
+        </p>
+        <div class="hero-cta-group fade-up" style="--delay: 0.8s">
+          <a href="#product" class="btn btn-primary" id="cta-discover">Entdecke unsere Pilze</a>
+          <a href="#rezeptbuch" class="btn btn-secondary" id="cta-recipes">Zur Rezeptwelt</a>
+        </div>
+      </div>
+      <div class="hero-scroll-indicator fade-up" style="--delay: 1.2s">
+        <div class="scroll-line"></div>
+        <span class="scroll-text">Scroll</span>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 2 – VISION & PHILOSOPHY -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="vision" class="vision-section">
+      <div class="section-container">
+        <div class="section-header reveal-up">
+          <span class="section-label">Unsere Philosophie</span>
+          <h2 class="section-headline">Wir kultivieren mehr als Pilze.<br /><em>Wir kultivieren Zukunft.</em></h2>
+        </div>
+
+        <div class="vision-grid">
+          <div class="vision-card reveal-up" style="--delay: 0.1s">
+            <div class="vision-card-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="24" cy="24" r="18" />
+                <path d="M24 6v36M6 24h36" />
+                <path d="M12 12c6 4 12 4 18 0M12 36c6-4 12-4 18 0" />
+              </svg>
+            </div>
+            <h3 class="vision-card-title">Regionale Dinkelspelzen als Nährboden</h3>
+            <p class="vision-card-text">Wir verwenden regionale Dinkelspelzen als nachhaltiges Substrat – ein
+              Nebenprodukt lokaler Landwirtschaft, das in unserem Kreislauf neues Leben findet und wertvolle Pilze
+              hervorbringt.</p>
+          </div>
+
+          <div class="vision-card reveal-up" style="--delay: 0.2s">
+            <div class="vision-card-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M24 4C13 4 4 13 4 24s9 20 20 20" />
+                <path d="M24 44C35 44 44 35 44 24S35 4 24 4" />
+                <path d="M24 14c-5.5 0-10 4.5-10 10s4.5 10 10 10 10-4.5 10-10-4.5-10-10-10z" />
+                <path d="M24 20v8M20 24h8" />
+              </svg>
+            </div>
+            <h3 class="vision-card-title">Geschlossene Kreislaufwirtschaft</h3>
+            <p class="vision-card-text">Von der Substrataufbereitung bis zur Kompostierung – unser System ist ein
+              geschlossener Kreislauf. Kein Abfall, nur Transformation. Jeder Rest wird Ressource.</p>
+          </div>
+
+          <div class="vision-card reveal-up" style="--delay: 0.3s">
+            <div class="vision-card-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M8 38s2-8 8-14c4-4 8-5 8-5s4 1 8 5c6 6 8 14 8 14" />
+                <path d="M24 19V6" />
+                <path d="M18 12l6-6 6 6" />
+              </svg>
+            </div>
+            <h3 class="vision-card-title">Ressourcenschonende Produktion</h3>
+            <p class="vision-card-text">Minimaler Wasserverbrauch, keine Pestizide, energieeffiziente Klimasteuerung.
+              Unsere Produktion respektiert natürliche Grenzen und maximiert biologische Effizienz.</p>
+          </div>
+
+          <div class="vision-card reveal-up" style="--delay: 0.4s">
+            <div class="vision-card-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="8" y="8" width="32" height="32" rx="4" />
+                <path d="M16 24l5 5 11-11" />
+              </svg>
+            </div>
+            <h3 class="vision-card-title">Transparente Qualitätskontrolle</h3>
+            <p class="vision-card-text">Jeder Produktionsschritt wird dokumentiert und kontrolliert. Vom Substrat bis
+              zur Ernte – wir machen Qualität sichtbar und nachvollziehbar für unsere Partner und Kunden.</p>
+          </div>
+        </div>
+
+        <!-- Mycelium connection lines -->
+        <div class="mycelium-lines" aria-hidden="true">
+          <svg class="mycelium-svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
+            <path class="mycelium-path" d="M0,50 C200,20 300,80 600,50 C900,20 1000,80 1200,50" />
+            <path class="mycelium-path mycelium-path--2" d="M0,30 C150,60 400,10 600,40 C800,70 1050,20 1200,50" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 2.5 – VIDEO SHOWCASE (CINEMATIC) -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="film" class="film-section">
+      <!-- Atmospheric particles -->
+      <div class="film-particles" aria-hidden="true">
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+      </div>
+
+      <!-- Decorative top mycelium line -->
+      <div class="film-border-line film-border-top" aria-hidden="true"></div>
+
+      <div class="film-container">
+        <!-- Editorial headline block -->
+        <div class="film-header reveal-up">
+          <div class="film-eyebrow">
+            <span class="film-eyebrow-line" aria-hidden="true"></span>
+            <span class="film-eyebrow-text">Der Film</span>
+            <span class="film-eyebrow-line" aria-hidden="true"></span>
+          </div>
+          <h2 class="film-headline">
+            <span class="film-headline-line reveal-up" style="--delay: 0.15s">Erlebe die Vision.</span>
+            <span class="film-headline-line film-headline-italic reveal-up" style="--delay: 0.3s">Spüre den
+              Ursprung.</span>
+          </h2>
+          <p class="film-subtext reveal-up" style="--delay: 0.45s">
+            Ein Blick hinter die Kulissen unseres Hofs – wo Natur, Präzision und Leidenschaft zu etwas Besonderem
+            verschmelzen.
+          </p>
+        </div>
+
+        <!-- Cinematic video frame -->
+        <div class="film-stage reveal-up" style="--delay: 0.5s">
+          <div class="film-frame">
+            <!-- Corner accents -->
+            <span class="frame-corner frame-corner--tl" aria-hidden="true"></span>
+            <span class="frame-corner frame-corner--tr" aria-hidden="true"></span>
+            <span class="frame-corner frame-corner--bl" aria-hidden="true"></span>
+            <span class="frame-corner frame-corner--br" aria-hidden="true"></span>
+
+            <!-- Video element -->
+            <div class="film-video-wrapper" id="film-video-wrapper">
+              <!-- 
+                ╔═══════════════════════════════════════════════════╗
+                ║  DEIN VIDEO HIER EINBINDEN:                      ║
+                ║                                                   ║
+                ║  Ersetze das <video> Tag mit deinem Film.        ║
+                ║  Unterstützt: .mp4, .webm, .mov                  ║
+                ║  Lege die Datei z.B. als "hof-film.mp4" in den  ║
+                ║  Projektordner und ändere den src-Pfad.          ║
+                ╚═══════════════════════════════════════════════════╝
+              -->
+              <video id="film-video" class="film-video"
+                poster="https://images.unsplash.com/photo-1518882570289-0b1f392b9b03?w=1920&q=80&auto=format"
+                preload="metadata" playsinline>
+                <!-- Ersetze src mit deinem Video-Pfad, z.B.: src="hof-film.mp4" -->
+                <source src="hof-film.mp4" type="video/mp4" />
+                Dein Browser unterstützt kein HTML5-Video.
+              </video>
+
+              <!-- Custom play overlay -->
+              <div class="film-play-overlay" id="film-play-overlay">
+                <button class="film-play-btn" id="film-play-btn" aria-label="Film abspielen">
+                  <svg class="play-ring" viewBox="0 0 120 120">
+                    <circle class="play-ring-bg" cx="60" cy="60" r="56" />
+                    <circle class="play-ring-progress" cx="60" cy="60" r="56" />
+                  </svg>
+                  <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </button>
+                <span class="film-play-label">Film abspielen</span>
+                <span class="film-duration">2:00 Min.</span>
+              </div>
+            </div>
+
+            <!-- Ambient glow behind video -->
+            <div class="film-ambient-glow" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Bottom decorative quote -->
+        <div class="film-quote reveal-up" style="--delay: 0.7s">
+          <blockquote class="film-quote-text">
+            „Wir glauben, dass man schmecken kann, wie etwas gewachsen ist."
+          </blockquote>
+          <cite class="film-quote-cite">— Pilzhof Dahler Heide</cite>
+        </div>
+      </div>
+
+      <!-- Decorative bottom mycelium line -->
+      <div class="film-border-line film-border-bottom" aria-hidden="true"></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 3 – SIGNATURE PRODUCT -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="product" class="product-section">
+      <div class="section-container">
+        <div class="product-layout">
+          <div class="product-image reveal-left">
+            <div class="product-image-frame">
+              <img src="./image-6.webp" alt="Frischer Kastanienseitling – Premium Bio-Pilz" class="product-img"
+                loading="lazy" />
+              <div class="product-image-glow"></div>
+            </div>
+          </div>
+          <div class="product-info reveal-right">
+            <span class="section-label">Unser Signaturpilz</span>
+            <h2 class="section-headline product-headline">Der Kastanienseitling</h2>
+
+            <div class="product-details">
+              <div class="product-detail-block">
+                <h3 class="detail-label">Botanisches Profil</h3>
+                <p class="detail-text">Pleurotus ostreatus var. castaneus – eine besondere Zuchtlinie des Austernpilzes,
+                  kultiviert unter kontrollierten Bedingungen für maximale Qualität und Geschmackskonsistenz.</p>
+              </div>
+              <div class="product-detail-block">
+                <h3 class="detail-label">Geschmacksprofil</h3>
+                <div class="flavor-tags">
+                  <span class="flavor-tag">Nussig</span>
+                  <span class="flavor-tag">Fleischige Textur</span>
+                  <span class="flavor-tag">Umami-intensiv</span>
+                  <span class="flavor-tag">Erdig-mild</span>
+                </div>
+              </div>
+              <div class="product-detail-block">
+                <h3 class="detail-label">Nährwertvorteile</h3>
+                <p class="detail-text">Reich an pflanzlichem Protein, B-Vitaminen, Kalium und Antioxidantien.
+                  Kalorienarm, cholesterinfrei und eine exzellente natürliche Umami-Quelle.</p>
+              </div>
+              <div class="product-detail-block">
+                <h3 class="detail-label">Kulinarische Vielseitigkeit</h3>
+                <p class="detail-text">Vom gegrillten Steak-Ersatz über cremige Risottos bis hin zu innovativem
+                  Streetfood – der Kastanienseitling überzeugt in jeder Küche.</p>
+              </div>
+            </div>
+
+            <a href="#baba-shrooms" class="btn btn-primary" id="cta-product">Jetzt entdecken</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 4 – PRODUKTIONSPROZESS -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="process" class="process-section">
+      <div class="section-container">
+        <div class="section-header reveal-up">
+          <span class="section-label">Unser Verfahren</span>
+          <h2 class="section-headline">Transparente Prozesse.<br /><em>Kontrollierte Qualität.</em></h2>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-line" aria-hidden="true"></div>
+
+          <div class="timeline-step reveal-up" style="--delay: 0.1s">
+            <div class="step-marker">
+              <span class="step-number">01</span>
+            </div>
+            <div class="step-content">
+              <div class="step-icon">
+                <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M20 5c-8 0-15 5-15 12s5 8 8 15c1 2 3 3 7 3s6-1 7-3c3-7 8-8 8-15S28 5 20 5z" />
+                  <path d="M15 17h10M20 12v10" />
+                </svg>
+              </div>
+              <h3 class="step-title">Regionale Dinkelspelzen als Nährboden</h3>
+              <p class="step-desc">Hochwertiges Substrat aus regionalen Dinkelspelzen wird aufbereitet und bildet die
+                natürliche Grundlage für gesundes Myzelwachstum.</p>
+            </div>
+          </div>
+
+          <div class="timeline-step reveal-up" style="--delay: 0.2s">
+            <div class="step-marker">
+              <span class="step-number">02</span>
+            </div>
+            <div class="step-content">
+              <div class="step-icon">
+                <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="10" y="8" width="20" height="28" rx="3" />
+                  <path d="M10 12h20M15 18h10M15 23h10" />
+                </svg>
+              </div>
+              <h3 class="step-title">Absacken</h3>
+              <p class="step-desc">Das vorbereitete Substrat wird unter kontrollierten Bedingungen in Kulturbeutel
+                portioniert – präzise Mengen für optimale Durchwachsung.</p>
+            </div>
+          </div>
+
+          <div class="timeline-step reveal-up" style="--delay: 0.3s">
+            <div class="step-marker">
+              <span class="step-number">03</span>
+            </div>
+            <div class="step-content">
+              <div class="step-icon">
+                <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="20" cy="20" r="12" />
+                  <path d="M20 8v5M20 27v5M8 20h5M27 20h5" />
+                  <circle cx="20" cy="20" r="4" />
+                </svg>
+              </div>
+              <h3 class="step-title">Sterilisieren</h3>
+              <p class="step-desc">Durch Hochtemperatur-Sterilisation eliminieren wir unerwünschte Organismen und
+                schaffen eine hygienisch einwandfreie Wachstumsumgebung.</p>
+            </div>
+          </div>
+
+          <div class="timeline-step reveal-up" style="--delay: 0.4s">
+            <div class="step-marker">
+              <span class="step-number">04</span>
+            </div>
+            <div class="step-content">
+              <div class="step-icon">
+                <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M20 5v10M15 10l5 5 5-5" />
+                  <path d="M10 20c0 8 5 15 10 15s10-7 10-15" />
+                  <path d="M14 25c2 2 4 3 6 3s4-1 6-3" />
+                </svg>
+              </div>
+              <h3 class="step-title">Inokulieren</h3>
+              <p class="step-desc">Die Brut wird unter sterilen Reinraum-Bedingungen mit dem Substrat verbunden – der
+                Moment, in dem Leben beginnt.</p>
+            </div>
+          </div>
+
+          <div class="timeline-step reveal-up" style="--delay: 0.5s">
+            <div class="step-marker">
+              <span class="step-number">05</span>
+            </div>
+            <div class="step-content">
+              <div class="step-icon">
+                <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="20" cy="20" r="15" />
+                  <path d="M14 14c3 3 9 3 12 0" />
+                  <path d="M14 26c3-3 9-3 12 0" />
+                  <path d="M20 5c-3 3-3 9 0 12" />
+                  <path d="M20 23c3 3 3 9 0 12" />
+                </svg>
+              </div>
+              <h3 class="step-title">Sommerraum – Durchwachsphase</h3>
+              <p class="step-desc">Bei konstanter Temperatur und Luftfeuchtigkeit durchwächst das Myzel das gesamte
+                Substrat. Ein Prozess der Geduld und Präzision.</p>
+            </div>
+          </div>
+
+          <div class="timeline-step reveal-up" style="--delay: 0.6s">
+            <div class="step-marker">
+              <span class="step-number">06</span>
+            </div>
+            <div class="step-content">
+              <div class="step-icon">
+                <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path
+                    d="M20 35c-7 0-12-5-12-10 0-4 3-7 5-10 1-2 2-5 2-8 0-1 2-3 5-3s5 2 5 3c0 3 1 6 2 8 2 3 5 6 5 10 0 5-5 10-12 10z" />
+                  <path d="M16 25c2 1 6 1 8 0" />
+                </svg>
+              </div>
+              <h3 class="step-title">Herbsträume – Fruchtung</h3>
+              <p class="step-desc">Durch gezielte Klimaveränderung wird die Fruchtung ausgelöst. Die Pilze entwickeln
+                sich innerhalb weniger Tage zu erntereifem Premium-Produkt.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 5 – BABA SHROOMS -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="baba-shrooms" class="baba-section">
+      <div class="section-container">
+        <div class="section-header reveal-up">
+          <h2 class="section-headline baba-headline">Unser Foodtruck</h2>
+          <div class="baba-subline">Babashrooms</div>
+          <p class="baba-intro">Unsere Pilze werden zu unvergesslichen kulinarischen Erlebnissen. Jedes Gericht erzählt
+            eine Geschichte von Qualität, Kreativität und pflanzlicher Kraft.</p>
+        </div>
+
+        <div class="baba-grid">
+
+          <!-- Mushrolls -->
+          <div class="baba-card reveal-up" style="--delay: 0.3s" id="card-mushrolls">
+            <div class="baba-card-image">
+              <img src="in-wartung.jpeg" alt="Mushrolls – Pilz-Wraps in Weizentortilla" loading="lazy" />
+              <div class="baba-card-overlay"></div>
+            </div>
+            <div class="baba-card-content">
+              <h3 class="baba-card-title">Mushrolls (Klassik, XL, Mini)</h3>
+              <p class="baba-card-desc">Gebratene Pilze, eingewickelt in Weizentortilla in frischem Crunch aus Eisberg
+                &amp; Rucola, Tomate, Gurke, Rotkohl, rote Zwiebeln, Aioli &amp; dunkler Balsamico-Crema.</p>
+
+            </div>
+          </div>
+
+          <!-- Magic Döner -->
+          <div class="baba-card reveal-up" style="--delay: 0.4s" id="card-doner">
+            <div class="baba-card-image">
+              <img src="pilz-doener.jpeg" alt="Magic Döner – Veganes Pilz-Döner" loading="lazy" />
+              <div class="baba-card-overlay"></div>
+            </div>
+            <div class="baba-card-content">
+              <h3 class="baba-card-title">Magic Döner</h3>
+              <p class="baba-card-desc">Saftige Kastanienseitlinge, alles, was ein guter Döner braucht plus
+                hausgemachter Aioli &amp; Tzatziki.</p>
+
+            </div>
+          </div>
+
+          <!-- Smush Burger -->
+          <div class="baba-card reveal-up" style="--delay: 0.5s" id="card-burger">
+            <div class="baba-card-image">
+              <img src="in-wartung.jpeg" alt="Smush Burger – Veganer Pilz-Burger" loading="lazy" />
+              <div class="baba-card-overlay"></div>
+            </div>
+            <div class="baba-card-content">
+              <h3 class="baba-card-title">Smush Burger</h3>
+              <p class="baba-card-desc">Knuspriges Dinkel-Patty, darauf gebratene Kastanienseitlinge, veganer Käse,
+                Rucola, Gurke, Tomate, Aioli, Jalapeño-Kick, dazu scharf angebratene Karotten-Spaghetti plus Sauce nach
+                Wahl.</p>
+
+            </div>
+          </div>
+
+          <!-- Magic Tacos -->
+          <div class="baba-card reveal-up" style="--delay: 0.6s" id="card-tacos">
+            <div class="baba-card-image">
+              <img src="pilz-taco.jpeg" alt="Magic Tacos – Vegane Pilz-Tacos" loading="lazy" />
+              <div class="baba-card-overlay"></div>
+            </div>
+            <div class="baba-card-content">
+              <h3 class="baba-card-title">Magic Tacos</h3>
+              <p class="baba-card-desc">Unsere Kastanienseitlinge, Salat, Tomate, Aioli &amp; Feuer.</p>
+
+            </div>
+          </div>
+
+          <!-- Magic Salad -->
+          <div class="baba-card reveal-up" style="--delay: 0.7s" id="card-salad">
+            <div class="baba-card-image">
+              <img src="in-wartung.jpeg" alt="Magic Salad – Frisch trifft Umami" loading="lazy" />
+              <div class="baba-card-overlay"></div>
+            </div>
+            <div class="baba-card-content">
+              <h3 class="baba-card-title">Magic Salad</h3>
+              <p class="baba-card-desc">Knackiger Salat-Mix mit heißen Kastanienseitlingen. <em>Frisch trifft
+                  Umami.</em></p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 5.5 – MYZEL-WEGE (Decision Portal) -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="myzel-wege" class="myzel-section">
+      <!-- Background mycelium structure -->
+      <div class="myzel-bg" aria-hidden="true">
+        <svg class="myzel-bg-lines" viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice">
+          <path
+            d="M0,400 C120,380 200,320 350,350 C500,380 550,280 700,300 C850,320 900,400 1050,380 C1200,360 1300,420 1400,400"
+            stroke="rgba(197,179,88,0.06)" stroke-width="1" fill="none" />
+          <path
+            d="M0,500 C180,470 280,520 420,490 C560,460 620,530 780,500 C940,470 1020,540 1180,510 C1300,490 1350,520 1400,500"
+            stroke="rgba(197,179,88,0.04)" stroke-width="0.8" fill="none" />
+          <path
+            d="M0,300 C100,310 220,260 380,290 C540,320 600,250 760,280 C920,310 1000,260 1160,290 C1280,310 1360,280 1400,300"
+            stroke="rgba(245,241,232,0.03)" stroke-width="0.6" fill="none" />
+          <path d="M200,100 C220,200 280,350 350,350" stroke="rgba(197,179,88,0.04)" stroke-width="0.5" fill="none" />
+          <path d="M700,100 C710,180 690,280 700,300" stroke="rgba(197,179,88,0.035)" stroke-width="0.5" fill="none" />
+          <path d="M1100,150 C1080,230 1060,340 1050,380" stroke="rgba(197,179,88,0.03)" stroke-width="0.5"
+            fill="none" />
+          <circle cx="350" cy="350" r="2" fill="rgba(197,179,88,0.08)" />
+          <circle cx="700" cy="300" r="2.5" fill="rgba(197,179,88,0.07)" />
+          <circle cx="1050" cy="380" r="2" fill="rgba(197,179,88,0.08)" />
+        </svg>
+      </div>
+
+      <!-- Radial depth glow -->
+      <div class="myzel-depth-glow" aria-hidden="true"></div>
+
+      <div class="section-container myzel-container">
+        <!-- Header -->
+        <div class="myzel-header reveal-up">
+          <span class="myzel-overline">FÜR WEN IST DIESE SEITE?</span>
+          <h2 class="myzel-headline">Wählen Sie Ihren Weg.</h2>
+          <p class="myzel-subtext">
+            Jede Zusammenarbeit beginnt mit einer Entscheidung.<br />
+            Hier finden Sie den passenden Einstieg.
+          </p>
+        </div>
+
+        <!-- Portal Cards Grid -->
+        <div class="myzel-grid">
+          <!-- Card 1 – Tour & Event -->
+          <a href="tour-events.html" class="myzel-card reveal-up" style="--delay: 0.15s" id="portal-tour-events">
+            <span class="myzel-card-micro">BABA SHROOMS ON TOUR</span>
+            <h3 class="myzel-card-headline">Ich organisiere ein Event</h3>
+            <p class="myzel-card-desc">
+              Ein ästhetischer Foodtruck, pflanzliche Streetfood-Kreationen
+              und ein professionelles Setup für Festivals, Firmenveranstaltungen
+              und kulturelle Events.
+            </p>
+            <span class="myzel-card-cta">
+              Tour & Event Kooperation entdecken
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M4 10h12M12 6l4 4-4 4" />
+              </svg>
+            </span>
+          </a>
+
+          <!-- Card 2 – Gastronomie -->
+          <a href="gastronomie.html" class="myzel-card reveal-up" style="--delay: 0.3s" id="portal-gastronomie">
+            <span class="myzel-card-micro">FÜR PROFIKÜCHEN</span>
+            <h3 class="myzel-card-headline">Ich führe ein Restaurant</h3>
+            <p class="myzel-card-desc">
+              Frische Kastanienseitlinge direkt vom Hof –
+              planbare Lieferung, konstante Qualität
+              und persönliche Betreuung.
+            </p>
+            <span class="myzel-card-cta">
+              Gastronomie-Belieferung ansehen
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M4 10h12M12 6l4 4-4 4" />
+              </svg>
+            </span>
+          </a>
+
+          <!-- Card 3 – Frische Pilze -->
+          <a href="frische-pilze.html" class="myzel-card reveal-up" style="--delay: 0.45s" id="portal-frische-pilze">
+            <span class="myzel-card-micro">DIREKT VOM HOF</span>
+            <h3 class="myzel-card-headline">Ich möchte frische Pilze</h3>
+            <p class="myzel-card-desc">
+              Erntefrische Kastanienseitlinge –
+              während unserer Öffnungszeiten abholen
+              oder unkompliziert über WhatsApp reservieren.
+            </p>
+            <span class="myzel-card-cta">
+              Frische Pilze entdecken
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M4 10h12M12 6l4 4-4 4" />
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 5.5 – WÖCHENTLICHE PRÄSENZ + AGORA -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="agora-preview" class="agora-section">
+      <div class="agora-container">
+
+        <!-- Hairline top -->
+        <div class="agora-rule" aria-hidden="true"></div>
+
+        <!-- Title -->
+        <h2 class="agora-headline reveal-up" style="--delay: 0.1s">Hier sind wir jede Woche.</h2>
+
+        <!-- Schedule Grid -->
+        <div class="agora-schedule reveal-up" style="--delay: 0.25s">
+          <div class="agora-schedule-block">
+            <span class="agora-day">Samstag</span>
+            <span class="agora-location">Wochenmarkt Paderborn</span>
+            <span class="agora-time">7:00 – 14:00 Uhr</span>
+          </div>
+          <div class="agora-schedule-divider" aria-hidden="true"></div>
+          <div class="agora-schedule-block">
+            <span class="agora-day">Sonntag</span>
+            <span class="agora-location">Auf unserem Pilzhof</span>
+            <span class="agora-time">12:00 – 17:00 Uhr — Agora</span>
+          </div>
+        </div>
+
+        <!-- Supporting Text -->
+        <div class="agora-body reveal-up" style="--delay: 0.4s">
+          <p>Der Foodtruck ist da.<br>Doch im Mittelpunkt steht das Zusammensein.</p>
+          <p>Ein Ort für Gespräche.<br>Für Geschmack.<br>Für Begegnung.</p>
+          <p class="agora-note">Hunde sind willkommen.</p>
+        </div>
+
+        <!-- Quote -->
+        <blockquote class="agora-quote reveal-up" style="--delay: 0.55s">
+          <p>„Im Gespräch liegt die Kraft der Wahrheit."</p>
+          <cite>– in Anlehnung an Platon</cite>
+        </blockquote>
+
+        <!-- CTA -->
+        <div class="agora-cta-wrap reveal-up" style="--delay: 0.7s">
+          <a href="agora.html" class="agora-cta" id="cta-agora">Mehr über die Agora</a>
+        </div>
+
+        <!-- Hairline bottom -->
+        <div class="agora-rule" aria-hidden="true"></div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 6 – REZEPTBUCH -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="rezeptbuch" class="recipe-section">
+      <div class="section-container">
+        <div class="section-header reveal-up">
+          <span class="section-label">Kulinarische Inspiration</span>
+          <h2 class="section-headline">Das Pilzhof Rezeptbuch</h2>
+          <p class="recipe-intro">Entdecke unsere Lieblingsrezepte – kreiert von unserem Team und inspiriert durch die
+            Vielseitigkeit unserer Seitlinge. Einfach, ehrlich, unglaublich gut.</p>
+        </div>
+
+        <div class="recipe-grid">
+          <!-- Recipe 1 -->
+          <article class="recipe-card reveal-up" style="--delay: 0.1s" id="recipe-risotto">
+            <div class="recipe-card-image">
+              <img src="in-wartung.jpeg" alt="Seitling Risotto Rezept" loading="lazy" />
+              <div class="recipe-time">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
+                  <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.5" />
+                  <path d="M10 6v4l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                35 Min.
+              </div>
+            </div>
+            <div class="recipe-card-body">
+              <span class="recipe-category">Hauptgericht</span>
+              <h3 class="recipe-card-title">Cremiges Seitling-Risotto</h3>
+              <p class="recipe-card-desc">Arborio-Reis mit glasierten Kastanienseitlingen, Weißwein, Parmesan und
+                frischem Thymian.</p>
+              <div class="recipe-ingredients">
+                <span class="ingredient">Seitlinge</span>
+                <span class="ingredient">Arborio</span>
+                <span class="ingredient">Weißwein</span>
+                <span class="ingredient">Thymian</span>
+              </div>
+              <button class="btn btn-recipe" onclick="toggleRecipe(this)" aria-expanded="false">Jetzt
+                nachkochen</button>
+              <div class="recipe-expanded">
+                <ol class="recipe-steps">
+                  <li>Seitlinge in Scheiben schneiden und in Olivenöl goldbraun braten.</li>
+                  <li>Schalotten und Knoblauch fein würfeln, in Butter anschwitzen.</li>
+                  <li>Risotto-Reis hinzufügen und glasig rühren.</li>
+                  <li>Mit Weißwein ablöschen, langsam Brühe zugeben.</li>
+                  <li>Seitlinge unterheben, mit Parmesan und Thymian servieren.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <!-- Recipe 2 -->
+          <article class="recipe-card reveal-up" style="--delay: 0.2s" id="recipe-steak">
+            <div class="recipe-card-image">
+              <img src="in-wartung.jpeg" alt="Gegrillter Seitling Steak" loading="lazy" />
+              <div class="recipe-time">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
+                  <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.5" />
+                  <path d="M10 6v4l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                25 Min.
+              </div>
+            </div>
+            <div class="recipe-card-body">
+              <span class="recipe-category">Grillen</span>
+              <h3 class="recipe-card-title">Gegrilltes Seitling-Steak</h3>
+              <p class="recipe-card-desc">Dicke Seitling-Scheiben mariniert in Soja-Balsamico, gegrillt mit Rosmarin und
+                Knoblauch.</p>
+              <div class="recipe-ingredients">
+                <span class="ingredient">Seitlinge</span>
+                <span class="ingredient">Balsamico</span>
+                <span class="ingredient">Rosmarin</span>
+                <span class="ingredient">Knoblauch</span>
+              </div>
+              <button class="btn btn-recipe" onclick="toggleRecipe(this)" aria-expanded="false">Jetzt
+                nachkochen</button>
+              <div class="recipe-expanded">
+                <ol class="recipe-steps">
+                  <li>Seitlinge längs in 2cm dicke Scheiben schneiden.</li>
+                  <li>Marinade aus Soja, Balsamico, Olivenöl und Knoblauch anrühren.</li>
+                  <li>Pilze mindestens 30 Minuten marinieren.</li>
+                  <li>Bei hoher Hitze 3-4 Minuten pro Seite grillen.</li>
+                  <li>Mit frischem Rosmarin und Fleur de Sel servieren.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <!-- Recipe 3 -->
+          <article class="recipe-card reveal-up" style="--delay: 0.3s" id="recipe-pasta">
+            <div class="recipe-card-image">
+              <img src="in-wartung.jpeg" alt="Seitling Pasta Rezept" loading="lazy" />
+              <div class="recipe-time">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
+                  <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.5" />
+                  <path d="M10 6v4l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                30 Min.
+              </div>
+            </div>
+            <div class="recipe-card-body">
+              <span class="recipe-category">Pasta</span>
+              <h3 class="recipe-card-title">Seitling-Trüffel Pasta</h3>
+              <p class="recipe-card-desc">Frische Tagliatelle mit gebratenen Seitlingen in leichter Trüffel-Sahnesauce
+                und Pinienkernen.</p>
+              <div class="recipe-ingredients">
+                <span class="ingredient">Seitlinge</span>
+                <span class="ingredient">Tagliatelle</span>
+                <span class="ingredient">Trüffelöl</span>
+                <span class="ingredient">Pinienkerne</span>
+              </div>
+              <button class="btn btn-recipe" onclick="toggleRecipe(this)" aria-expanded="false">Jetzt
+                nachkochen</button>
+              <div class="recipe-expanded">
+                <ol class="recipe-steps">
+                  <li>Tagliatelle al dente kochen, Kochwasser aufbewahren.</li>
+                  <li>Seitlinge in Streifen schneiden, in Butter mit Knoblauch anbraten.</li>
+                  <li>Sahne und einen Schuss Kochwasser hinzufügen.</li>
+                  <li>Pasta unterheben, Trüffelöl einrühren.</li>
+                  <li>Mit gerösteten Pinienkernen und Petersilie servieren.</li>
+                </ol>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 7 – COMMUNITY & CONTACT -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="contact" class="contact-section">
+      <div class="section-container">
+        <div class="section-header reveal-up">
+          <span class="section-label">Mitmachen</span>
+          <h2 class="section-headline">Werde Teil unseres Netzwerks</h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-option reveal-up" style="--delay: 0.1s" id="opt-buy">
+            <div class="contact-option-icon">
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 16V10a8 8 0 1116 0v6" />
+                <rect x="6" y="16" width="28" height="20" rx="3" />
+              </svg>
+            </div>
+            <h3 class="contact-option-title">Direkt kaufen</h3>
+            <p class="contact-option-desc">Frische Pilze direkt vom Hof – regional, saisonal und in bester Qualität.</p>
+            <a href="frische-pilze.html" class="btn btn-outline" id="cta-buy">Frische-Pilze Portal</a>
+          </div>
+
+          <div class="contact-option reveal-up" style="--delay: 0.2s" id="opt-coop">
+            <div class="contact-option-icon">
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="14" cy="14" r="6" />
+                <circle cx="26" cy="14" r="6" />
+                <path d="M6 32c0-5 4-9 8-9 2 0 4 0 6 2 2-2 4-2 6-2 4 0 8 4 8 9" />
+              </svg>
+            </div>
+            <h3 class="contact-option-title">Kooperation anfragen</h3>
+            <p class="contact-option-desc">Gastronomie, Handel oder Projekte – wir freuen uns auf partnerschaftliche
+              Zusammenarbeit.</p>
+            <a href="gastronomie.html" class="btn btn-outline" id="cta-coop">Gastronomie-Services</a>
+          </div>
+
+          <div class="contact-option reveal-up" style="--delay: 0.3s" id="opt-events">
+            <div class="contact-option-icon">
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="6" y="10" width="28" height="24" rx="3" />
+                <path d="M14 6v8M26 6v8M6 18h28" />
+                <circle cx="20" cy="26" r="3" />
+              </svg>
+            </div>
+            <h3 class="contact-option-title">Events besuchen</h3>
+            <p class="contact-option-desc">Hofführungen, Workshops und Verkostungen – erlebe regenerative Landwirtschaft
+              hautnah.</p>
+            <button onclick="openEventModal()" class="btn btn-outline" id="cta-events">Event-Anfrage</button>
+          </div>
+
+          <div class="contact-option reveal-up" style="--delay: 0.4s" id="opt-recipes">
+            <div class="contact-option-icon">
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M8 6h24v28H8z" />
+                <path d="M14 14h12M14 20h12M14 26h8" />
+                <path d="M8 6l4-2v4" />
+              </svg>
+            </div>
+            <h3 class="contact-option-title">Rezeptwelt abonnieren</h3>
+            <p class="contact-option-desc">Regelmäßig neue Rezepte, Anbautipps und exklusive Einblicke direkt in dein
+              Postfach.</p>
+            <a href="mailto:biohof.dahlerheide@gmail.com?subject=Newsletter" class="btn btn-outline"
+              id="cta-newsletter">Jetzt abonnieren</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FOOTER -->
+  <!-- ═══════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo">Pilzhof Dahler heide</span>
+          <p class="footer-statement">
+            Wir glauben an eine Landwirtschaft, die gibt statt nimmt.
+            Regenerativ, regional, vegan – für eine Zukunft, die schmeckt.
+          </p>
+        </div>
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4 class="footer-col-title">Navigation</h4>
+            <ul class="footer-link-list">
+              <li><a href="#vision">Vision</a></li>
+              <li><a href="#product">Kastanienseitling</a></li>
+              <li><a href="#process">Produktionsprozess</a></li>
+              <li><a href="#baba-shrooms">Baba Shrooms</a></li>
+              <li><a href="#rezeptbuch">Rezeptbuch</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-col-title">Kontakt</h4>
+            <ul class="footer-link-list">
+              <li>Pilzhof Dahler heide</li>
+              <li>Dahler heide 19<br>33100 Paderborn</li>
+              <li><a href="mailto:biohof.dahlerheide@gmail.com">biohof.dahlerheide@gmail.com</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Pilzhof Dahler heide. Alle Rechte vorbehalten.</p>
+        <p class="footer-eco">🌱 Nachhaltig produziert. Regional verantwortlich. 100% vegan.</p>
+        <p class="footer-impressum-link" style="margin-top: 0.5rem;"><a href="#impressum"
+            style="color: var(--soft-cream); text-decoration: underline;">Impressum</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
 </html>

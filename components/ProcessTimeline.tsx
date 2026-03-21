@@ -2,8 +2,8 @@ import React from 'react';
 import { PROCESS_STEPS } from '../constants';
 import type { ProcessStepIcon } from '../types';
 
-const ProcessStepIconSvg: React.FC<{ icon: ProcessStepIcon; className?: string }> = ({ icon, className = 'w-6 h-6' }) => {
-    const baseClass = `${className} text-forest/70`;
+const ProcessStepIconSvg: React.FC<{ icon: ProcessStepIcon; className?: string }> = ({ icon, className = 'w-7 h-7' }) => {
+    const baseClass = `${className} text-forest/80`;
     const stroke = 'currentColor';
     switch (icon) {
         case 'grain':
@@ -55,50 +55,92 @@ const ProcessStepIconSvg: React.FC<{ icon: ProcessStepIcon; className?: string }
 
 export const ProcessTimeline: React.FC = () => {
     return (
-        <section id="process" className="py-24 md:py-32 bg-cream scroll-mt-24">
-            <div className="container mx-auto px-6">
+        <section
+            id="process"
+            className="py-24 md:py-32 scroll-mt-24"
+            style={{
+                background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(197,179,88,0.04) 0%, transparent 60%), #F5F1E8'
+            }}
+        >
+            <div className="container mx-auto px-6 md:px-12 max-w-7xl">
                 {/* Section label, title, subtitle */}
-                <p className="text-center text-earth text-sm font-medium tracking-[0.2em] uppercase mb-4">
+                <p className="text-center text-earth text-xs md:text-sm font-semibold tracking-[0.15em] uppercase mb-4">
                     Unser Prozess
                 </p>
-                <h2 className="text-4xl md:text-5xl font-serif text-forest text-center mb-6">
+                <h2 className="text-3xl md:text-5xl font-serif font-semibold text-forest text-center mb-6 leading-[1.15] tracking-tight">
                     Von der Spore zum Fruchtkörper
                 </h2>
                 <p className="text-forest/60 max-w-xl mx-auto text-center text-lg font-light leading-relaxed mb-16">
                     Jeder Schritt ist durchdacht. Jeder Prozess kontrolliert. So entstehen Pilze in höchster Qualität.
                 </p>
 
-                <div className="max-w-3xl mx-auto relative">
-                    <div className="absolute left-[3rem] top-14 bottom-14 w-px bg-gradient-to-b from-forest/15 via-gold/25 to-forest/15 hidden md:block" aria-hidden />
-                    <div className="space-y-4">
-                        {PROCESS_STEPS.map((step, index) => (
-                            <div
+                <div className="max-w-4xl mx-auto relative">
+                    {/* Mycelium connector line - desktop only */}
+                    <svg
+                        className="absolute left-7 top-0 bottom-0 hidden md:block"
+                        width="2"
+                        height="100%"
+                        style={{ zIndex: 0 }}
+                        aria-hidden
+                    >
+                        <defs>
+                            <linearGradient id="connectorGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stopColor="rgba(28,43,34,0.15)" />
+                                <stop offset="50%" stopColor="rgba(197,179,88,0.3)" />
+                                <stop offset="100%" stopColor="rgba(28,43,34,0.15)" />
+                            </linearGradient>
+                        </defs>
+                        <line x1="1" y1="28" x2="1" y2="100%" stroke="url(#connectorGradient)" strokeWidth="1.5" />
+                        {PROCESS_STEPS.map((_, index) => (
+                            <circle
                                 key={index}
-                                className="group relative rounded-xl bg-white border border-earth/10 p-6 md:p-7 shadow-sm hover:shadow-md hover:border-earth/20 transition-all duration-300"
-                            >
-                                <div className="flex items-start gap-4">
-                                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-forest text-cream flex items-center justify-center font-serif font-bold text-lg shadow-inner">
-                                        {step.number}
-                                    </div>
-                                    <div className="flex-shrink-0 mt-1">
-                                        <ProcessStepIconSvg icon={step.icon || 'grain'} />
-                                    </div>
-                                    <div className="min-w-0">
-                                        {step.category && (
-                                            <p className="text-xs font-semibold tracking-widest uppercase mb-1 text-earth/80">
-                                                {step.category}
+                                cx="1"
+                                cy={28 + index * 180}
+                                r="3"
+                                fill="rgba(197,179,88,0.4)"
+                            />
+                        ))}
+                    </svg>
+
+                    <div className="space-y-0 relative" style={{ zIndex: 1 }}>
+                        {PROCESS_STEPS.map((step, index) => {
+                            const isFirst = index === 0;
+                            const isLast = index === PROCESS_STEPS.length - 1;
+
+                            return (
+                                <div
+                                    key={index}
+                                    className={`group relative bg-white border border-earth/10 rounded p-8 md:p-10 shadow-soft-sm hover:shadow-soft-md hover:border-earth/30 transition-all duration-300 mb-6 ${isFirst ? 'opacity-95' : ''} ${isLast ? 'ring-2 ring-gold/20' : ''}`}
+                                >
+                                    <div className="flex items-start gap-6">
+                                        {/* Step number circle */}
+                                        <div className={`flex-shrink-0 w-14 h-14 rounded-full bg-forest text-cream flex items-center justify-center font-serif font-bold text-xl shadow-soft-md ${isLast ? 'ring-2 ring-gold/40' : ''}`}>
+                                            {step.number}
+                                        </div>
+
+                                        {/* Icon */}
+                                        <div className="flex-shrink-0 mt-3 hidden md:block">
+                                            <ProcessStepIconSvg icon={step.icon || 'grain'} />
+                                        </div>
+
+                                        {/* Content */}
+                                        <div className="min-w-0 flex-1">
+                                            {step.category && (
+                                                <p className="text-[11px] font-semibold tracking-[0.15em] uppercase mb-2 text-earth/60">
+                                                    {step.category}
+                                                </p>
+                                            )}
+                                            <h3 className="text-xl md:text-2xl font-serif font-semibold text-forest mb-3 leading-tight">
+                                                {step.subHeading ?? step.title}
+                                            </h3>
+                                            <p className="text-sm md:text-base font-light leading-relaxed text-forest/75 max-w-[65ch]">
+                                                {step.description}
                                             </p>
-                                        )}
-                                        <h3 className="text-xl md:text-2xl font-serif font-bold text-forest mb-2">
-                                            {step.subHeading ?? step.title}
-                                        </h3>
-                                        <p className="text-sm md:text-base font-light leading-relaxed text-forest/75">
-                                            {step.description}
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </div>

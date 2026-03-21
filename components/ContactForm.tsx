@@ -47,7 +47,7 @@ export const ContactForm: React.FC = () => {
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="w-full px-4 py-2 rounded-sm bg-white/10 border border-white/20 text-cream placeholder-cream/40 focus:outline-none focus:border-gold"
+                        className="w-full px-4 py-2 rounded bg-white/10 border border-white/20 text-cream placeholder-cream/40 focus:outline-none focus:border-gold"
                         placeholder="Ihr Name"
                     />
                 </div>
@@ -59,7 +59,7 @@ export const ContactForm: React.FC = () => {
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full px-4 py-2 rounded-sm bg-white/10 border border-white/20 text-cream placeholder-cream/40 focus:outline-none focus:border-gold"
+                        className="w-full px-4 py-2 rounded bg-white/10 border border-white/20 text-cream placeholder-cream/40 focus:outline-none focus:border-gold"
                         placeholder="ihre@email.de"
                     />
                 </div>
@@ -71,7 +71,7 @@ export const ContactForm: React.FC = () => {
                         rows={4}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        className="w-full px-4 py-2 rounded-sm bg-white/10 border border-white/20 text-cream placeholder-cream/40 focus:outline-none focus:border-gold resize-none"
+                        className="w-full px-4 py-2 rounded bg-white/10 border border-white/20 text-cream placeholder-cream/40 focus:outline-none focus:border-gold resize-none"
                         placeholder="Ihre Nachricht oder Kooperationsanfrage..."
                     />
                 </div>
@@ -93,7 +93,7 @@ export const ContactForm: React.FC = () => {
                 <button
                     type="submit"
                     disabled={status === 'sending'}
-                    className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-cream text-forest hover:bg-gold rounded-sm transition-colors disabled:opacity-50"
+                    className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-cream text-forest hover:bg-gold rounded transition-colors disabled:opacity-50"
                 >
                     {status === 'sending' ? 'Wird gesendet…' : 'Nachricht senden'}
                 </button>
