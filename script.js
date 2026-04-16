@@ -143,22 +143,237 @@
   window.addEventListener('scroll', heroParallax, { passive: true });
 
 
-  // ─── TIMELINE STEP COUNTER ANIMATION ───
-  const timelineSteps = document.querySelectorAll('.timeline-step');
+  // ─── PROCESS SECTION — SCROLL CONTROLLER ───
+  (function initProcessSection() {
+    const section = document.getElementById('process');
+    if (!section) return;
 
-  const stepObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const phasesContainer = document.getElementById('process-phases');
+    const svg = document.getElementById('process-network');
+
+    // ── Build Dynamic SVG Network ──
+    function buildNetwork() {
+      if (!svg || !phasesContainer) return;
+      const markers = phasesContainer.querySelectorAll('.node-marker');
+      if (markers.length < 3) return;
+
+      const containerRect = phasesContainer.getBoundingClientRect();
+      svg.setAttribute('viewBox', `0 0 ${containerRect.width} ${containerRect.height}`);
+
+      // Get marker centers relative to the phases container
+      function markerCenter(marker) {
+        const r = marker.getBoundingClientRect();
+        return {
+          x: r.left + r.width / 2 - containerRect.left,
+          y: r.top + r.height / 2 - containerRect.top
+        };
+      }
+
+      const p1 = markerCenter(markers[0]);
+      const p2 = markerCenter(markers[1]);
+      const p3 = markerCenter(markers[2]);
+
+      svg.innerHTML = '';
+
+      // Helper: create path with classes
+      function makePath(d, classes, id) {
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', d);
+        path.setAttribute('fill', 'none');
+        if (id) path.id = id;
+        classes.forEach(c => path.classList.add(c));
+        svg.appendChild(path);
+        const len = path.getTotalLength();
+        path.style.setProperty('--path-len', len);
+        path.setAttribute('stroke-dasharray', len);
+        path.setAttribute('stroke-dashoffset', len);
+        return path;
+      }
+
+      // Helper: create dot
+      function makeDot(cx, cy, r, opacity) {
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', cx);
+        circle.setAttribute('cy', cy);
+        circle.setAttribute('r', r);
+        circle.setAttribute('fill', `rgba(197,179,88,${opacity})`);
+        circle.classList.add('mycelium-dot');
+        svg.appendChild(circle);
+        return circle;
+      }
+
+      // ── Path 1→2: organic S-curve ──
+      const mid12x = (p1.x + p2.x) / 2;
+      const mid12y = (p1.y + p2.y) / 2;
+      const cp1a = { x: p1.x + 60, y: p1.y + (mid12y - p1.y) * 0.5 };
+      const cp1b = { x: p2.x - 80, y: p2.y - (p2.y - mid12y) * 0.6 };
+      const d12 = `M${p1.x},${p1.y} C${cp1a.x},${cp1a.y} ${cp1b.x},${cp1b.y} ${p2.x},${p2.y}`;
+
+      // Glow layer first (behind)
+      makePath(d12, ['mycelium-glow'], 'glow-1-2');
+      // Main line
+      makePath(d12, ['mycelium-main'], 'main-1-2');
+
+      // Branches from path 1→2 midpoint
+      const branchMid = { x: mid12x, y: mid12y };
+      makePath(
+        `M${branchMid.x},${branchMid.y} C${branchMid.x - 40},${branchMid.y + 20} ${branchMid.x - 80},${branchMid.y + 15} ${branchMid.x - 100},${branchMid.y + 30}`,
+        ['mycelium-branch'], 'branch-1a'
+      );
+      makePath(
+        `M${branchMid.x},${branchMid.y} C${branchMid.x + 30},${branchMid.y - 25} ${branchMid.x + 60},${branchMid.y - 30} ${branchMid.x + 80},${branchMid.y - 20}`,
+        ['mycelium-branch'], 'branch-1b'
+      );
+
+      // ── Path 2→3: warmer organic curve toward Telos ──
+      const cp2a = { x: p2.x - 40, y: p2.y + (p3.y - p2.y) * 0.4 };
+      const cp2b = { x: p3.x + 60, y: p3.y - (p3.y - p2.y) * 0.3 };
+      const d23 = `M${p2.x},${p2.y} C${cp2a.x},${cp2a.y} ${cp2b.x},${cp2b.y} ${p3.x},${p3.y}`;
+
+      makePath(d23, ['mycelium-glow', 'mycelium-glow--telos'], 'glow-2-3');
+      makePath(d23, ['mycelium-main', 'mycelium-main--telos'], 'main-2-3');
+
+      // Branches from path 2→3
+      const mid23 = { x: (p2.x + p3.x) / 2, y: (p2.y + p3.y) / 2 };
+      makePath(
+        `M${mid23.x},${mid23.y} C${mid23.x + 50},${mid23.y + 15} ${mid23.x + 90},${mid23.y + 10} ${mid23.x + 110},${mid23.y + 25}`,
+        ['mycelium-branch'], 'branch-2a'
+      );
+      makePath(
+        `M${mid23.x},${mid23.y} C${mid23.x - 35},${mid23.y - 20} ${mid23.x - 70},${mid23.y - 25} ${mid23.x - 90},${mid23.y - 15}`,
+        ['mycelium-branch'], 'branch-2b'
+      );
+
+      // Extra branches emanating from node 1
+      makePath(
+        `M${p1.x},${p1.y} C${p1.x - 50},${p1.y + 30} ${p1.x - 80},${p1.y + 25} ${p1.x - 100},${p1.y + 40}`,
+        ['mycelium-branch'], 'branch-origin-a'
+      );
+      // Extra branches emanating from node 3 (Telos)
+      makePath(
+        `M${p3.x},${p3.y} C${p3.x + 50},${p3.y + 25} ${p3.x + 90},${p3.y + 30} ${p3.x + 110},${p3.y + 20}`,
+        ['mycelium-branch'], 'branch-telos-a'
+      );
+      makePath(
+        `M${p3.x},${p3.y} C${p3.x - 40},${p3.y + 30} ${p3.x - 80},${p3.y + 35} ${p3.x - 100},${p3.y + 25}`,
+        ['mycelium-branch'], 'branch-telos-b'
+      );
+
+      // Junction dots
+      makeDot(p1.x, p1.y, 3, 0.15);
+      makeDot(p2.x, p2.y, 3, 0.15);
+      makeDot(p3.x, p3.y, 4, 0.25);
+      makeDot(branchMid.x, branchMid.y, 1.5, 0.08);
+      makeDot(mid23.x, mid23.y, 1.5, 0.1);
+      makeDot(branchMid.x - 100, branchMid.y + 30, 1.5, 0.06);
+      makeDot(p3.x + 110, p3.y + 20, 1.5, 0.06);
+    }
+
+    // Build after layout is settled
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        buildNetwork();
+      });
+    });
+
+    // Rebuild on resize (debounced)
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(buildNetwork, 300);
+    }, { passive: true });
+
+    if (prefersReducedMotion) {
+      section.querySelectorAll('.hook-line, .process-hook-sub, .process-phase-label, .process-cta-wrap').forEach(el => el.classList.add('revealed'));
+      section.querySelectorAll('.process-node').forEach(el => el.classList.add('phase-active'));
+      svg.querySelectorAll('.mycelium-main, .mycelium-glow, .mycelium-branch').forEach(p => p.classList.add('drawn'));
+      svg.querySelectorAll('.mycelium-dot').forEach(d => d.classList.add('visible'));
+      return;
+    }
+
+    // ── Hook Lines — Sequential Reveal ──
+    const hookLines = section.querySelectorAll('.hook-line');
+    const hookSub = section.querySelector('.process-hook-sub');
+
+    const hookObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('revealed')) {
+          const order = parseInt(entry.target.dataset.reveal) || 1;
+          setTimeout(() => {
+            entry.target.classList.add('revealed');
+          }, (order - 1) * 300);
+          hookObserver.unobserve(entry.target);
         }
       });
-    },
-    { threshold: 0.3 }
-  );
+    }, { threshold: 0.3, rootMargin: '0px 0px -40px 0px' });
 
-  timelineSteps.forEach((step) => stepObserver.observe(step));
+    hookLines.forEach(line => hookObserver.observe(line));
+    if (hookSub) hookObserver.observe(hookSub);
+
+    // ── Phase Label Reveal ──
+    const phaseLabel = section.querySelector('.process-phase-label');
+    if (phaseLabel) {
+      const labelObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            labelObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5, rootMargin: '0px 0px -40px 0px' });
+      labelObserver.observe(phaseLabel);
+    }
+
+    // ── Phase Nodes — Sequential Activation + Connector Drawing ──
+    const nodes = section.querySelectorAll('.process-node');
+    const connectorGroups = {
+      1: ['glow-1-2', 'main-1-2', 'branch-1a', 'branch-1b', 'branch-origin-a'],
+      2: ['glow-2-3', 'main-2-3', 'branch-2a', 'branch-2b'],
+      3: ['branch-telos-a', 'branch-telos-b']
+    };
+
+    const nodeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('phase-active')) {
+          const phase = parseInt(entry.target.dataset.phase);
+          entry.target.classList.add('phase-active');
+
+          // Draw connectors for this phase
+          const ids = connectorGroups[phase] || [];
+          ids.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) setTimeout(() => el.classList.add('drawn'), 150);
+          });
+
+          // Show dots when phase 1 or 3 activates
+          if (phase === 1 || phase === 3) {
+            svg.querySelectorAll('.mycelium-dot').forEach(d => {
+              setTimeout(() => d.classList.add('visible'), 600);
+            });
+          }
+
+          nodeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    nodes.forEach(node => nodeObserver.observe(node));
+
+    // ── CTA Reveal ──
+    const cta = section.querySelector('.process-cta-wrap');
+    if (cta) {
+      const ctaObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            ctaObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      ctaObserver.observe(cta);
+    }
+  })();
 
 
   // ─── BABA CARD TILT EFFECT ───
