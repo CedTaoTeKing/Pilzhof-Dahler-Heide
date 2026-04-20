@@ -611,7 +611,7 @@ button {
    SECTION 2 – VISION & PHILOSOPHY
    ═══════════════════════════════════════════════════════════════ */
 .vision-section {
-  padding: var(--space-3xl) 0;
+  padding: var(--space-3xl) 0 var(--space-sm);
   background: var(--soft-cream);
   position: relative;
 }
@@ -1224,10 +1224,12 @@ button {
    SECTION 3 – SIGNATURE PRODUCT
    ═══════════════════════════════════════════════════════════════ */
 .product-section {
-  padding: var(--space-3xl) 0;
-  background: var(--deep-forest);
+  padding: var(--space-xl) 0 var(--space-3xl);
   position: relative;
   overflow: hidden;
+  background:
+    radial-gradient(ellipse 85% 180px at 50% 0%, rgba(197, 179, 88, 0.22) 0%, rgba(197, 179, 88, 0.05) 45%, transparent 75%),
+    linear-gradient(180deg, var(--soft-cream) 0px, #3a4a38 60px, var(--deep-forest) 140px, var(--deep-forest) 100%);
 }
 
 .product-section::before {
@@ -1239,6 +1241,25 @@ button {
   height: 500px;
   background: radial-gradient(circle, rgba(61, 107, 74, 0.15), transparent 60%);
   pointer-events: none;
+}
+
+.product-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1100px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(197, 179, 88, 0.6) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 .product-section .section-label {
