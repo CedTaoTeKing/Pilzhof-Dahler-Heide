@@ -2289,12 +2289,53 @@ button {
    SECTION 5 – BABA SHROOMS
    ═══════════════════════════════════════════════════════════════ */
 .baba-section {
-  padding: var(--space-xl) 0 var(--space-xl) 0;
-  background: var(--neutral-900);
+  padding: var(--space-3xl) 0 var(--space-xl) 0;
+  background:
+    radial-gradient(ellipse 70% 260px at 50% 0%, rgba(168, 85, 247, 0.18) 0%, rgba(168, 85, 247, 0.05) 40%, transparent 75%),
+    linear-gradient(180deg,
+      #1a2520 0%,
+      #151e19 8%,
+      var(--neutral-900) 18%,
+      var(--neutral-900) 100%);
   position: relative;
-  overflow: visible;
-  margin-top: -2rem;
-  /* Pull section up slightly for inter-connectivity */
+  overflow: hidden;
+  margin-top: 0;
+  isolation: isolate;
+}
+
+/* Aurora transition: three drifting purple orbs at the top */
+.baba-section::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: -10%;
+  width: 120%;
+  height: 360px;
+  background:
+    radial-gradient(ellipse 32% 60% at 20% 55%, rgba(168, 85, 247, 0.45) 0%, transparent 65%),
+    radial-gradient(ellipse 28% 55% at 55% 40%, rgba(232, 121, 249, 0.38) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 58% at 82% 55%, rgba(139, 92, 246, 0.42) 0%, transparent 62%);
+  filter: blur(36px);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+  animation: baba-aurora 14s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes baba-aurora {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.85;
+  }
+  33% {
+    transform: translate3d(40px, -8px, 0) scale(1.06);
+    opacity: 1;
+  }
+  66% {
+    transform: translate3d(-30px, 12px, 0) scale(0.96);
+    opacity: 0.75;
+  }
 }
 
 /* Mycelium bleed bridge → Process section */
@@ -2314,15 +2355,9 @@ button {
   z-index: 2;
 }
 
-.baba-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--baba-primary), transparent);
-  opacity: 0.5;
+.baba-section .section-container {
+  position: relative;
+  z-index: 3;
 }
 
 /* Typography overrides for premium editorial feel */
@@ -2343,12 +2378,43 @@ button {
 
 .baba-subline {
   font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem);
+  font-size: clamp(3rem, 6vw + 1rem, 5.5rem);
   font-weight: 600;
-  color: var(--baba-primary);
   line-height: 1.1;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   margin-bottom: 2rem;
+  background: linear-gradient(
+    105deg,
+    #9333ea 0%,
+    #c084fc 20%,
+    #f0abfc 35%,
+    #ffffff 50%,
+    #f0abfc 65%,
+    #c084fc 80%,
+    #9333ea 100%
+  );
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 24px rgba(192, 132, 252, 0.45)) drop-shadow(0 0 48px rgba(168, 85, 247, 0.25));
+  animation: baba-shimmer 6.5s linear infinite;
+  position: relative;
+  display: inline-block;
+}
+
+@keyframes baba-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -150% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .baba-subline,
+  .baba-section::before {
+    animation: none;
+  }
 }
 
 .baba-intro {
