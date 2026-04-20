@@ -2290,39 +2290,10 @@ button {
    ═══════════════════════════════════════════════════════════════ */
 .baba-section {
   padding: var(--space-xl) 0 var(--space-xl) 0;
-  background:
-    radial-gradient(ellipse 90% 400px at 50% 5%, rgba(168, 85, 247, 0.12) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 50% at 15% 40%, rgba(139, 92, 246, 0.07) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 50% at 85% 70%, rgba(217, 70, 239, 0.06) 0%, transparent 65%),
-    linear-gradient(
-      180deg,
-      #1C2B22 0%,
-      #2a2636 5%,
-      #3d2348 10%,
-      #2a1a30 16%,
-      #1d1528 24%,
-      #17111f 100%
-    );
+  background: var(--neutral-900);
   position: relative;
-  overflow: hidden;
-  margin-top: 0;
-  isolation: isolate;
-}
-
-/* Horizontal purple glow band at the transition zone */
-.baba-section::before {
-  content: '';
-  position: absolute;
-  top: 40px;
-  left: -5%;
-  right: -5%;
-  height: 120px;
-  background:
-    radial-gradient(ellipse 60% 80% at 50% 50%, rgba(168, 85, 247, 0.35) 0%, rgba(139, 92, 246, 0.15) 45%, transparent 75%);
-  filter: blur(24px);
-  z-index: 0;
-  pointer-events: none;
-  mix-blend-mode: screen;
+  overflow: visible;
+  margin-top: -2rem;
 }
 
 /* Mycelium bleed bridge → Process section */
@@ -2342,10 +2313,6 @@ button {
   z-index: 2;
 }
 
-.baba-section .section-container {
-  position: relative;
-  z-index: 3;
-}
 
 /* Typography overrides for premium editorial feel */
 .baba-section .section-header {
