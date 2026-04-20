@@ -43,7 +43,7 @@
         <li><a href="#product" class="nav-link">Seitling</a></li>
         <li><a href="#process" class="nav-link">Prozess</a></li>
         <li><a href="#baba-shrooms" class="nav-link">Baba Shrooms</a></li>
-        <li><a href="#rezeptbuch" class="nav-link">Rezepte</a></li>
+        <li><a href="#anbraten" class="nav-link">Anbraten</a></li>
         <li><a href="#contact" class="nav-link nav-link--cta">Kontakt</a></li>
       </ul>
       <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
@@ -80,7 +80,7 @@
         </p>
         <div class="hero-cta-group fade-up" style="--delay: 0.8s">
           <a href="#product" class="btn btn-primary" id="cta-discover">Entdecke unsere Pilze</a>
-          <a href="#rezeptbuch" class="btn btn-secondary" id="cta-recipes">Zur Rezeptwelt</a>
+          <a href="#anbraten" class="btn btn-secondary" id="cta-recipes">Zum Anbrat-Guide</a>
         </div>
       </div>
       <div class="hero-scroll-indicator fade-up" style="--delay: 1.2s">
@@ -603,128 +603,102 @@
     </section>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!-- SECTION 6 – REZEPTBUCH -->
+    <!-- SECTION 6 – ANBRAT-GUIDE -->
     <!-- ═══════════════════════════════════════════ -->
-    <section id="rezeptbuch" class="recipe-section">
+    <section id="anbraten" class="anbrat-section">
       <div class="section-container">
-        <div class="section-header reveal-up">
-          <span class="section-label">Kulinarische Inspiration</span>
-          <h2 class="section-headline">Das Pilzhof Rezeptbuch</h2>
-          <p class="recipe-intro">Entdecke unsere Lieblingsrezepte – kreiert von unserem Team und inspiriert durch die
-            Vielseitigkeit unserer Seitlinge. Einfach, ehrlich, unglaublich gut.</p>
+        <div class="anbrat-header reveal-up">
+          <span class="section-label anbrat-label">Der Anbrat-Guide</span>
+          <h2 class="section-headline anbrat-headline">
+            Kastanienseitlinge braten
+            <em class="anbrat-headline-em">— herzhaft wie Fleisch</em>
+          </h2>
+          <p class="anbrat-intro">Vier Schritte zum perfekten Pilz. Saftig, aromatisch, mit feiner Kruste und fast fleischähnlicher Konsistenz.</p>
         </div>
 
-        <div class="recipe-grid">
-          <!-- Recipe 1 -->
-          <article class="recipe-card reveal-up" style="--delay: 0.1s" id="recipe-risotto">
-            <div class="recipe-card-image">
-              <img src="in-wartung.jpeg" alt="Seitling Risotto Rezept" loading="lazy" />
-              <div class="recipe-time">
-                <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
-                  <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.5" />
-                  <path d="M10 6v4l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                </svg>
-                35 Min.
-              </div>
+        <ol class="anbrat-timeline">
+          <li class="anbrat-step reveal-up" style="--delay: 0.1s">
+            <div class="anbrat-step-marker" aria-hidden="true">
+              <span class="anbrat-step-num">01</span>
+              <span class="anbrat-step-line"></span>
             </div>
-            <div class="recipe-card-body">
-              <span class="recipe-category">Hauptgericht</span>
-              <h3 class="recipe-card-title">Cremiges Seitling-Risotto</h3>
-              <p class="recipe-card-desc">Arborio-Reis mit glasierten Kastanienseitlingen, Weißwein, Parmesan und
-                frischem Thymian.</p>
-              <div class="recipe-ingredients">
-                <span class="ingredient">Seitlinge</span>
-                <span class="ingredient">Arborio</span>
-                <span class="ingredient">Weißwein</span>
-                <span class="ingredient">Thymian</span>
-              </div>
-              <button class="btn btn-recipe" onclick="toggleRecipe(this)" aria-expanded="false">Jetzt
-                nachkochen</button>
-              <div class="recipe-expanded">
-                <ol class="recipe-steps">
-                  <li>Seitlinge in Scheiben schneiden und in Olivenöl goldbraun braten.</li>
-                  <li>Schalotten und Knoblauch fein würfeln, in Butter anschwitzen.</li>
-                  <li>Risotto-Reis hinzufügen und glasig rühren.</li>
-                  <li>Mit Weißwein ablöschen, langsam Brühe zugeben.</li>
-                  <li>Seitlinge unterheben, mit Parmesan und Thymian servieren.</li>
-                </ol>
-              </div>
+            <div class="anbrat-step-body">
+              <span class="anbrat-step-kicker">Schneiden</span>
+              <h3 class="anbrat-step-title">Quer zu den Lamellen</h3>
+              <p class="anbrat-step-text">Die Kastanienseitlinge in Streifen schneiden – am besten quer zu den Lamellen. So entsteht die besonders schöne, fleischige Struktur.</p>
+              <p class="anbrat-step-tip">
+                <span class="anbrat-tip-label">Trick</span>
+                Pilz mit dem Stiel nach oben drehen und in gewünschte Streifen schneiden.
+              </p>
             </div>
-          </article>
+          </li>
 
-          <!-- Recipe 2 -->
-          <article class="recipe-card reveal-up" style="--delay: 0.2s" id="recipe-steak">
-            <div class="recipe-card-image">
-              <img src="in-wartung.jpeg" alt="Gegrillter Seitling Steak" loading="lazy" />
-              <div class="recipe-time">
-                <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
-                  <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.5" />
-                  <path d="M10 6v4l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                </svg>
-                25 Min.
-              </div>
+          <li class="anbrat-step reveal-up" style="--delay: 0.2s">
+            <div class="anbrat-step-marker" aria-hidden="true">
+              <span class="anbrat-step-num">02</span>
+              <span class="anbrat-step-line"></span>
             </div>
-            <div class="recipe-card-body">
-              <span class="recipe-category">Grillen</span>
-              <h3 class="recipe-card-title">Gegrilltes Seitling-Steak</h3>
-              <p class="recipe-card-desc">Dicke Seitling-Scheiben mariniert in Soja-Balsamico, gegrillt mit Rosmarin und
-                Knoblauch.</p>
-              <div class="recipe-ingredients">
-                <span class="ingredient">Seitlinge</span>
-                <span class="ingredient">Balsamico</span>
-                <span class="ingredient">Rosmarin</span>
-                <span class="ingredient">Knoblauch</span>
-              </div>
-              <button class="btn btn-recipe" onclick="toggleRecipe(this)" aria-expanded="false">Jetzt
-                nachkochen</button>
-              <div class="recipe-expanded">
-                <ol class="recipe-steps">
-                  <li>Seitlinge längs in 2cm dicke Scheiben schneiden.</li>
-                  <li>Marinade aus Soja, Balsamico, Olivenöl und Knoblauch anrühren.</li>
-                  <li>Pilze mindestens 30 Minuten marinieren.</li>
-                  <li>Bei hoher Hitze 3-4 Minuten pro Seite grillen.</li>
-                  <li>Mit frischem Rosmarin und Fleur de Sel servieren.</li>
-                </ol>
-              </div>
+            <div class="anbrat-step-body">
+              <span class="anbrat-step-kicker">Scharf anbraten</span>
+              <h3 class="anbrat-step-title">Wie ein Steak</h3>
+              <p class="anbrat-step-text">Pfanne sehr stark erhitzen. Etwas Öl dazugeben, Pilze direkt in die heiße Pfanne legen. In Ruhe braten, nur gelegentlich wenden.</p>
+              <p class="anbrat-step-tip">
+                <span class="anbrat-tip-label">Achte auf</span>
+                Das natürliche Wasser tritt aus – die Pilze garen fast im eigenen Saft. Genau so soll es sein.
+              </p>
             </div>
-          </article>
+          </li>
 
-          <!-- Recipe 3 -->
-          <article class="recipe-card reveal-up" style="--delay: 0.3s" id="recipe-pasta">
-            <div class="recipe-card-image">
-              <img src="in-wartung.jpeg" alt="Seitling Pasta Rezept" loading="lazy" />
-              <div class="recipe-time">
-                <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
-                  <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.5" />
-                  <path d="M10 6v4l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                </svg>
-                30 Min.
+          <li class="anbrat-step reveal-up" style="--delay: 0.3s">
+            <div class="anbrat-step-marker" aria-hidden="true">
+              <span class="anbrat-step-num">03</span>
+              <span class="anbrat-step-line"></span>
+            </div>
+            <div class="anbrat-step-body">
+              <span class="anbrat-step-kicker">Kruste & Würze</span>
+              <h3 class="anbrat-step-title">Bräunen und abschmecken</h3>
+              <p class="anbrat-step-text">Sobald das Wasser verdampft ist, beginnen die Pilze zu bräunen. Noch etwas Öl zugeben und weiterbraten, bis sich eine schöne Kruste bildet. Mit Salz, Pfeffer und Gewürzen nach Wahl abschmecken.</p>
+
+              <div class="anbrat-spices">
+                <span class="anbrat-spices-label">Besonders gut passen</span>
+                <div class="anbrat-spice-tags">
+                  <span class="flavor-tag">Paprika</span>
+                  <span class="flavor-tag">Kreuzkümmel</span>
+                  <span class="flavor-tag">Muskat</span>
+                  <span class="flavor-tag">Curry</span>
+                  <span class="flavor-tag">Kurkuma</span>
+                  <span class="flavor-tag">Prise Zimt</span>
+                </div>
               </div>
             </div>
-            <div class="recipe-card-body">
-              <span class="recipe-category">Pasta</span>
-              <h3 class="recipe-card-title">Seitling-Trüffel Pasta</h3>
-              <p class="recipe-card-desc">Frische Tagliatelle mit gebratenen Seitlingen in leichter Trüffel-Sahnesauce
-                und Pinienkernen.</p>
-              <div class="recipe-ingredients">
-                <span class="ingredient">Seitlinge</span>
-                <span class="ingredient">Tagliatelle</span>
-                <span class="ingredient">Trüffelöl</span>
-                <span class="ingredient">Pinienkerne</span>
-              </div>
-              <button class="btn btn-recipe" onclick="toggleRecipe(this)" aria-expanded="false">Jetzt
-                nachkochen</button>
-              <div class="recipe-expanded">
-                <ol class="recipe-steps">
-                  <li>Tagliatelle al dente kochen, Kochwasser aufbewahren.</li>
-                  <li>Seitlinge in Streifen schneiden, in Butter mit Knoblauch anbraten.</li>
-                  <li>Sahne und einen Schuss Kochwasser hinzufügen.</li>
-                  <li>Pasta unterheben, Trüffelöl einrühren.</li>
-                  <li>Mit gerösteten Pinienkernen und Petersilie servieren.</li>
-                </ol>
+          </li>
+
+          <li class="anbrat-step reveal-up" style="--delay: 0.4s">
+            <div class="anbrat-step-marker anbrat-step-marker--last" aria-hidden="true">
+              <span class="anbrat-step-num">04</span>
+            </div>
+            <div class="anbrat-step-body">
+              <span class="anbrat-step-kicker">Veredeln</span>
+              <h3 class="anbrat-step-title">Ablöschen & vollenden</h3>
+              <p class="anbrat-step-text">Mit etwas Weißwein oder weißem Balsamico ablöschen und kurz weiterbraten. Wer mag: eine Prise Chili zur Schärfe, ein Hauch Honig oder Agavendicksaft für leichte Karamellisierung – oder ein kleines Stück Butter für ein besonders saftiges, aromatisches Ergebnis.</p>
+
+              <div class="anbrat-finishes">
+                <span class="anbrat-spices-label">Deine Finishes</span>
+                <div class="anbrat-finish-grid">
+                  <div class="anbrat-finish-chip"><span class="anbrat-finish-name">Weißwein</span><span class="anbrat-finish-note">klassisch</span></div>
+                  <div class="anbrat-finish-chip"><span class="anbrat-finish-name">Balsamico</span><span class="anbrat-finish-note">fein-säuerlich</span></div>
+                  <div class="anbrat-finish-chip"><span class="anbrat-finish-name">Chili</span><span class="anbrat-finish-note">Schärfe</span></div>
+                  <div class="anbrat-finish-chip"><span class="anbrat-finish-name">Honig</span><span class="anbrat-finish-note">Karamell</span></div>
+                  <div class="anbrat-finish-chip"><span class="anbrat-finish-name">Butter</span><span class="anbrat-finish-note">saftig</span></div>
+                </div>
               </div>
             </div>
-          </article>
+          </li>
+        </ol>
+
+        <div class="anbrat-result reveal-up">
+          <span class="anbrat-result-label">Das Ergebnis</span>
+          <p class="anbrat-result-quote">So werden die Kastanienseitlinge wunderbar herzhaft, saftig und entwickeln eine angenehme, <em>fast fleischähnliche Konsistenz</em>.</p>
         </div>
       </div>
     </section>
@@ -923,7 +897,7 @@
               <li><a href="#product">Kastanienseitling</a></li>
               <li><a href="#process">Produktionsprozess</a></li>
               <li><a href="#baba-shrooms">Baba Shrooms</a></li>
-              <li><a href="#rezeptbuch">Rezeptbuch</a></li>
+              <li><a href="#anbraten">Anbrat-Guide</a></li>
             </ul>
           </div>
           <div class="footer-col">
