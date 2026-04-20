@@ -2289,53 +2289,37 @@ button {
    SECTION 5 – BABA SHROOMS
    ═══════════════════════════════════════════════════════════════ */
 .baba-section {
-  padding: var(--space-3xl) 0 var(--space-xl) 0;
-  background:
-    radial-gradient(ellipse 70% 260px at 50% 0%, rgba(168, 85, 247, 0.18) 0%, rgba(168, 85, 247, 0.05) 40%, transparent 75%),
-    linear-gradient(180deg,
-      #1a2520 0%,
-      #151e19 8%,
-      var(--neutral-900) 18%,
-      var(--neutral-900) 100%);
+  padding: var(--space-xl) 0 var(--space-xl) 0;
+  background: linear-gradient(
+    180deg,
+    #1C2B22 0%,
+    #2a2636 5%,
+    #3d2348 10%,
+    #2a1a30 16%,
+    #17121c 22%,
+    var(--neutral-900) 30%,
+    var(--neutral-900) 100%
+  );
   position: relative;
   overflow: hidden;
   margin-top: 0;
   isolation: isolate;
 }
 
-/* Aurora transition: three drifting purple orbs at the top */
+/* Horizontal purple glow band at the transition zone */
 .baba-section::before {
   content: '';
   position: absolute;
-  top: -80px;
-  left: -10%;
-  width: 120%;
-  height: 360px;
+  top: 40px;
+  left: -5%;
+  right: -5%;
+  height: 120px;
   background:
-    radial-gradient(ellipse 32% 60% at 20% 55%, rgba(168, 85, 247, 0.45) 0%, transparent 65%),
-    radial-gradient(ellipse 28% 55% at 55% 40%, rgba(232, 121, 249, 0.38) 0%, transparent 60%),
-    radial-gradient(ellipse 30% 58% at 82% 55%, rgba(139, 92, 246, 0.42) 0%, transparent 62%);
-  filter: blur(36px);
-  opacity: 0.9;
-  pointer-events: none;
+    radial-gradient(ellipse 60% 80% at 50% 50%, rgba(168, 85, 247, 0.35) 0%, rgba(139, 92, 246, 0.15) 45%, transparent 75%);
+  filter: blur(24px);
   z-index: 0;
-  animation: baba-aurora 14s ease-in-out infinite;
+  pointer-events: none;
   mix-blend-mode: screen;
-}
-
-@keyframes baba-aurora {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.85;
-  }
-  33% {
-    transform: translate3d(40px, -8px, 0) scale(1.06);
-    opacity: 1;
-  }
-  66% {
-    transform: translate3d(-30px, 12px, 0) scale(0.96);
-    opacity: 0.75;
-  }
 }
 
 /* Mycelium bleed bridge → Process section */
