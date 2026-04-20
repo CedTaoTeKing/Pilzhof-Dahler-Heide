@@ -2290,16 +2290,19 @@ button {
    ═══════════════════════════════════════════════════════════════ */
 .baba-section {
   padding: var(--space-xl) 0 var(--space-xl) 0;
-  background: linear-gradient(
-    180deg,
-    #1C2B22 0%,
-    #2a2636 5%,
-    #3d2348 10%,
-    #2a1a30 16%,
-    #17121c 22%,
-    var(--neutral-900) 30%,
-    var(--neutral-900) 100%
-  );
+  background:
+    radial-gradient(ellipse 90% 400px at 50% 5%, rgba(168, 85, 247, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 15% 40%, rgba(139, 92, 246, 0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 85% 70%, rgba(217, 70, 239, 0.06) 0%, transparent 65%),
+    linear-gradient(
+      180deg,
+      #1C2B22 0%,
+      #2a2636 5%,
+      #3d2348 10%,
+      #2a1a30 16%,
+      #1d1528 24%,
+      #17111f 100%
+    );
   position: relative;
   overflow: hidden;
   margin-top: 0;
