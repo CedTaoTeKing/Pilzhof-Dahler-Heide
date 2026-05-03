@@ -2319,174 +2319,26 @@ button {
 
 
 /* ═══════════════════════════════════════════════════════════════
-   PROCESS TIMELINE — Vertical Mycelium Layout (organic farm-feel)
+   PROCESS FLOW — Premium card stack with elegant gold connectors
    ═══════════════════════════════════════════════════════════════ */
-.process-timeline {
-  list-style: none;
-  padding: 0;
+.process-flow {
+  max-width: 760px;
   margin: 0 auto;
-  max-width: 820px;
   position: relative;
-}
-
-/* Vertical mycelium spine — flows through all markers */
-.process-timeline::before {
-  content: '';
-  position: absolute;
-  top: 36px;
-  bottom: 36px;
-  left: 31px;
-  width: 1.5px;
-  background:
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(197, 179, 88, 0.3) 4%,
-      rgba(197, 179, 88, 0.5) 50%,
-      rgba(197, 179, 88, 0.7) 96%,
-      transparent 100%
-    );
-  z-index: 0;
-  filter: drop-shadow(0 0 4px rgba(197, 179, 88, 0.15));
-}
-
-/* Branching tendrils — subtle pseudo-element decorations */
-.process-timeline::after {
-  content: '';
-  position: absolute;
-  top: 28%;
-  left: 32px;
-  width: 24px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(197, 179, 88, 0.3), transparent);
-  transform: rotate(-22deg);
-  transform-origin: left center;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ─── Floating spores in the background ─── */
-.process-spores {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.spore {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
-  width: var(--size);
-  height: var(--size);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(197, 179, 88, 0.7), rgba(197, 179, 88, 0.2) 60%, transparent);
-  box-shadow: 0 0 6px rgba(197, 179, 88, 0.3);
-  opacity: 0;
-  animation: spore-drift var(--dur, 12s) ease-in-out infinite;
-  animation-delay: var(--delay, 0s);
-}
-
-@keyframes spore-drift {
-  0%   { opacity: 0;   transform: translate3d(0, 30px, 0) scale(0.8); }
-  20%  { opacity: 0.9; transform: translate3d(8px, 0, 0) scale(1); }
-  50%  { opacity: 1;   transform: translate3d(-12px, -25px, 0) scale(1.1); }
-  80%  { opacity: 0.7; transform: translate3d(6px, -45px, 0) scale(0.95); }
-  100% { opacity: 0;   transform: translate3d(0, -65px, 0) scale(0.7); }
-}
-
-/* ─── Phase Row ─── */
-.phase-row {
-  display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 1.75rem;
-  position: relative;
-  padding-bottom: 2rem;
-  z-index: 1;
-}
-
-.phase-row:last-child {
-  padding-bottom: 0;
-}
-
-/* ─── Marker (organic mushroom-cap) ─── */
-.phase-marker {
-  position: relative;
-  width: 64px;
-  height: 64px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  flex-shrink: 0;
+  flex-direction: column;
+  gap: 4rem;
 }
 
-.phase-marker-cap {
-  position: absolute;
-  inset: 8px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 32% 28%,
-      rgba(255, 240, 200, 0.18) 0%,
-      rgba(184, 142, 58, 0.25) 18%,
-      rgba(28, 43, 34, 0.85) 65%,
-      rgba(14, 22, 18, 0.95) 100%);
-  border: 1.5px solid rgba(197, 179, 88, 0.5);
-  box-shadow:
-    0 4px 14px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 240, 200, 0.12),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.3);
-  transition: all 0.6s var(--ease-out);
-}
-
-/* Outer halo ring */
-.phase-marker-cap::before {
-  content: '';
-  position: absolute;
-  inset: -7px;
-  border-radius: 50%;
-  border: 1px solid rgba(197, 179, 88, 0.18);
-  transition: all 0.8s var(--ease-out);
-}
-
-/* Subtle pulse animation */
-.phase-marker-cap::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  border: 1px solid rgba(197, 179, 88, 0.3);
-  opacity: 0;
-  animation: marker-pulse 4s ease-out infinite;
-}
-
-@keyframes marker-pulse {
-  0%   { transform: scale(0.85); opacity: 0; }
-  35%  { opacity: 0.7; }
-  100% { transform: scale(1.55); opacity: 0; }
-}
-
-.phase-marker-num {
+/* Phase block — full-width premium card */
+.phase-block {
   position: relative;
-  z-index: 1;
-  font-family: var(--font-serif);
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--gold);
-  letter-spacing: -0.01em;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-}
-
-/* ─── Phase Card ─── */
-.phase-card {
-  background: linear-gradient(145deg, rgba(245, 241, 232, 0.04), rgba(245, 241, 232, 0.012));
-  border: 1px solid rgba(197, 179, 88, 0.13);
+  background: linear-gradient(155deg, rgba(245, 241, 232, 0.04), rgba(245, 241, 232, 0.012));
+  border: 1px solid rgba(197, 179, 88, 0.15);
   border-radius: var(--radius-md);
-  padding: 1.625rem 1.875rem;
+  padding: 2.25rem 2.5rem;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  position: relative;
   transition:
     border-color 0.6s var(--ease-out),
     background 0.6s var(--ease-out),
@@ -2494,20 +2346,77 @@ button {
     box-shadow 0.6s var(--ease-out);
 }
 
-/* Tendril connector from spine to card */
-.phase-card::before {
+/* Connector between blocks — vertical gold line + diamond node in the gap */
+.phase-block + .phase-block::before {
   content: '';
   position: absolute;
-  top: 32px;
-  left: -28px;
-  width: 28px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(197, 179, 88, 0.45), rgba(197, 179, 88, 0.15) 60%, transparent);
+  top: -4rem;
+  left: 50%;
+  width: 1.5px;
+  height: 4rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(197, 179, 88, 0.45) 35%,
+    rgba(197, 179, 88, 0.55) 100%
+  );
+  transform: translateX(-50%);
+  pointer-events: none;
 }
 
-/* Card content */
-.phase-overline {
-  display: inline-block;
+.phase-block + .phase-block::after {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.4),
+    0 0 12px rgba(197, 179, 88, 0.55);
+  transform: translate(-50%, -50%) rotate(45deg);
+  pointer-events: none;
+}
+
+/* Header with phase number + kicker */
+.phase-block-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.875rem;
+  position: relative;
+}
+
+.phase-block-num {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: -0.02em;
+  background: radial-gradient(
+    circle at 32% 28%,
+    rgba(255, 240, 200, 0.16) 0%,
+    rgba(184, 142, 58, 0.22) 25%,
+    rgba(28, 43, 34, 0.9) 75%,
+    rgba(14, 22, 18, 0.95) 100%
+  );
+  border: 1.5px solid rgba(197, 179, 88, 0.5);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 200, 0.14),
+    inset 0 -1px 4px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.6s var(--ease-out);
+}
+
+.phase-block-kicker {
   font-family: var(--font-sans);
   font-size: 0.6875rem;
   font-weight: 600;
@@ -2515,162 +2424,136 @@ button {
   text-transform: uppercase;
   color: var(--gold);
   opacity: 0.85;
-  margin-bottom: 0.625rem;
 }
 
-.phase-title {
+.phase-block-marker-telos {
+  margin-left: auto;
+  font-size: 1.125rem;
+  color: var(--gold);
+  filter: drop-shadow(0 0 8px rgba(197, 179, 88, 0.5));
+  animation: telos-twinkle 4s ease-in-out infinite;
+}
+
+@keyframes telos-twinkle {
+  0%, 100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+  50%      { opacity: 1; transform: scale(1.1) rotate(180deg); }
+}
+
+.phase-block-title {
   font-family: var(--font-serif);
-  font-size: 1.875rem;
+  font-size: 2rem;
   font-weight: 500;
   color: var(--soft-cream);
-  margin: 0 0 0.875rem;
-  line-height: 1.2;
+  margin: 0 0 1rem;
+  line-height: 1.18;
   letter-spacing: -0.01em;
 }
 
-.phase-card p {
+.phase-block p {
   font-family: var(--font-sans);
   font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.75;
   color: rgba(245, 241, 232, 0.72);
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.875rem;
 }
 
-.phase-card p:last-child {
+.phase-block p:last-child {
   margin-bottom: 0;
 }
 
-/* ─── Hover: bring the row alive ─── */
-.phase-row:hover .phase-card {
-  transform: translateX(4px);
+/* Hover — clean lift + gold accent */
+.phase-block:hover {
   border-color: rgba(197, 179, 88, 0.35);
-  background: linear-gradient(145deg, rgba(245, 241, 232, 0.06), rgba(245, 241, 232, 0.02));
+  background: linear-gradient(155deg, rgba(245, 241, 232, 0.06), rgba(245, 241, 232, 0.02));
+  transform: translateY(-2px);
   box-shadow:
-    0 24px 48px -28px rgba(0, 0, 0, 0.5),
-    0 0 32px -10px rgba(197, 179, 88, 0.18);
+    0 24px 48px -28px rgba(0, 0, 0, 0.55),
+    0 0 32px -10px rgba(197, 179, 88, 0.16);
 }
 
-.phase-row:hover .phase-marker-cap {
+.phase-block:hover .phase-block-num {
   border-color: rgba(197, 179, 88, 0.75);
   box-shadow:
-    0 4px 18px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(0, 0, 0, 0.25),
-    0 0 26px rgba(197, 179, 88, 0.28),
     inset 0 1px 0 rgba(255, 240, 200, 0.18),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.3);
+    inset 0 -1px 4px rgba(0, 0, 0, 0.3),
+    0 2px 12px rgba(0, 0, 0, 0.3),
+    0 0 18px rgba(197, 179, 88, 0.22);
 }
 
-.phase-row:hover .phase-marker-cap::before {
-  border-color: rgba(197, 179, 88, 0.4);
-  inset: -10px;
-}
-
-/* ─── Telos — special bloom ─── */
-.phase-row--telos .phase-marker {
-  width: 88px;
-  height: 88px;
-}
-
-.phase-row--telos .phase-marker-cap {
-  inset: 8px;
-  background:
-    radial-gradient(circle at 32% 28%,
-      rgba(255, 240, 200, 0.28) 0%,
-      rgba(184, 142, 58, 0.4) 22%,
-      rgba(60, 50, 30, 0.7) 65%,
-      rgba(14, 22, 18, 0.95) 100%);
-  border: 2px solid rgba(197, 179, 88, 0.65);
-  box-shadow:
-    0 6px 22px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(0, 0, 0, 0.3),
-    0 0 30px rgba(197, 179, 88, 0.22),
-    inset 0 1px 0 rgba(255, 240, 200, 0.18),
-    inset 0 -3px 8px rgba(0, 0, 0, 0.35);
-}
-
-.phase-row--telos .phase-marker-cap::before {
-  inset: -10px;
+/* ─── Telos — culmination treatment ─── */
+.phase-block--telos {
   border-color: rgba(197, 179, 88, 0.28);
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 0%, rgba(197, 179, 88, 0.08), transparent 65%),
+    linear-gradient(155deg, rgba(197, 179, 88, 0.05), rgba(197, 179, 88, 0.012));
 }
 
-.phase-row--telos .phase-marker-cap::after {
-  inset: -16px;
-  border-color: rgba(197, 179, 88, 0.35);
-  animation: marker-pulse 3.2s ease-out infinite;
-}
-
-.phase-row--telos .phase-marker-num {
-  font-size: 1.375rem;
-}
-
-/* Adjust spine offset for telos (larger marker shifts the connector) */
-.phase-row--telos .phase-marker {
-  margin-left: -12px;
-}
-
-.phase-row--telos .phase-card {
-  border-color: rgba(197, 179, 88, 0.22);
-  background: linear-gradient(145deg, rgba(197, 179, 88, 0.05), rgba(197, 179, 88, 0.012));
-}
-
-.phase-row--telos .phase-card::before {
-  background: linear-gradient(90deg, rgba(197, 179, 88, 0.6), rgba(197, 179, 88, 0.18) 60%, transparent);
-}
-
-.phase-row--telos:hover .phase-marker-cap {
+.phase-block--telos .phase-block-num {
+  background: radial-gradient(
+    circle at 32% 28%,
+    rgba(255, 240, 200, 0.28) 0%,
+    rgba(184, 142, 58, 0.4) 28%,
+    rgba(60, 50, 30, 0.75) 70%,
+    rgba(18, 29, 22, 0.95) 100%
+  );
   border-color: var(--gold);
   box-shadow:
-    0 6px 26px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(0, 0, 0, 0.3),
-    0 0 40px rgba(197, 179, 88, 0.4),
-    0 0 80px rgba(184, 142, 58, 0.18),
-    inset 0 1px 0 rgba(255, 240, 200, 0.22);
+    inset 0 1px 0 rgba(255, 240, 200, 0.22),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.35),
+    0 4px 14px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(197, 179, 88, 0.25);
+}
+
+.phase-block--telos:hover {
+  border-color: rgba(197, 179, 88, 0.45);
+  box-shadow:
+    0 24px 48px -28px rgba(0, 0, 0, 0.55),
+    0 0 40px -8px rgba(197, 179, 88, 0.28),
+    0 0 80px -20px rgba(184, 142, 58, 0.18);
+}
+
+.phase-block--telos:hover .phase-block-num {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 200, 0.28),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.35),
+    0 4px 14px rgba(0, 0, 0, 0.4),
+    0 0 32px rgba(197, 179, 88, 0.45);
 }
 
 /* ─── Mobile ─── */
 @media (max-width: 640px) {
-  .phase-row {
-    grid-template-columns: 56px 1fr;
-    gap: 1rem;
-    padding-bottom: 1.5rem;
+  .process-flow {
+    gap: 3rem;
   }
-  .phase-marker {
-    width: 56px;
-    height: 56px;
+  .phase-block {
+    padding: 1.625rem 1.375rem;
   }
-  .phase-row--telos .phase-marker {
-    width: 68px;
-    height: 68px;
-    margin-left: -6px;
+  .phase-block + .phase-block::before {
+    top: -3rem;
+    height: 3rem;
   }
-  .process-timeline::before {
-    left: 27px;
+  .phase-block + .phase-block::after {
+    top: -1.5rem;
   }
-  .process-timeline::after {
-    left: 28px;
+  .phase-block-num {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
   }
-  .phase-card {
-    padding: 1.375rem 1.25rem;
-  }
-  .phase-card::before {
-    left: -16px;
-    width: 16px;
-  }
-  .phase-title {
+  .phase-block-title {
     font-size: 1.5rem;
   }
-  .phase-row:hover .phase-card {
+  .phase-block:hover {
     transform: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .spore,
-  .phase-marker-cap::after {
+  .phase-block-marker-telos {
     animation: none;
   }
-  .phase-row:hover .phase-card {
+  .phase-block:hover {
     transform: none;
   }
 }
