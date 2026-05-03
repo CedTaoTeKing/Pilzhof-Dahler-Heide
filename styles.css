@@ -287,16 +287,21 @@ button {
   left: 0;
   right: 0;
   z-index: 1000;
-  transition: all var(--transition-normal);
-  padding: 1.25rem 0;
+  transition: background var(--transition-normal), padding var(--transition-normal), box-shadow var(--transition-normal);
+  padding: 1.1rem 0;
+  background: rgba(28, 43, 34, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(245, 241, 232, 0.04);
 }
 
 .site-header.scrolled {
-  background: rgba(28, 43, 34, 0.92);
+  background: rgba(28, 43, 34, 0.94);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 0.75rem 0;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+  border-bottom-color: rgba(245, 241, 232, 0.06);
 }
 
 .nav-container {
