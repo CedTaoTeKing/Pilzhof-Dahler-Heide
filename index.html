@@ -380,64 +380,62 @@
           <span class="phase-label-line"></span>
         </div>
 
-        <!-- PHASE NODES -->
-        <div class="process-phases" id="process-phases">
+        <!-- PHASE TIMELINE — Vertikal mit organischer Mycelium-Spine -->
+        <ol class="process-timeline" id="process-phases">
 
-          <!-- Dynamic SVG connector network — paths computed via JS from DOM positions -->
-          <svg class="process-network" id="process-network" aria-hidden="true" preserveAspectRatio="none"></svg>
+          <!-- Floating spores in the background -->
+          <div class="process-spores" aria-hidden="true">
+            <span class="spore" style="--x: 18%; --y: 12%; --size: 2.5px; --delay: 0s; --dur: 12s"></span>
+            <span class="spore" style="--x: 82%; --y: 28%; --size: 1.5px; --delay: 1.5s; --dur: 14s"></span>
+            <span class="spore" style="--x: 8%; --y: 48%; --size: 2px; --delay: 3s; --dur: 11s"></span>
+            <span class="spore" style="--x: 88%; --y: 62%; --size: 2.5px; --delay: 4.5s; --dur: 15s"></span>
+            <span class="spore" style="--x: 12%; --y: 82%; --size: 1.5px; --delay: 6s; --dur: 13s"></span>
+            <span class="spore" style="--x: 75%; --y: 92%; --size: 2px; --delay: 7.5s; --dur: 16s"></span>
+          </div>
 
           <!-- Phase 01 — Kulturelle Propagation -->
-          <article class="process-node process-node--origin" id="process-node-1" data-phase="1">
-            <div class="node-marker">
-              <span class="node-number">01</span>
-              <div class="node-pulse" aria-hidden="true"></div>
+          <li class="phase-row reveal-up" style="--delay: 0.1s">
+            <div class="phase-marker" aria-hidden="true">
+              <span class="phase-marker-cap"></span>
+              <span class="phase-marker-num">01</span>
             </div>
-            <div class="node-content">
-              <span class="node-overline">Kulturelle Propagation</span>
-              <h3 class="node-title">Der Ursprung</h3>
-              <div class="node-body">
-                <p>Der Prozess beginnt im Reinraum. Aus ausgewählten Fruchtkörpern wird unter sterilen Bedingungen Gewebe entnommen und zu Reinkulturen aufgebaut. Über Petrischalen, Flüssigkulturen und Mutterkulturen entsteht so die Grundlage für alles Weitere.</p>
-                <p>In unserer Kulturbibliothek werden diese Kulturen gepflegt und weitergeführt. Ergänzt wird dieser Teil durch hofeigene Honiglösungen: Unsere Bienen sind direkt in den Prozess eingebunden und werden Teil des Nährraums, in dem sich die Kulturen entwickeln.</p>
-              </div>
-            </div>
-          </article>
+            <article class="phase-card">
+              <span class="phase-overline">Kulturelle Propagation</span>
+              <h3 class="phase-title">Der Ursprung</h3>
+              <p>Der Prozess beginnt im Reinraum. Aus ausgewählten Fruchtkörpern wird unter sterilen Bedingungen Gewebe entnommen und zu Reinkulturen aufgebaut. Über Petrischalen, Flüssigkulturen und Mutterkulturen entsteht so die Grundlage für alles Weitere.</p>
+              <p>In unserer Kulturbibliothek werden diese Kulturen gepflegt und weitergeführt. Ergänzt wird dieser Teil durch hofeigene Honiglösungen: Unsere Bienen sind direkt in den Prozess eingebunden und werden Teil des Nährraums, in dem sich die Kulturen entwickeln.</p>
+            </article>
+          </li>
 
           <!-- Phase 02 — Pilzkultivierung -->
-          <article class="process-node process-node--growth" id="process-node-2" data-phase="2">
-            <div class="node-marker">
-              <span class="node-number">02</span>
-              <div class="node-pulse" aria-hidden="true"></div>
+          <li class="phase-row reveal-up" style="--delay: 0.25s">
+            <div class="phase-marker" aria-hidden="true">
+              <span class="phase-marker-cap"></span>
+              <span class="phase-marker-num">02</span>
             </div>
-            <div class="node-content">
-              <span class="node-overline">Pilzkultivierung</span>
-              <h3 class="node-title">Die Entfaltung</h3>
-              <div class="node-body">
-                <p>Die Kultur wird auf regionale Dinkelspelzen ausgebracht. Das Substrat wird vorbereitet, befeuchtet und beimpft, bevor das Myzel es vollständig durchwächst.</p>
-                <p>Darauf folgt ein gesteuerter Ablauf aus Durchwachsung und Fruchtung. Temperatur, Feuchtigkeit, Luftführung und Zeit müssen dabei genau aufeinander abgestimmt sein, damit ein stabiler und hochwertiger Fruchtkörper entsteht.</p>
-              </div>
-            </div>
-          </article>
+            <article class="phase-card">
+              <span class="phase-overline">Pilzkultivierung</span>
+              <h3 class="phase-title">Die Entfaltung</h3>
+              <p>Die Kultur wird auf regionale Dinkelspelzen ausgebracht. Das Substrat wird vorbereitet, befeuchtet und beimpft, bevor das Myzel es vollständig durchwächst.</p>
+              <p>Darauf folgt ein gesteuerter Ablauf aus Durchwachsung und Fruchtung. Temperatur, Feuchtigkeit, Luftführung und Zeit müssen dabei genau aufeinander abgestimmt sein, damit ein stabiler und hochwertiger Fruchtkörper entsteht.</p>
+            </article>
+          </li>
 
-          <!-- Phase 03 — Kulinarische Verwandlung (TELOS) -->
-          <article class="process-node process-node--telos" id="process-node-3" data-phase="3">
-            <div class="node-marker node-marker--telos">
-              <span class="node-number">03</span>
-              <div class="node-pulse node-pulse--telos" aria-hidden="true"></div>
+          <!-- Phase 03 — Kulinarische Verwandlung (TELOS / Bloom) -->
+          <li class="phase-row phase-row--telos reveal-up" style="--delay: 0.4s">
+            <div class="phase-marker" aria-hidden="true">
+              <span class="phase-marker-cap"></span>
+              <span class="phase-marker-num">03</span>
             </div>
-            <div class="node-content">
-              <span class="node-overline">Kulinarische Verwandlung</span>
-              <h3 class="node-title">Der Telos</h3>
-              <div class="node-body">
-                <p>Der Pilz ist nicht der letzte Schritt, sondern die Grundlage für den nächsten.</p>
-                <p>In der Küche wird er weiterverarbeitet und in unsere Gerichte überführt.<br>
-                Hier wird aus dem, was gewachsen ist, etwas, das man direkt erleben kann.</p>
-              </div>
-            </div>
-            <!-- Warm glow emanating from Telos -->
-            <div class="telos-warmth" aria-hidden="true"></div>
-          </article>
+            <article class="phase-card">
+              <span class="phase-overline">Kulinarische Verwandlung</span>
+              <h3 class="phase-title">Der Telos</h3>
+              <p>Der Pilz ist nicht der letzte Schritt, sondern die Grundlage für den nächsten.</p>
+              <p>In der Küche wird er weiterverarbeitet und in unsere Gerichte überführt. Hier wird aus dem, was gewachsen ist, etwas, das man direkt erleben kann.</p>
+            </article>
+          </li>
 
-        </div>
+        </ol>
 
         <!-- CTA -->
         <div class="process-cta-wrap" id="process-cta">
