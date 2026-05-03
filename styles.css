@@ -3916,6 +3916,26 @@ button {
   color: var(--soft-cream);
 }
 
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.375rem;
+  color: rgba(245, 241, 232, 0.7);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.footer-social-link:hover {
+  color: var(--gold);
+  transform: translateX(2px);
+}
+
+.footer-social-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 .social-links {
   display: flex;
   gap: 0.75rem;
@@ -4083,6 +4103,31 @@ button {
 
   .baba-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  /* Override desktop centering rule so the last card doesn't land in a phantom 2nd column */
+  .baba-card:last-child:nth-child(3n+1) {
+    grid-column: auto;
+  }
+
+  /* Compact baba cards on mobile so the section doesn't scroll forever */
+  .baba-card-image {
+    height: 180px;
+  }
+
+  .baba-card-content {
+    padding: 1rem 1.125rem 1.125rem;
+  }
+
+  .baba-card-title {
+    font-size: 1.125rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .baba-card-desc {
+    font-size: 0.8125rem;
+    line-height: 1.55;
   }
 
   .myzel-grid {
