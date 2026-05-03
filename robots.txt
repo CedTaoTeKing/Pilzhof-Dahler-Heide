@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pilzhof-dahlerheide.de/sitemap.xml
