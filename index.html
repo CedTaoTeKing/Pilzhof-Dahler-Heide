@@ -735,40 +735,16 @@
             <span class="frame-corner frame-corner--bl" aria-hidden="true"></span>
             <span class="frame-corner frame-corner--br" aria-hidden="true"></span>
 
-            <!-- Video element -->
+            <!-- YouTube embed (rRfoZrhJlSY) -->
             <div class="film-video-wrapper" id="film-video-wrapper">
-              <!-- 
-                ╔═══════════════════════════════════════════════════╗
-                ║  DEIN VIDEO HIER EINBINDEN:                      ║
-                ║                                                   ║
-                ║  Ersetze das <video> Tag mit deinem Film.        ║
-                ║  Unterstützt: .mp4, .webm, .mov                  ║
-                ║  Lege die Datei z.B. als "hof-film.mp4" in den  ║
-                ║  Projektordner und ändere den src-Pfad.          ║
-                ╚═══════════════════════════════════════════════════╝
-              -->
-              <video id="film-video" class="film-video"
-                poster="https://images.unsplash.com/photo-1518882570289-0b1f392b9b03?w=1920&q=80&auto=format"
-                preload="metadata" playsinline>
-                <!-- Ersetze src mit deinem Video-Pfad, z.B.: src="hof-film.mp4" -->
-                <source src="hof-film.mp4" type="video/mp4" />
-                Dein Browser unterstützt kein HTML5-Video.
-              </video>
-
-              <!-- Custom play overlay -->
-              <div class="film-play-overlay" id="film-play-overlay">
-                <button class="film-play-btn" id="film-play-btn" aria-label="Film abspielen">
-                  <svg class="play-ring" viewBox="0 0 120 120">
-                    <circle class="play-ring-bg" cx="60" cy="60" r="56" />
-                    <circle class="play-ring-progress" cx="60" cy="60" r="56" />
-                  </svg>
-                  <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </button>
-                <span class="film-play-label">Film abspielen</span>
-                <span class="film-duration">2:00 Min.</span>
-              </div>
+              <iframe class="film-video"
+                src="https://www.youtube-nocookie.com/embed/rRfoZrhJlSY?rel=0&modestbranding=1"
+                title="Pilzhof Dahler Heide – Der Film"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                loading="lazy"
+                allowfullscreen></iframe>
             </div>
 
             <!-- Ambient glow behind video -->
