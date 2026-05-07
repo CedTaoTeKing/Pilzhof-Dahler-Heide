@@ -1222,7 +1222,7 @@ button {
    SECTION 2.7 – PILZ-ESSENZ (Editorial Hook)
    ═══════════════════════════════════════════════════════════════ */
 .essenz-section {
-  padding: var(--space-3xl) 0 var(--space-2xl);
+  padding: var(--space-xl) 0 var(--space-2xl);
   background:
     radial-gradient(ellipse 60% 420px at 50% 0%, rgba(197, 179, 88, 0.08), transparent 60%),
     var(--soft-cream);
@@ -1266,7 +1266,7 @@ button {
   font-weight: 500;
   line-height: 1.1;
   color: var(--deep-forest);
-  margin: 0 0 2.5rem;
+  margin: 0 0 2rem;
   letter-spacing: -0.02em;
   text-align: center;
 }
@@ -1333,8 +1333,8 @@ button {
 }
 
 .essenz-tieback {
-  margin-top: 2.5rem !important;
-  padding-top: 2rem;
+  margin-top: 3.5rem !important;
+  padding-top: 2.5rem;
   border-top: 1px solid rgba(28, 43, 34, 0.08);
   font-size: 1.0625rem !important;
   color: rgba(28, 43, 34, 0.78) !important;
