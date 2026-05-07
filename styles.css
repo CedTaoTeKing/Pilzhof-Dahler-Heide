@@ -3266,6 +3266,14 @@ button {
   position: relative;
 }
 
+/* When the quote is the last block before the hairline (CTA removed)
+   tighten the bottom rhythm so no awkward white-space remains. */
+.agora-quote--final {
+  margin-top: 1.75rem;
+  margin-bottom: 1.5rem;
+  padding: 1.75rem 2rem 1.5rem;
+}
+
 /* Decorative opening quote mark */
 .agora-quote::before {
   content: '❝';
