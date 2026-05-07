@@ -2789,38 +2789,6 @@ button {
   }
 }
 
-/* Baba Shrooms logo — replaces the purple text headline */
-.baba-logo-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0.75rem auto 1.5rem;
-  width: 100%;
-}
-
-.baba-logo {
-  display: block;
-  width: auto;
-  max-width: 280px;
-  height: auto;
-  /* Burgundy logo background blends out against the dark section,
-     leaving only the white illustration + lettering. */
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.25)) brightness(1.05);
-  transition: transform 0.6s var(--ease-out), filter 0.6s var(--ease-out);
-}
-
-.baba-logo:hover {
-  transform: translateY(-2px) scale(1.02);
-  filter: drop-shadow(0 6px 32px rgba(255, 255, 255, 0.08)) brightness(1.1);
-}
-
-@media (max-width: 640px) {
-  .baba-logo {
-    max-width: 220px;
-  }
-}
-
 .baba-intro {
   font-size: 1.125rem;
   font-weight: 300;
