@@ -3591,12 +3591,12 @@ button {
 
 .anbrat-step-kicker {
   font-family: var(--font-sans);
-  font-size: 0.6875rem;
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 0.625rem;
+  margin-bottom: 1rem;
   display: block;
 }
 
