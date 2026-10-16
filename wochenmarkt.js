@@ -348,11 +348,27 @@
     raf = visible ? requestAnimationFrame(loop) : 0;
   }
 
+  /* Website-Ergänzung – Einflug „Die Karte landet“: Kopf und Karte erscheinen, sobald sie ins untere
+     Bildschirmfünftel kommen. Das Myzel zeichnet sich genau dann, wenn die Karte landet. */
+  var entrance = !reduce && 'IntersectionObserver' in window;
+  if (entrance) {
+    root.classList.add('wm-pre');
+    var eio = new IntersectionObserver(function (en) {
+      en.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        eio.unobserve(e.target);
+        e.target.classList.add('in');
+        if (e.target.classList.contains('wm-main')) root.classList.add('is-in');
+      });
+    }, { rootMargin: '0px 0px -20% 0px' });
+    eio.observe($('.wm-head')); eio.observe($('.wm-main'));
+  }
+
   /* Nur animieren, solange die Sektion sichtbar ist; Myzel beim ersten Einblenden zeichnen */
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (en) {
       visible = en[0].isIntersecting;
-      if (visible) root.classList.add('is-in');
+      if (visible && !entrance) root.classList.add('is-in');
       if (visible && !raf) { lastT = 0; raf = requestAnimationFrame(loop); }
     }, { threshold: 0.05 }).observe(root);
   } else { root.classList.add('is-in'); }
