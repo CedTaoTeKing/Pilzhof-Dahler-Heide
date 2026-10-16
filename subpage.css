@@ -1212,3 +1212,98 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   LEGAL PAGES – Impressum
+   ═══════════════════════════════════════════════════════════════ */
+.legal-page {
+    padding: clamp(8rem, 14vw, 10rem) 0 var(--space-xl);
+    background: var(--soft-cream);
+}
+
+.legal-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.legal-kicker {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    /* Markengold abgedunkelt: 5,4:1 auf Creme (das helle --gold erreicht dort nur 1,9:1) */
+    color: #75601F;
+    margin-bottom: var(--space-sm);
+}
+
+.legal-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--deep-forest);
+}
+
+.legal-intro {
+    margin-top: var(--space-sm);
+    font-size: 0.9375rem;
+    color: rgba(28, 43, 34, 0.7);
+}
+
+.legal-list {
+    margin-top: var(--space-xl);
+    border-bottom: 1px solid rgba(28, 43, 34, 0.1);
+}
+
+.legal-block {
+    display: grid;
+    grid-template-columns: 13rem 1fr;
+    gap: var(--space-xs) var(--space-lg);
+    padding: var(--space-md) 0;
+    border-top: 1px solid rgba(28, 43, 34, 0.1);
+}
+
+.legal-label {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1.6;
+    padding-top: 0.2rem;
+    color: #75601F;
+}
+
+.legal-content {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-style: normal;
+    line-height: 1.75;
+    color: rgba(28, 43, 34, 0.86);
+}
+
+.legal-content a {
+    color: var(--deep-forest);
+    text-decoration: underline;
+    text-decoration-color: rgba(28, 43, 34, 0.3);
+    text-underline-offset: 3px;
+    transition: text-decoration-color var(--transition-fast);
+}
+
+.legal-content a:hover {
+    text-decoration-color: currentColor;
+}
+
+.legal-back {
+    display: flex;
+    margin-top: var(--space-xl);
+}
+
+@media (max-width: 640px) {
+    .legal-block {
+        grid-template-columns: 1fr;
+    }
+}
