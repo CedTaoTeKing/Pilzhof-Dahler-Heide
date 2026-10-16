@@ -335,3 +335,8 @@
 .wm.wm.wm-pre .wm-head:not(.in) .live{opacity:0;translate:0 30px;scale:.96}
 .wm.wm.wm-pre .wm-main:not(.in) .map-stage{opacity:0;translate:0 90px;scale:.9}
 .wm.wm.wm-pre .wm-main:not(.in) .cards>*{opacity:0;translate:48px 0}
+
+/* Schilder „Paderborn“/„Detmold“ anklickbar: Die gekippte Karte liegt in 3D teils hinter der Fläche
+   von .map-cam, die sonst den Klick abfängt (Detmold). pointer-events lässt die 3D-Kette unberührt. */
+.wm.wm .map-cam{pointer-events:none}
+.wm.wm .plabel,.wm.wm .tilt{pointer-events:auto}
