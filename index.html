@@ -124,12 +124,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="philosophie.css" />
   <link rel="stylesheet" href="signaturpilze.css" />
+  <link rel="stylesheet" href="wochenmarkt.css" />
 </head>
 
 <body>
@@ -149,7 +150,7 @@
         <li><a href="#pilz-essenz" class="nav-link">Pilze</a></li>
         <li><a href="#process" class="nav-link">Prozess</a></li>
         <li><a href="#baba-shrooms" class="nav-link">Baba Shrooms</a></li>
-        <li><a href="#agora-preview" class="nav-link">Termine</a></li>
+        <li><a href="#termine" class="nav-link">Termine</a></li>
         <li><a href="#anbraten" class="nav-link">Anbraten</a></li>
         <li><a href="#film" class="nav-link">Film</a></li>
         <li><a href="#myzel-wege" class="nav-link">Partnerschaft</a></li>
@@ -551,7 +552,7 @@
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-start;gap:18px;max-width:40ch">
       <p style="margin:0;font-size:16px;line-height:1.6;color:#4f564e">Gewachsen auf regionalen Dinkelspelzen in unserem eigenen Substrat – geerntet in Dahl.</p>
-      <a class="cta" href="#agora-preview">Nächste Termine <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 9h12M10 4l5 5-5 5"/></svg></a>
+      <a class="cta" href="#termine">Nächste Termine <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 9h12M10 4l5 5-5 5"/></svg></a>
       </div>
       </div>
 
@@ -650,67 +651,238 @@
     </section>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!-- SECTION 4.5 – WÖCHENTLICHE PRÄSENZ + AGORA -->
+    <!-- SECTION 4.5 – WOCHENMARKT (Styles: wochenmarkt.css · Logik + Termine: wochenmarkt.js → CONFIG) -->
     <!-- ═══════════════════════════════════════════ -->
-    <section id="agora-preview" class="agora-section">
-      <div class="agora-container">
+    <section id="termine" class="wm" data-wm aria-label="Wochenmarkt-Termine">
 
-        <!-- Hairline top -->
-        <div class="agora-rule" aria-hidden="true"></div>
+    <svg class="bg-topo" aria-hidden="true" viewBox="0 0 1440 1200" preserveAspectRatio="none">
+    <path d="M-40 980 C 220 900, 420 1040, 700 960 S 1180 860, 1480 940"/>
+    <path d="M-40 1030 C 240 950, 440 1090, 720 1010 S 1200 910, 1480 990"/>
+    <path d="M-40 1080 C 260 1000, 460 1140, 740 1060 S 1220 960, 1480 1040"/>
+    <path d="M-40 140 C 200 200, 480 80, 760 150 S 1200 240, 1480 160"/>
+    <path d="M-40 90 C 220 150, 500 30, 780 100 S 1220 190, 1480 110"/>
+    </svg>
 
-        <!-- Title -->
-        <h2 class="agora-headline reveal-up" style="--delay: 0.1s">Hier sind wir jede Woche.</h2>
+    <div class="wm-wrap">
 
-        <!-- Agora auf Tour Sub-Header -->
-        <div class="agora-on-tour reveal-up" style="--delay: 0.18s">
-          <span class="agora-on-tour-label">Agora auf Tour</span>
-        </div>
+    <!-- ---------- Kopf ---------- -->
+    <div class="wm-head">
+    <div class="head-l">
+    <h2 class="wm-h2 serif" aria-label="Hier sind wir.">H<span class="ipin" aria-hidden="true">ı<span class="ipin-cap"></span></span><span aria-hidden="true">er sind </span><em aria-hidden="true">wir.</em></h2>
+    <div class="week" data-week aria-label="Markttage der Woche">
+    <div class="wd" data-wd="0"><span class="ring" aria-hidden="true"></span><span class="c">Mo</span><span class="badge"></span><span class="t"></span></div>
+    <div class="wd" data-wd="1"><span class="ring" aria-hidden="true"></span><span class="c">Di</span><span class="badge"></span><span class="t"></span></div>
+    <div class="wd" data-wd="2"><span class="ring" aria-hidden="true"></span><span class="c">Mi</span><span class="badge"></span><span class="t"></span></div>
+    <div class="wd" data-wd="3"><span class="ring" aria-hidden="true"></span><span class="c">Do</span><span class="badge"></span><span class="t"></span></div>
+    <div class="wd" data-wd="4"><span class="ring" aria-hidden="true"></span><span class="c">Fr</span><span class="badge"></span><span class="t"></span></div>
+    <div class="wd market" data-wd="5"><span class="ring" aria-hidden="true"></span><span class="c">Sa</span><span class="badge">2</span><span class="t">Markt</span></div>
+    <div class="wd" data-wd="6"><span class="ring" aria-hidden="true"></span><span class="c">So</span><span class="badge"></span><span class="t"></span></div>
+    </div>
+    </div>
 
-        <!-- Vertical Chronological Schedule -->
-        <ol class="schedule-week reveal-up" style="--delay: 0.25s">
-          <li class="schedule-row">
-            <span class="schedule-day">Dienstag</span>
-            <span class="schedule-location">Technologie-Park Paderborn 13</span>
-            <span class="schedule-time">11:00 – 14:00</span>
-          </li>
-          <li class="schedule-row">
-            <span class="schedule-day">Mittwoch</span>
-            <span class="schedule-location">Wochenmarkt Paderborn<span class="schedule-location-detail">Domplatz</span></span>
-            <span class="schedule-time">7:00 – 14:00</span>
-          </li>
-          <li class="schedule-row">
-            <span class="schedule-day">Donnerstag</span>
-            <span class="schedule-location">Westend-Carrée<span class="schedule-location-detail">Hedwig-Dransfeld-Straße 1–3</span></span>
-            <span class="schedule-time">11:00 – 14:00</span>
-          </li>
-          <li class="schedule-row">
-            <span class="schedule-day">Samstag</span>
-            <span class="schedule-location">Wochenmarkt Paderborn<span class="schedule-location-detail">Domplatz</span></span>
-            <span class="schedule-time">7:00 – 14:00</span>
-          </li>
-          <li class="schedule-row schedule-row--weekend">
-            <span class="schedule-day">Wochenende</span>
-            <span class="schedule-location">Paderwiesen<span class="schedule-location-detail">Aktuelle Terminierung auf Social Media</span></span>
-            <span class="schedule-time">nach Ankündigung</span>
-          </li>
-        </ol>
+    <div class="live" aria-live="polite">
+    <span class="pillx" data-live-pill><span class="ld" aria-hidden="true"></span><span data-status-long>Nächster Markttag</span></span>
+    <p class="live-date serif" data-next-date>Samstag</p>
+    <div class="cd" data-cd role="timer">
+    <div class="cd-u"><span class="cd-n serif" data-cd-d>00</span><span class="cd-l">Tage</span></div>
+    <div class="cd-u"><span class="cd-n serif" data-cd-h>00</span><span class="cd-l">Std</span></div>
+    <div class="cd-u"><span class="cd-n serif" data-cd-m>00</span><span class="cd-l">Min</span></div>
+    <div class="cd-u"><span class="cd-n serif" data-cd-s>00</span><span class="cd-l">Sek</span></div>
+    </div>
+    <p class="live-foot" data-live-foot>Paderborn &amp; Detmold · 7:00 – 13:00 Uhr</p>
+    </div>
+    </div>
 
-        <!-- Supporting Text -->
-        <div class="agora-body reveal-up" style="--delay: 0.4s">
-          <p>Ein Ort für Gespräche.<br>Für Geschmack.<br>Für Begegnung.</p>
-          <p class="agora-note">Hunde sind willkommen.</p>
-        </div>
+    <!-- ---------- Karte + Märkte ---------- -->
+    <div class="wm-main">
 
-        <!-- Quote -->
-        <blockquote class="agora-quote agora-quote--final reveal-up" style="--delay: 0.55s">
-          <p>„Im Gespräch wird die Wahrheit geboren."</p>
-          <cite>– in Anlehnung an Platon</cite>
-        </blockquote>
+    <div class="map-stage" data-map>
+    <div class="map-cam">
+    <div class="floor" aria-hidden="true"></div>
+    <div class="slab" aria-hidden="true"></div>
+    <div class="plane">
+    <svg viewBox="0 0 741 912" preserveAspectRatio="none" role="img" aria-label="Karte: vom Pilzhof in Dahl zu den Wochenmärkten in Paderborn und Detmold">
+    <defs><pattern id="wm-dots" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="#d4b56a" fill-opacity="0.16"/></pattern></defs>
+    <rect width="741" height="912" fill="url(#wm-dots)"/>
 
-        <!-- Hairline bottom -->
-        <div class="agora-rule" aria-hidden="true"></div>
+    <!-- Gradnetz -->
+    <g aria-hidden="true">
+    <line class="grat" x1="0" y1="240" x2="741" y2="240"/><line class="grat" x1="0" y1="480" x2="741" y2="480"/><line class="grat" x1="0" y1="720" x2="741" y2="720"/>
+    <line class="grat" x1="74" y1="0" x2="74" y2="912"/><line class="grat" x1="222" y1="0" x2="222" y2="912"/><line class="grat" x1="371" y1="0" x2="371" y2="912"/><line class="grat" x1="519" y1="0" x2="519" y2="912"/><line class="grat" x1="667" y1="0" x2="667" y2="912"/>
+    <text class="grat-l" x="8" y="234">51.9° N</text><text class="grat-l" x="8" y="474">51.8° N</text><text class="grat-l" x="8" y="714">51.7° N</text>
+    <text class="grat-l" x="78" y="902">8.6° E</text><text class="grat-l" x="226" y="902">8.7° E</text><text class="grat-l" x="375" y="902">8.8° E</text><text class="grat-l" x="523" y="902">8.9° E</text><text class="grat-l" x="671" y="902">9.0° E</text>
+    </g>
 
-      </div>
+    <!-- Flüsse & Straßen -->
+    <g aria-hidden="true">
+    <path class="river" d="M395 520 C 372 548, 352 566, 330 584 S 270 600, 237 612 S 120 596, 22 562 S -10 552, -20 548"/>
+    <path class="river-f" d="M395 520 C 372 548, 352 566, 330 584 S 270 600, 237 612 S 120 596, 22 562 S -10 552, -20 548"/>
+    <path class="river" style="stroke-width:1.8" d="M303 675 C 286 660, 262 640, 237 612"/>
+    <path class="river-f" d="M303 675 C 286 660, 262 640, 237 612"/>
+    <path class="river" d="M600 300 C 580 270, 560 240, 540 222 S 500 180, 488 149 S 480 70, 476 30 S 470 0, 468 -10"/>
+    <path class="river-f" d="M600 300 C 580 270, 560 240, 540 222 S 500 180, 488 149 S 480 70, 476 30 S 470 0, 468 -10"/>
+    <text class="river-l" x="118" y="574">Lippe</text>
+    <text class="river-l m-hide" x="246" y="652">Pader</text>
+    <text class="river-l" x="486" y="88">Werre</text>
+    <path class="road" d="M303 675 C 340 620, 380 560, 395 520 S 430 470, 438 456 S 540 360, 618 280 S 700 230, 760 210"/>
+    <path class="road" d="M240 930 C 236 860, 226 780, 222 720 S 200 660, 193 648 S 178 560, 170 520 S 156 420, 150 400 S 138 330, 130 300 S 100 220, 80 180 S 40 110, 20 80"/>
+    <rect class="road-b" x="516" y="360" width="24" height="15" rx="3"/><text class="road-l" x="528" y="371" text-anchor="middle">B1</text>
+    <rect class="road-b" x="138" y="362" width="32" height="15" rx="3"/><text class="road-l" x="154" y="373" text-anchor="middle">A33</text>
+    </g>
+
+    <!-- Teutoburger Wald (Höhenlinien) -->
+    <path class="contour" d="M186 34 C 270 72, 364 120, 468 164 S 582 246, 612 324 S 656 500, 660 600 S 676 772, 698 912"/>
+    <path class="contour" d="M162 58 C 250 96, 346 146, 448 188 S 556 268, 586 342 S 628 510, 632 604 S 648 776, 668 912"/>
+    <path class="contour" id="wm-ridge" d="M140 80 C 230 120, 330 170, 429 212 S 530 290, 560 360 S 600 520, 605 610 S 620 780, 640 912" style="stroke-opacity:.32"/>
+    <path class="contour" d="M120 104 C 215 146, 318 196, 412 236 S 508 312, 536 380 S 574 530, 580 618 S 594 784, 612 912"/>
+    <path class="contour" d="M98 130 C 200 172, 304 222, 396 262 S 486 336, 512 400 S 548 540, 554 626 S 566 790, 584 912"/>
+    <text class="ridge-label" dy="-10"><textPath href="#wm-ridge" startOffset="6%">TEUTOBURGER WALD</textPath></text>
+    <g class="m-hide"><path d="M429 212 l-7 12 h14 z" fill="none" stroke="#c9c3b2" stroke-opacity=".6"/><text class="mark" x="300" y="236">Hermannsdenkmal</text></g>
+    <path d="M545 315 l-7 12 h14 z" fill="none" stroke="#c9c3b2" stroke-opacity=".6"/>
+    <text class="mark" x="562" y="327">Externsteine</text>
+
+    <!-- Orte, Regionen, Maßstab -->
+    <g aria-hidden="true">
+    <text class="region" x="232" y="476">SENNE</text>
+    <text class="region" x="586" y="204">LIPPE</text>
+    <circle class="town" cx="395" cy="520" r="3.5"/><text class="town-l" x="387" y="526" text-anchor="end">Bad Lippspringe</text>
+    <g class="m-hide"><circle class="town" cx="438" cy="456" r="3"/><text class="town-l" x="430" y="452" text-anchor="end">Schlangen</text></g>
+    <circle class="town" cx="618" cy="280" r="3"/><text class="town-l" x="618" y="262" text-anchor="middle">Horn-Bad Meinberg</text>
+    <circle class="town" cx="568" cy="560" r="3"/><text class="town-l" x="578" y="546">Altenbeken</text>
+    <circle class="town" cx="692" cy="640" r="3"/><text class="town-l" x="708" y="664" text-anchor="end">Bad Driburg</text>
+    <circle class="town" cx="148" cy="440" r="3"/><text class="town-l" x="156" y="444">Hövelhof</text>
+    <g class="m-hide"><circle class="town" cx="99" cy="280" r="3"/><text class="town-l" x="107" y="284">Schloß Holte-Stukenbrock</text></g>
+    <circle class="town" cx="363" cy="27" r="3"/><text class="town-l" x="371" y="31">Lage</text>
+    <circle class="town" cx="79" cy="789" r="3"/><text class="town-l" x="87" y="793">Salzkotten</text>
+    <g class="scale"><line x1="40" y1="866" x2="256" y2="866"/><line x1="40" y1="860" x2="40" y2="872"/><line x1="148" y1="862" x2="148" y2="870"/><line x1="256" y1="860" x2="256" y2="872"/><text x="40" y="852">0</text><text x="148" y="852" text-anchor="middle">5</text><text x="256" y="852" text-anchor="end">10 km</text></g>
+    </g>
+
+    <!-- Myzel Hof → Paderborn -->
+    <g class="g-pb" data-dim="pb">
+    <path class="hl" data-hl="pb" d="M417 709 C 398 704, 392 722, 370 716 S 330 694, 303 675"/>
+    <path class="hy main" pathLength="1" d="M417 709 C 398 704, 392 722, 370 716 S 330 694, 303 675"/>
+    <path class="hy br" pathLength="1" d="M370 716 C 362 744, 340 760, 322 786"/>
+    <path class="hy br" pathLength="1" d="M303 675 C 280 660, 262 668, 240 650"/>
+    <path class="flow" pathLength="100" d="M417 709 C 398 704, 392 722, 370 716 S 330 694, 303 675"/>
+    </g>
+    <!-- Myzel Hof → Detmold -->
+    <g class="g-dt" data-dim="dt">
+    <path class="hl" data-hl="dt" d="M417 709 C 446 666, 444 650, 476 596 S 498 500, 484 440 S 518 352, 506 300 S 478 206, 488 149"/>
+    <path class="hy main" pathLength="1" d="M417 709 C 446 666, 444 650, 476 596 S 498 500, 484 440 S 518 352, 506 300 S 478 206, 488 149"/>
+    <path class="hy br" pathLength="1" d="M476 596 C 510 588, 540 560, 572 556"/>
+    <path class="hy br" pathLength="1" d="M484 440 C 456 420, 440 396, 412 392"/>
+    <path class="hy br" pathLength="1" d="M506 300 C 530 280, 556 286, 580 270"/>
+    <path class="hy br" pathLength="1" d="M488 149 C 500 120, 530 104, 552 96"/>
+    <path class="flow" pathLength="100" d="M417 709 C 446 666, 444 650, 476 596 S 498 500, 484 440 S 518 352, 506 300 S 478 206, 488 149"/>
+    <path class="flow f2" pathLength="100" d="M417 709 C 446 666, 444 650, 476 596 S 498 500, 484 440 S 518 352, 506 300 S 478 206, 488 149"/>
+    </g>
+    <path class="hy br" pathLength="1" d="M417 709 C 434 738, 470 790, 500 812"/>
+    <!-- Wachstumsspitzen = Platz für neue Standorte -->
+    <g class="g-grow" data-grow>
+    <path class="hy tip" pathLength="1" d="M412 392 C 370 380, 330 350, 280 352"/>
+    <path class="hy tip" pathLength="1" d="M572 556 C 612 560, 650 590, 700 600"/>
+    <path class="hy tip" pathLength="1" d="M240 650 C 200 640, 160 610, 110 612"/>
+    <path class="hy tip" pathLength="1" d="M552 96 C 590 80, 630 60, 680 54"/>
+    <circle class="tipdot" cx="280" cy="352" r="5"/><circle class="tipdot" cx="700" cy="600" r="5"/><circle class="tipdot" cx="110" cy="612" r="5"/><circle class="tipdot" cx="680" cy="54" r="5"/>
+    <text class="mark m-hide" x="706" y="96" text-anchor="end">neue Standorte wachsen …</text>
+    </g>
+    <text class="coord" x="250" y="712">51.719° N · 8.754° E</text>
+    <text class="coord" x="420" y="186">51.938° N · 8.879° E</text>
+    </svg>
+
+    <div class="compass" aria-hidden="true"><svg width="14" height="18" viewBox="0 0 14 18"><path d="M7 0 L12 16 L7 12 L2 16 Z" fill="#d4b56a"/></svg>N</div>
+
+    <!-- Pins: Position per data-lat/data-lng (JS rechnet in % um) -->
+    <div class="pin pin-pb" data-pin="pb" data-lat="51.7189" data-lng="8.7544" style="left:40.9%;top:74%">
+    <span class="gdot" data-dim="pb" data-dim-min="0.3" aria-hidden="true"></span>
+    <span class="ripple" aria-hidden="true"></span><span class="ripple r2" aria-hidden="true"></span><span class="ripple r3" aria-hidden="true"></span>
+    <div class="bb"><div class="bb-in" data-dim="pb" data-dim-min="0.3">
+    <button type="button" class="plabel" data-pick="pb" aria-pressed="false"><span class="pc">Paderborn</span><span class="ps">Domplatz</span></button>
+    <span class="beam" style="--beam:110px;--beam-m:74px" aria-hidden="true"></span>
+    </div></div>
+    </div>
+
+    <div class="pin pin-dt" data-pin="dt" data-lat="51.9378" data-lng="8.8790" style="left:65.9%;top:16.3%">
+    <span class="gdot" data-dim="dt" data-dim-min="0.3" aria-hidden="true"></span>
+    <span class="ripple" aria-hidden="true"></span><span class="ripple r2" aria-hidden="true"></span><span class="ripple r3" aria-hidden="true"></span>
+    <div class="bb"><div class="bb-in" data-dim="dt" data-dim-min="0.3">
+    <button type="button" class="plabel" data-pick="dt" aria-pressed="false"><span class="pc">Detmold</span><span class="ps">Marktplatz</span></button>
+    <span class="beam" style="--beam:90px;--beam-m:58px" aria-hidden="true"></span>
+    </div></div>
+    </div>
+
+    <!-- Hof: Dahler Heide 19 (OpenStreetMap, hausnummerngenau) -->
+    <div class="pin pin-hof" data-lat="51.7044" data-lng="8.8313" style="left:56.3%;top:77.8%">
+    <span class="gdot" aria-hidden="true"></span>
+    <span class="ripple" aria-hidden="true"></span><span class="ripple r2" aria-hidden="true"></span>
+    <div class="bb"><div class="bb-in">
+    <span class="hof-label"><svg aria-hidden="true" viewBox="0 0 18 18" fill="none" stroke="#1d2a22" stroke-width="1.5"><path d="M2 9c0-4 3-6 7-6s7 2 7 6c0 1-2 2-7 2S2 10 2 9Z"/><path d="M7 11c0 2-.5 4 0 5h4c.5-1 0-3 0-5"/></svg><span>Pilzhof Dahler Heide</span></span>
+    <span class="beam" style="--beam:40px;--beam-m:26px" aria-hidden="true"></span>
+    </div></div>
+    </div>
+    </div>
+
+    <span class="floaty" aria-hidden="true" style="left:22%;top:30%;transform:translateZ(120px)"></span>
+    <span class="floaty" aria-hidden="true" style="left:74%;top:58%;transform:translateZ(200px);animation-delay:-2s"></span>
+    <span class="floaty" aria-hidden="true" style="left:48%;top:14%;transform:translateZ(160px);animation-delay:-4s;width:3px;height:3px"></span>
+    <span class="floaty" aria-hidden="true" style="left:30%;top:76%;transform:translateZ(240px);animation-delay:-1s;width:4px;height:4px"></span>
+    </div>
+
+    <!-- nur Mobile: Gyroskop-Parallax (iOS braucht einen Tipp zur Freigabe) -->
+    <button type="button" class="tilt" data-tilt hidden>
+    <svg aria-hidden="true" width="12" height="16" viewBox="0 0 12 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="10" height="14" rx="2"/><path d="M5 12.5h2"/></svg><span data-tilt-label>Handy neigen</span>
+    </button>
+    </div>
+
+    <div class="cards-wrap">
+    <!-- Desktop: Liste · Mobile: Wisch-Karussell, das die Kamera steuert -->
+    <div class="cards" data-cards aria-label="Standorte">
+
+    <article class="mcard" data-market="pb" data-dim="pb" data-dim-min="0.5">
+    <div class="mc-top"><span class="mc-num">01</span><span class="pillx" data-status-pill><span class="ld" aria-hidden="true"></span><span data-status-short>Sa ab 7:00</span></span></div>
+    <div class="mc-main">
+    <div><h3 class="mc-city serif">Paderborn</h3><p class="mc-place">Wochenmarkt · Domplatz</p></div>
+    <div class="mc-when"><span class="mc-day" data-day-label>Samstag</span><span class="mc-time serif" data-time-label>7:00 – 13:00</span></div>
+    </div>
+    <div><div class="tl-bar"><span class="tl-fill" data-tl-fill></span><span class="tl-now" data-tl-now></span></div><div class="tl-ticks" data-tl-ticks><span>7</span><span>9</span><span>11</span><span>13 Uhr</span></div></div>
+    <div class="mc-actions">
+    <a class="btn-gold" href="https://www.google.com/maps/dir/?api=1&amp;destination=Domplatz%2C%20Paderborn" target="_blank" rel="noopener">Route planen <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 10 10 4M5 4h5v5"/></svg></a>
+    <button type="button" class="btn-ghost" data-pick="pb" aria-pressed="false"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 14.5s5-4.6 5-8.5a5 5 0 1 0-10 0c0 3.9 5 8.5 5 8.5Z"/><circle cx="8" cy="6" r="1.8"/></svg><span><span class="d-only">Auf der </span>Karte</span></button>
+    </div>
+    </article>
+
+    <article class="mcard" data-market="dt" data-dim="dt" data-dim-min="0.5">
+    <div class="mc-top"><span class="mc-num">02</span><span class="pillx" data-status-pill><span class="ld" aria-hidden="true"></span><span data-status-short>Sa ab 7:00</span></span></div>
+    <div class="mc-main">
+    <div><h3 class="mc-city serif">Detmold</h3><p class="mc-place">Wochenmarkt · Marktplatz</p></div>
+    <div class="mc-when"><span class="mc-day" data-day-label>Samstag</span><span class="mc-time serif" data-time-label>7:00 – 13:00</span></div>
+    </div>
+    <div><div class="tl-bar"><span class="tl-fill" data-tl-fill></span><span class="tl-now" data-tl-now></span></div><div class="tl-ticks" data-tl-ticks><span>7</span><span>9</span><span>11</span><span>13 Uhr</span></div></div>
+    <div class="mc-actions">
+    <a class="btn-gold" href="https://www.google.com/maps/dir/?api=1&amp;destination=Marktplatz%2C%20Detmold" target="_blank" rel="noopener">Route planen <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 10 10 4M5 4h5v5"/></svg></a>
+    <button type="button" class="btn-ghost" data-pick="dt" aria-pressed="false"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 14.5s5-4.6 5-8.5a5 5 0 1 0-10 0c0 3.9 5 8.5 5 8.5Z"/><circle cx="8" cy="6" r="1.8"/></svg><span><span class="d-only">Auf der </span>Karte</span></button>
+    </div>
+    </article>
+
+    <div class="slot" data-slot>
+    <span class="plus" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 3v12M3 9h12"/></svg></span>
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+    <span class="slot-t serif">Das Myzel <br class="m-only">wächst.</span>
+    <span class="slot-s">Neue Standorte folgen – Wunsch-Markt? <a href="#contact">Schreib uns</a>.</span>
+    </div>
+    </div>
+
+    </div>
+    <!-- nur Mobile: Punkte des Karussells -->
+    <div class="dots" data-dots role="group" aria-label="Standort wählen">
+    <button type="button" class="on" data-dot="0" aria-label="Paderborn"><span></span></button>
+    <button type="button" data-dot="1" aria-label="Detmold"><span></span></button>
+    <button type="button" data-dot="2" aria-label="Neue Standorte"><span></span></button>
+    </div>
+    </div>
+
+    </div>
+    </div>
     </section>
 
     <!-- ═══════════════════════════════════════════ -->
@@ -1104,6 +1276,7 @@
   <script src="script.js"></script>
   <script src="philosophie.js"></script>
   <script src="signaturpilze.js"></script>
+  <script src="wochenmarkt.js"></script>
 </body>
 
 </html>

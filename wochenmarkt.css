@@ -1,0 +1,320 @@
+/* ═══════════════════════════════════════════════════════════════
+   SECTION 4.5 – WOCHENMARKT (#termine) · 3D-Myzel-Karte, Live-Countdown, Kamerafahrt
+   Quelle: Claude-Design-Export „wochenmarkt-webdev.zip“ (css/wochenmarkt.css).
+   Für die Website alle Regeln unter .wm gekapselt – jede Regel genau eine Klassenstufe
+   spezifischer als im Original, damit die Rangfolge untereinander unverändert bleibt.
+   Logik und Termine: wochenmarkt.js → CONFIG.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* =====================================================================
+   PILZHOF DAHLER HEIDE · Sektion „Wochenmarkt“ (#termine)
+   Desktop + Mobile (Breakpoint 720px) · keine Abhängigkeiten
+   ---------------------------------------------------------------------
+   Laufzeit-Variablen (werden von js/wochenmarkt.js auf .wm gesetzt):
+     --px, --py   Parallax  (-1 … 1)   Maus (Desktop) bzw. Gyroskop (Mobile), gedämpft
+     --sy         Scroll-Tiefe (-1 … 1) Lage der Sektion im Viewport
+     --camx/--camy/--cams   Kamera über der 3D-Karte (px, px, Zoom)
+   Alle Bewegungen laufen über diese Variablen → ein einziger rAF-Loop,
+   keine konkurrierenden CSS-Transitions, kein Springen.
+   ===================================================================== */
+
+/* ---------- Tokens & Basis ---------- */
+.wm.wm{
+  --forest:#16211b; --cream:#efe9dc; --gold:#d4b56a; --gold-2:#e4c77f; --sage:#b7cdae; --muted:#a9a698;
+  --px:0; --py:0; --sy:0;
+  position:relative; overflow:hidden; padding:104px 0 96px;
+  font-family:"Hanken Grotesk",ui-sans-serif,system-ui,sans-serif; color:var(--cream);
+  background:
+    radial-gradient(900px 600px at 22% 62%,rgba(212,181,106,.10),rgba(0,0,0,0) 70%),
+    radial-gradient(800px 600px at 85% 20%,rgba(120,160,120,.10),rgba(0,0,0,0) 70%),
+    var(--forest);
+}
+.wm.wm *{box-sizing:border-box}
+.wm.wm a{color:var(--gold)} .wm.wm a:hover{color:#ecd59a}
+.wm.wm button{font:inherit;color:inherit}
+.wm.wm button:focus-visible,.wm.wm a:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.wm.wm .serif{font-family:"Cormorant Garamond","Iowan Old Style",Georgia,serif}
+.wm.wm .m-only{display:none}
+.wm .wm-wrap{position:relative;max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,80px);display:flex;flex-direction:column;gap:56px}
+.wm .wm-head{display:flex;flex-wrap:wrap;gap:40px 64px;align-items:flex-end}
+.wm .wm-main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(520px,100%),1fr));gap:40px 64px;align-items:center}
+
+/* ---------- Headline „Hier sind wir.“ – das i ist ein Pilz ----------
+   Stiel = punktloses ı (U+0131), Punkt = leuchtende Kappe (.ipin-cap).
+   Position in em → skaliert mit jeder Schriftgröße. Werte für Cormorant Garamond 500. */
+.wm .wm-h2{margin:0;font-size:clamp(64px,8.4vw,120px);font-weight:500;line-height:.9;letter-spacing:-.02em}
+.wm .wm-h2 em{font-weight:400;color:var(--sage)}
+.wm .ipin{position:relative}
+.wm .ipin-cap{position:absolute;left:50%;top:.4em;width:.3em;height:.14em;margin-left:-.14em;
+  border-radius:50% 50% 16% 16% / 100% 100% 26% 26%;
+  background:radial-gradient(120% 140% at 50% 100%,#fff3cf 0%,#e9c977 45%,#c79f45 100%);
+  box-shadow:0 0 .12em .02em rgba(233,201,119,.8),0 0 .45em .06em rgba(212,181,106,.4);
+  animation:wm-capglow 4.2s ease-in-out infinite}
+@keyframes wm-capglow{
+  0%,100%{box-shadow:0 0 .12em .02em rgba(233,201,119,.8),0 0 .45em .06em rgba(212,181,106,.4)}
+  50%{box-shadow:0 0 .18em .04em rgba(255,236,180,.95),0 0 .8em .14em rgba(212,181,106,.55)}}
+
+/* ---------- Parallax-Ebenen (jede Ebene mit eigener Tiefe) ---------- */
+.wm .bg-topo{position:absolute;left:-60px;top:-60px;width:calc(100% + 120px);height:calc(100% + 120px);pointer-events:none;
+  translate:calc(var(--px) * -20px) calc(var(--py) * -14px + var(--sy) * 70px)}
+.wm .bg-topo path{fill:none;stroke:#8fa78a;stroke-opacity:.09;stroke-width:1}
+.wm .head-l{display:flex;flex-direction:column;gap:22px;flex:1 1 560px;min-width:0;translate:calc(var(--px) * 8px) calc(var(--py) * 6px)}
+.wm .cards{display:flex;flex-direction:column;gap:16px;min-width:0;translate:calc(var(--px) * 10px) calc(var(--py) * 8px)}
+
+/* ---------- Wochenleiste (Markttage kommen aus der JS-Konfiguration) ---------- */
+.wm .week{display:flex;gap:10px;flex-wrap:wrap}
+.wm .wd{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;width:48px}
+.wm .wd .c{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(239,233,220,.14);font-size:13px;font-weight:600;color:#8f8c7f}
+.wm .wd.today .c{border-color:rgba(239,233,220,.55);color:var(--cream)}
+.wm .wd .t{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8f8c7f;height:12px}
+.wm .wd .ring,.wm .wd .badge{display:none}
+.wm .wd.market .c{background:var(--gold);border-color:var(--gold);color:var(--forest);box-shadow:0 0 30px -4px rgba(212,181,106,.7)}
+.wm .wd.market .t{color:var(--gold)}
+.wm .wd.market .ring{display:block;position:absolute;top:-6px;left:-4px;width:56px;height:56px;border-radius:50%;border:1px dashed rgba(212,181,106,.6);animation:wm-spin 14s linear infinite}
+.wm .wd.market .badge{display:flex;position:absolute;top:-8px;right:-6px;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--cream);color:var(--forest);font-size:11px;font-weight:700}
+@keyframes wm-spin{to{rotate:360deg}}
+
+/* ---------- Live-Panel ---------- */
+.wm .live{flex:0 1 420px;position:relative;display:flex;flex-direction:column;gap:14px;padding:26px 28px;border-radius:26px;
+  background:linear-gradient(160deg,rgba(239,233,220,.07),rgba(239,233,220,.02));border:1px solid rgba(212,181,106,.3);
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.8),inset 0 1px 0 rgba(239,233,220,.08)}
+.wm .live-date{margin:0;font-size:34px;line-height:1.05;color:var(--cream)}
+.wm .live-foot{margin:0;font-size:14px;color:var(--muted)}
+.wm .pillx{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;min-height:32px;padding:0 14px;border-radius:999px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;background:rgba(212,181,106,.12);color:var(--gold-2);border:1px solid rgba(212,181,106,.35)}
+.wm .pillx.is-open{background:rgba(159,214,168,.12);color:#a9e0b2;border-color:rgba(159,214,168,.4)}
+.wm .ld{position:relative;width:8px;height:8px;border-radius:50%;background:currentColor}
+.wm .ld::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid currentColor;animation:wm-ping 1.8s ease-out infinite}
+@keyframes wm-ping{from{opacity:.9;scale:.5}to{opacity:0;scale:1.6}}
+.wm .cd{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.wm .cd-u{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 0 10px;border-radius:16px;background:rgba(10,16,12,.45);border:1px solid rgba(239,233,220,.08)}
+.wm .cd-n{font-size:46px;line-height:1;font-weight:500;font-variant-numeric:lining-nums tabular-nums;color:var(--cream)}
+.wm .cd-l{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- 3D-Karte ----------
+   Aufbau: .map-stage (perspective) > .map-cam (Kamera) > .floor/.slab/.plane (gekippte Ebene)
+   .plane enthält die SVG-Karte (viewBox 741×912) und die Pins (.pin, Position in %). */
+.wm .map-stage{position:relative;height:660px;perspective:1600px;perspective-origin:50% 30%}
+.wm .map-cam{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform;
+  transform:translate3d(calc(var(--camx,0) * 1px),calc(var(--camy,0) * 1px),0) scale(var(--cams,1))}
+.wm .plane,.wm .slab,.wm .floor{position:absolute;left:50%;top:50%;width:500px;height:615px;margin:-307px 0 0 -250px;border-radius:34px}
+.wm .plane{transform-style:preserve-3d;transform:rotateX(calc(50deg + var(--py) * 7deg)) rotateZ(calc(-12deg + var(--px) * 9deg));
+  background:radial-gradient(420px 420px at 57% 82%,rgba(212,181,106,.16),rgba(0,0,0,0) 70%),radial-gradient(360px 360px at 66% 16%,rgba(212,181,106,.10),rgba(0,0,0,0) 70%),linear-gradient(170deg,#24372b,#18261e);
+  border:1px solid rgba(212,181,106,.32);box-shadow:inset 0 0 80px rgba(0,0,0,.35)}
+.wm .slab{transform:rotateX(calc(50deg + var(--py) * 7deg)) rotateZ(calc(-12deg + var(--px) * 9deg)) translateZ(-18px);background:#0d1510;border:1px solid rgba(212,181,106,.18)}
+.wm .floor{transform:rotateX(calc(50deg + var(--py) * 7deg)) rotateZ(calc(-12deg + var(--px) * 9deg)) translateZ(-140px);background:radial-gradient(closest-side,rgba(0,0,0,.6),rgba(0,0,0,0));filter:blur(20px)}
+.wm .plane > svg{position:absolute;inset:0;width:100%;height:100%;border-radius:34px;overflow:hidden}
+
+/* Kartenebenen */
+.wm .contour{fill:none;stroke:#9db596;stroke-opacity:.2;stroke-width:1}
+.wm .ridge-label{font-family:"Hanken Grotesk",sans-serif;font-size:11px;letter-spacing:.42em;fill:#9db596;fill-opacity:.55}
+.wm .mark{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:15px;fill:#c9c3b2;fill-opacity:.6}
+.wm .coord{font-family:"Hanken Grotesk",sans-serif;font-size:10px;letter-spacing:.12em;fill:var(--gold);fill-opacity:.6}
+.wm .grat{stroke:var(--gold);stroke-opacity:.07;stroke-width:1}
+.wm .grat-l{font-family:"Hanken Grotesk",sans-serif;font-size:10px;letter-spacing:.1em;fill:var(--gold);fill-opacity:.42}
+.wm .river{fill:none;stroke:#7fb2b0;stroke-opacity:.42;stroke-width:2.6;stroke-linecap:round}
+.wm .river-f{fill:none;stroke:#c4ece8;stroke-opacity:.55;stroke-width:1.3;stroke-linecap:round;stroke-dasharray:3 14;animation:wm-rflow 5s linear infinite}
+@keyframes wm-rflow{to{stroke-dashoffset:-34}}
+.wm .river-l{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:16px;fill:#9fd0cc;fill-opacity:.8}
+.wm .road{fill:none;stroke:var(--cream);stroke-opacity:.17;stroke-width:1.6;stroke-dasharray:8 6}
+.wm .road-b{fill:#c9c3b2;fill-opacity:.6}
+.wm .road-l{font-family:"Hanken Grotesk",sans-serif;font-size:10px;font-weight:700;letter-spacing:.04em;fill:var(--forest)}
+.wm .town{fill:var(--cream);fill-opacity:.6}
+.wm .town-l{font-family:"Hanken Grotesk",sans-serif;font-size:14px;letter-spacing:.03em;fill:#d6d1c4;fill-opacity:.64}
+.wm .region{font-family:"Hanken Grotesk",sans-serif;font-size:13px;letter-spacing:.6em;fill:#9db596;fill-opacity:.42}
+.wm .scale line{stroke:var(--gold);stroke-opacity:.6;stroke-width:1.4}
+.wm .scale text{font-family:"Hanken Grotesk",sans-serif;font-size:11px;fill:var(--gold);fill-opacity:.7}
+
+/* Myzel: zeichnet sich beim Einblenden (pathLength="1"), Lichtimpulse laufen vom Hof zum Markt */
+.wm .hy{fill:none;stroke:var(--gold);stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+.wm .hy.main{stroke-width:2.2;stroke-opacity:.85}
+.wm .hy.br{stroke-width:1.1;stroke-opacity:.45}
+.wm .hy.tip{stroke-width:1;stroke-opacity:.35}
+.wm.is-in .hy{animation:wm-draw 2.6s cubic-bezier(.4,0,.2,1) forwards}
+.wm.is-in .hy.br{animation-delay:1.2s}
+.wm.is-in .hy.tip{animation:wm-draw 3.4s 2s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes wm-draw{to{stroke-dashoffset:0}}
+.wm .flow{fill:none;stroke:#fff3d0;stroke-width:3.2;stroke-linecap:round;stroke-dasharray:3 97;stroke-dashoffset:100;opacity:0}
+.wm.is-in .flow{opacity:1;animation:wm-flow 3.2s 2.4s linear infinite}
+.wm.is-in .flow.f2{animation-delay:4s}
+@keyframes wm-flow{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+.wm .tipdot{fill:var(--gold);opacity:0}
+.wm.is-in .tipdot{animation:wm-tip 2.8s 4.6s ease-in-out infinite}
+@keyframes wm-tip{0%,100%{opacity:.15}50%{opacity:.85}}
+.wm .hl{fill:none;stroke:var(--gold-2);stroke-width:8;stroke-linecap:round;stroke-opacity:.22;opacity:0}
+
+/* Pins = Billboards. WICHTIG: nie opacity/filter auf .pin oder .bb setzen –
+   das erzwingt transform-style:flat und die Schilder kippen flach auf die Karte. */
+.wm .pin{position:absolute;width:0;height:0;transform-style:preserve-3d}
+.wm .ripple{position:absolute;left:-60px;top:-60px;width:120px;height:120px;border-radius:50%;border:1.5px solid rgba(212,181,106,.8);opacity:0;animation:wm-ripple 3s ease-out infinite;pointer-events:none}
+.wm .ripple.r2{animation-delay:1s}.wm .ripple.r3{animation-delay:2s}
+@keyframes wm-ripple{from{opacity:.9;scale:.15}to{opacity:0;scale:1.5}}
+.wm .pin-hof .ripple{border-color:rgba(239,233,220,.6);animation-duration:2.2s}
+.wm .bb{position:absolute;left:0;top:0;width:0;height:0;transform-style:preserve-3d;
+  transform:translateZ(2px) rotateZ(calc(12deg - var(--px) * 9deg)) rotateX(calc(-50deg - var(--py) * 7deg))} /* exakte Gegenrotation der .plane */
+.wm .bb-in{position:absolute;left:0;bottom:0;display:flex;flex-direction:column;align-items:center;transform:translateX(-50%)}
+.wm .plabel{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 18px;border-radius:18px;background:rgba(14,22,17,.9);border:1px solid rgba(212,181,106,.5);box-shadow:0 24px 50px -16px rgba(0,0,0,.8),0 0 40px -10px rgba(212,181,106,.4);cursor:pointer;white-space:nowrap;transition:transform .5s cubic-bezier(.2,.8,.15,1),border-color .4s}
+.wm .plabel:hover{transform:translateY(-4px);border-color:var(--gold)}
+.wm .plabel .pc{font-family:"Cormorant Garamond",Georgia,serif;font-size:28px;line-height:1;color:var(--cream)}
+.wm .plabel .ps{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.wm .beam{width:2px;height:var(--beam,90px);background:linear-gradient(to top,rgba(212,181,106,.9),rgba(212,181,106,0));background-size:100% 200%;animation:wm-beam 2.4s linear infinite}
+@keyframes wm-beam{from{background-position:0 0}to{background-position:0 -200%}}
+.wm .gdot{position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:var(--cream);box-shadow:0 0 0 4px rgba(212,181,106,.45),0 0 26px 6px rgba(212,181,106,.7)}
+.wm .pin-hof .gdot{left:-6px;top:-6px;width:12px;height:12px;background:var(--gold)}
+.wm .hof-label{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:14px;background:rgba(239,233,220,.93);color:#1d2a22;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:0 18px 34px -12px rgba(0,0,0,.7)}
+.wm .hof-label svg{flex:0 0 15px;width:15px;height:15px}
+.wm .floaty{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--gold-2);box-shadow:0 0 14px 3px rgba(212,181,106,.5);animation:wm-floaty 7s ease-in-out infinite}
+@keyframes wm-floaty{0%,100%{translate:0 0;opacity:.3}50%{translate:0 -24px;opacity:1}}
+.wm .compass{position:absolute;right:22px;top:22px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;letter-spacing:.2em;color:var(--gold);opacity:.7}
+.wm .tilt{display:none}
+
+/* ---------- Marktkarten ---------- */
+.wm .mcard{position:relative;display:flex;flex-direction:column;gap:16px;padding:24px 26px;border-radius:24px;
+  background:linear-gradient(160deg,rgba(239,233,220,.06),rgba(239,233,220,.015));border:1px solid rgba(239,233,220,.12);box-shadow:0 30px 70px -40px rgba(0,0,0,.8);
+  transform:perspective(1000px) rotateY(0) translateX(0);transition:transform .8s cubic-bezier(.22,.61,.36,1),border-color .6s ease,box-shadow .6s ease}
+.wm .mcard:hover,.wm .mcard.on{transform:perspective(1000px) rotateY(-5deg) translateX(-6px);border-color:rgba(212,181,106,.6);box-shadow:0 40px 80px -36px rgba(0,0,0,.9),0 0 60px -20px rgba(212,181,106,.35)}
+.wm .mc-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.wm .mc-num{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:22px;color:var(--gold)}
+.wm .mc-main{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 20px}
+.wm .mc-city{margin:0;font-size:54px;line-height:.95;font-weight:500}
+.wm .mc-place{margin:6px 0 0;font-size:15px;color:#c9c4b6}
+.wm .mc-when{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.wm .mc-day{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.wm .mc-time{font-size:30px;line-height:1;color:var(--cream);font-variant-numeric:lining-nums}
+.wm .tl-bar{position:relative;height:4px;border-radius:4px;background:rgba(239,233,220,.1)}
+.wm .tl-fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:4px;background:linear-gradient(90deg,#b8984a,var(--gold-2))}
+.wm .tl-now{position:absolute;top:50%;left:0;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#a9e0b2;box-shadow:0 0 0 4px rgba(169,224,178,.25);opacity:0}
+.wm .mcard.is-open .tl-now{opacity:1}
+.wm .tl-ticks{display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:#8f8c7f;letter-spacing:.06em}
+.wm .mc-actions{display:flex;flex-wrap:wrap;gap:10px}
+.wm.wm .btn-gold{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:0 20px;border-radius:999px;background:var(--gold);color:var(--forest);font-weight:600;font-size:14px;text-decoration:none;transition:background .3s,transform .3s}
+.wm.wm .btn-gold:hover{background:var(--gold-2);color:var(--forest);transform:translateY(-2px)}
+.wm .btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;background:none;border:1px solid rgba(239,233,220,.24);font-size:14px;cursor:pointer;transition:border-color .3s,background .3s}
+.wm .btn-ghost svg{display:none}
+.wm .btn-ghost:hover,.wm .btn-ghost[aria-pressed="true"]{border-color:var(--gold);background:rgba(212,181,106,.1)}
+.wm .slot{display:flex;align-items:center;gap:18px;padding:20px 24px;border-radius:24px;border:1px dashed rgba(212,181,106,.4);background:rgba(212,181,106,.03)}
+.wm .slot .plus{flex:0 0 48px;display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;border:1px solid rgba(212,181,106,.5);color:var(--gold);animation:wm-breathe 3.6s ease-in-out infinite}
+.wm .slot-t{font-size:24px;line-height:1.1}
+.wm .slot-s{font-size:14px;color:#b4b2a5}
+@keyframes wm-breathe{0%,100%{box-shadow:0 0 0 0 rgba(212,181,106,.35)}50%{box-shadow:0 0 0 10px rgba(212,181,106,0)}}
+.wm .cards-wrap{min-width:0;display:flex;flex-direction:column;gap:6px}
+.wm .dots{display:none}
+
+/* =====================================================================
+   MOBILE (≤ 720px) – eigenes Layout, kein bloßes Zusammenschieben:
+   Headline zweizeilig · Live-Panel kompakt · Karte randlos ·
+   Märkte als Wisch-Karussell, das die Kamera steuert · Gyroskop-Parallax
+   ===================================================================== */
+@media (max-width:720px){
+  .wm.wm{padding:64px 0 52px;
+    background:radial-gradient(420px 420px at 30% 52%,rgba(212,181,106,.12),rgba(0,0,0,0) 70%),radial-gradient(360px 360px at 90% 8%,rgba(120,160,120,.12),rgba(0,0,0,0) 70%),var(--forest)}
+  .wm.wm .m-only{display:inline}
+  .wm.wm .d-only{display:none}
+  .wm .wm-wrap{padding:0 20px;gap:26px}
+  .wm .wm-head{flex-direction:column;align-items:stretch;gap:26px}
+  .wm .head-l{flex:none;translate:none}
+  .wm .wm-h2{font-size:clamp(64px,20vw,84px);line-height:.86}
+  .wm .wm-h2 em{display:block}
+
+  .wm .week{flex-wrap:nowrap;justify-content:space-between;gap:0}
+  .wm .wd{width:40px;gap:7px}
+  .wm .wd .c{width:40px;height:40px;font-size:12px}
+  .wm .wd .t{font-size:9px;height:11px}
+  .wm .wd.market .ring{top:-5px;left:-5px;width:50px;height:50px}
+  .wm .wd.market .badge{top:-8px;right:-8px;min-width:20px;height:20px;font-size:10px}
+
+  .wm .live{flex:none;padding:20px;border-radius:22px;gap:12px}
+  .wm .live-date{font-size:28px}
+  .wm .live-foot{font-size:13px}
+  .wm .pillx{min-height:30px;padding:0 12px;font-size:11px;letter-spacing:.14em}
+  .wm .cd{gap:8px}
+  .wm .cd-u{padding:10px 0 8px;border-radius:14px}
+  .wm .cd-n{font-size:36px}
+  .wm .cd-l{font-size:9px}
+
+  .wm .wm-main{display:flex;flex-direction:column;align-items:stretch;gap:8px}
+  .wm .map-stage{height:450px;margin:0 -20px;perspective:1100px;perspective-origin:50% 36%}
+  .wm .plane,.wm .slab,.wm .floor{width:300px;height:369px;margin:-184px 0 0 -150px;border-radius:24px}
+  .wm .plane > svg{border-radius:24px}
+  .wm .slab{transform:rotateX(calc(50deg + var(--py) * 7deg)) rotateZ(calc(-12deg + var(--px) * 9deg)) translateZ(-12px)}
+  .wm .floor{transform:rotateX(calc(50deg + var(--py) * 7deg)) rotateZ(calc(-12deg + var(--px) * 9deg)) translateZ(-90px);filter:blur(16px)}
+  /* Kartentexte: die SVG wird auf ~40 % skaliert → Schrift größer, Kleinkram ausblenden */
+  .wm .contour{stroke-width:1.4;stroke-opacity:.22}
+  .wm .ridge-label{font-size:16px;letter-spacing:.4em}
+  .wm .mark{font-size:21px}
+  .wm .river{stroke-width:3.6}
+  .wm .river-f{stroke-width:1.8;stroke-dasharray:4 16}
+  .wm .river-l{font-size:24px}
+  .wm .road{stroke-width:2.2;stroke-dasharray:10 8}
+  .wm .town-l{font-size:21px;letter-spacing:.02em;fill-opacity:.7}
+  .wm .region{font-size:19px;letter-spacing:.5em}
+  .wm .scale line{stroke-width:2}
+  .wm .scale text{font-size:18px}
+  .wm .grat-l,.wm .coord,.wm .road-b,.wm .road-l,.wm .m-hide{display:none}
+  .wm .hy.main{stroke-width:3.2}
+  .wm .hy.br{stroke-width:1.6}
+  .wm .hy.tip{stroke-width:1.4}
+  .wm .flow{stroke-width:4.6}
+  .wm .hl{stroke-width:12}
+  .wm .ripple{left:-40px;top:-40px;width:80px;height:80px}
+  .wm .plabel{padding:8px 13px;border-radius:14px}
+  .wm .plabel .pc{font-size:21px}
+  .wm .plabel .ps{font-size:9px}
+  .wm .beam{height:var(--beam-m,60px)}
+  .wm .gdot{left:-6px;top:-6px;width:12px;height:12px}
+  .wm .pin-hof .gdot{left:-5px;top:-5px;width:10px;height:10px}
+  .wm .hof-label{gap:6px;padding:6px 9px;border-radius:11px;font-size:10px}
+  .wm .hof-label svg{flex-basis:12px;width:12px;height:12px}
+  .wm .compass{right:14px;top:14px;font-size:8px}
+  .wm .tilt{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid rgba(239,233,220,.18);background:rgba(14,22,17,.7);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#d6d1c4;cursor:pointer;z-index:4}
+  .wm .tilt svg{animation:wm-tiltphone 3.2s ease-in-out infinite}
+  .wm .tilt.on{border-color:rgba(212,181,106,.5);color:var(--gold-2)}
+  .wm .tilt[hidden]{display:none}
+
+  /* Wisch-Karussell */
+  .wm .cards{flex-direction:row;gap:12px;margin:0 -20px;padding:6px 20px 10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 20px;scrollbar-width:none;-webkit-overflow-scrolling:touch;translate:none}
+  .wm .cards::-webkit-scrollbar{display:none}
+  .wm .mcard,.wm .slot{flex:0 0 calc(100% - 28px);scroll-snap-align:center;scroll-snap-stop:always}
+  .wm .mcard{gap:14px;padding:20px;border-radius:22px;transform:none;transition:border-color .6s ease,box-shadow .6s ease}
+  .wm .mcard:hover{transform:none}
+  .wm .mcard.on{transform:none}
+  .wm .mc-num{font-size:20px}
+  .wm .mc-main{flex-direction:column;align-items:flex-start;gap:12px}
+  .wm .mc-city{font-size:46px}
+  .wm .mc-place{font-size:14px}
+  .wm .mc-when{flex-direction:row;align-items:baseline;gap:12px}
+  .wm .mc-day{font-size:11px}
+  .wm .mc-time{font-size:26px}
+  .wm .tl-ticks{font-size:10px;margin-top:7px}
+  .wm .mc-actions{flex-wrap:nowrap;gap:8px}
+  .wm.wm .btn-gold{flex:1 1 auto;min-height:48px;font-size:15px}
+  .wm .btn-ghost{min-height:48px;padding:0 16px}
+  .wm .btn-ghost svg{display:block}
+  .wm .slot{flex-direction:column;align-items:flex-start;justify-content:center;gap:14px;padding:22px;border-radius:22px}
+  .wm .slot-t{font-size:34px;line-height:1.02}
+  .wm .slot-s{line-height:1.5}
+  .wm .dots{display:flex;justify-content:center;align-items:center;gap:8px}
+  .wm .dots button{width:44px;height:28px;display:flex;align-items:center;justify-content:center;padding:0;background:none;border:0;cursor:pointer}
+  .wm .dots button span{display:block;width:6px;height:6px;border-radius:3px;background:rgba(239,233,220,.25);transition:width .45s cubic-bezier(.22,.61,.36,1),background .45s}
+  .wm .dots button.on span{width:24px;background:var(--gold)}
+}
+@keyframes wm-tiltphone{0%,100%{rotate:-14deg}50%{rotate:14deg}}
+
+/* ---------- Barrierefreiheit: reduzierte Bewegung ---------- */
+@media (prefers-reduced-motion: reduce){
+  .wm.wm *,.wm.wm *::before,.wm.wm *::after{animation:none!important;transition:none!important}
+  .wm .hy{stroke-dashoffset:0}
+}
+
+
+/* =========================================================
+   Website-Anpassungen (nicht Teil des Design-Exports)
+   Die Website setzt global line-height:1.7 und entfernt Link-Unterstreichungen –
+   der Export lief mit Browser-Standards. Beides hier wiederherstellen.
+   ========================================================= */
+.wm.wm{line-height:normal}
+.wm.wm .slot-s a{text-decoration:underline}
+
+/* Leistung: Kopf, Marktkarten und Hintergrund werden pro Frame per translate verschoben (Parallax).
+   Ohne eigene Ebene malt der Browser sie jedes Mal komplett neu → Ruckeln bei 120 Hz.
+   Gemessen (M1 Pro, Retina): p95 16,2 ms → 4,0 ms pro Frame. Optisch identisch. */
+.wm.wm .bg-topo,.wm.wm .head-l,.wm.wm .cards{will-change:transform,translate}
