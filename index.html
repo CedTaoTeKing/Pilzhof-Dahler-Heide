@@ -124,10 +124,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="philosophie.css" />
 </head>
 
 <body>
@@ -143,7 +144,7 @@
         <span class="logo-text">Pilzhof<span class="logo-accent"> Dahler Heide</span></span>
       </a>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#vision" class="nav-link">Vision</a></li>
+        <li><a href="#pf-philo" class="nav-link">Vision</a></li>
         <li><a href="#pilz-essenz" class="nav-link">Pilze</a></li>
         <li><a href="#process" class="nav-link">Prozess</a></li>
         <li><a href="#baba-shrooms" class="nav-link">Baba Shrooms</a></li>
@@ -197,81 +198,165 @@
     </section>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!-- SECTION 2 – VISION & PHILOSOPHY -->
+    <!-- SECTION 2 – PHILOSOPHIE (Styles: philosophie.css · Logik: philosophie.js) -->
     <!-- ═══════════════════════════════════════════ -->
-    <section id="vision" class="vision-section">
-      <div class="section-container">
-        <div class="section-header reveal-up">
-          <span class="section-label">Unsere Philosophie</span>
-          <h2 class="section-headline">Wir kultivieren mehr als Pilze.<br /><em>Wir kultivieren Zukunft.</em></h2>
-        </div>
+    <section id="pf-philo" aria-labelledby="pf-title">
 
-        <div class="vision-grid">
-          <div class="vision-card reveal-up" style="--delay: 0.1s">
-            <div class="vision-card-icon">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <circle cx="24" cy="24" r="18" />
-                <path d="M24 6v36M6 24h36" />
-                <path d="M12 12c6 4 12 4 18 0M12 36c6-4 12-4 18 0" />
-              </svg>
-            </div>
-            <h3 class="vision-card-title">Regionale Dinkelspelzen als Nährboden</h3>
-            <p class="vision-card-text">Wir verwenden regionale Dinkelspelzen als nachhaltiges Substrat – ein
-              Nebenprodukt lokaler Landwirtschaft, das in unserem Kreislauf neues Leben findet und wertvolle Pilze
-              hervorbringt.</p>
+      <div class="pf-spot" aria-hidden="true"><div class="pf-spot-light"></div></div>
+
+      <div class="pf-back" aria-hidden="true">
+        <div class="pf-anchor pf-at-bl" data-col="bl"></div>
+        <div class="pf-anchor pf-at-bc" data-col="bc"></div>
+        <div class="pf-anchor pf-at-br" data-col="br"></div>
+        <div class="pf-anchor pf-at-hl pf-headmush" data-col="hl"></div>
+        <div class="pf-anchor pf-at-hr pf-headmush" data-col="hr"></div>
+        <div data-spores="back"></div>
+      </div>
+
+      <div class="pf-inner">
+        <header class="pf-head">
+          <div class="pf-eyebrow-z">
+            <div class="pf-eyebrow pf-fade"><span class="pf-rule pf-rule-l"></span><p>Unsere Philosophie</p><span class="pf-rule pf-rule-r"></span></div>
           </div>
+          <h2 id="pf-title" class="pf-title">
+            <span class="pf-line1">
+              <span class="pf-w"><span class="pf-wi" style="transition-delay:.1s">Wir</span></span>
+              <span class="pf-w"><span class="pf-wi" style="transition-delay:.17s">kultivieren</span></span>
+              <span class="pf-w"><span class="pf-wi" style="transition-delay:.24s">mehr</span></span>
+              <span class="pf-w"><span class="pf-wi" style="transition-delay:.31s">als</span></span>
+              <span class="pf-w"><span class="pf-wi" style="transition-delay:.38s">Pilze.</span></span>
+            </span>
+            <span class="pf-line2">
+              <span class="pf-w"><span class="pf-wi" style="transition-delay:.5s">Wir</span></span>
+              <span class="pf-w"><span class="pf-wi" style="transition-delay:.58s">kultivieren</span></span>
+              <span class="pf-zk">
+                <span class="pf-w"><span class="pf-wi" style="transition-delay:.66s">Zukunft.</span></span>
+                <svg class="pf-ul" aria-hidden="true" viewBox="0 0 300 24" preserveAspectRatio="none"><path d="M3 17 C 70 7, 150 3, 297 11"/></svg>
+              </span>
+            </span>
+          </h2>
+        </header>
 
-          <div class="vision-card reveal-up" style="--delay: 0.2s">
-            <div class="vision-card-icon">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M24 4C13 4 4 13 4 24s9 20 20 20" />
-                <path d="M24 44C35 44 44 35 44 24S35 4 24 4" />
-                <path d="M24 14c-5.5 0-10 4.5-10 10s4.5 10 10 10 10-4.5 10-10-4.5-10-10-10z" />
-                <path d="M24 20v8M20 24h8" />
-              </svg>
-            </div>
-            <h3 class="vision-card-title">Geschlossene Kreislaufwirtschaft</h3>
-            <p class="vision-card-text">Von der Substrataufbereitung bis zur Kompostierung – unser System ist ein
-              geschlossener Kreislauf. Kein Abfall, nur Transformation. Jeder Rest wird Ressource.</p>
-          </div>
-
-          <div class="vision-card reveal-up" style="--delay: 0.3s">
-            <div class="vision-card-icon">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M8 38s2-8 8-14c4-4 8-5 8-5s4 1 8 5c6 6 8 14 8 14" />
-                <path d="M24 19V6" />
-                <path d="M18 12l6-6 6 6" />
-              </svg>
-            </div>
-            <h3 class="vision-card-title">Ressourcenschonende Produktion</h3>
-            <p class="vision-card-text">Minimaler Wasserverbrauch, keine Pestizide, energieeffiziente Klimasteuerung.
-              Unsere Produktion respektiert natürliche Grenzen und maximiert biologische Effizienz.</p>
-          </div>
-
-          <div class="vision-card reveal-up" style="--delay: 0.4s">
-            <div class="vision-card-icon">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="8" y="8" width="32" height="32" rx="4" />
-                <path d="M16 24l5 5 11-11" />
-              </svg>
-            </div>
-            <h3 class="vision-card-title">Transparente Qualitätskontrolle</h3>
-            <p class="vision-card-text">Jeder Produktionsschritt wird dokumentiert und kontrolliert. Vom Substrat bis
-              zur Ernte – wir machen Qualität sichtbar und nachvollziehbar für unsere Partner und Kunden.</p>
-          </div>
-        </div>
-
-        <!-- Mycelium connection lines -->
-        <div class="mycelium-lines" aria-hidden="true">
-          <svg class="mycelium-svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
-            <path class="mycelium-path" d="M0,50 C200,20 300,80 600,50 C900,20 1000,80 1200,50" />
-            <path class="mycelium-path mycelium-path--2" d="M0,30 C150,60 400,10 600,40 C800,70 1050,20 1200,50" />
+        <div class="pf-cards">
+          <svg class="pf-thread" aria-hidden="true" viewBox="0 0 1200 400">
+            <path class="t-w" data-k="m" data-len="1511" d="M-140 252 C -20 236, 150 262, 293 210 C 420 160, 480 280, 600 240 C 720 200, 790 150, 907 190 C 1010 225, 1160 168, 1340 196"/>
+            <path class="t-m" data-k="m" data-len="1511" d="M-140 252 C -20 236, 150 262, 293 210 C 420 160, 480 280, 600 240 C 720 200, 790 150, 907 190 C 1010 225, 1160 168, 1340 196"/>
+            <path class="t-b" data-k="b" data-f="0.29" data-len="191" d="M293 210 C 302 150, 280 96, 298 22"/>
+            <path class="t-b" data-k="b" data-f="0.29" data-len="177" d="M293 210 C 284 262, 306 318, 288 384"/>
+            <path class="t-b" data-k="b" data-f="0.5" data-len="213" d="M600 240 C 590 180, 612 120, 596 30"/>
+            <path class="t-b" data-k="b" data-f="0.5" data-len="155" d="M600 240 C 610 296, 590 340, 604 392"/>
+            <path class="t-b" data-k="b" data-f="0.712" data-len="179" d="M907 190 C 898 138, 920 84, 902 14"/>
+            <path class="t-b" data-k="b" data-f="0.712" data-len="199" d="M907 190 C 916 250, 896 318, 910 386"/>
+            <path class="t-t" data-k="b" data-f="0.051" data-len="91" d="M-62.6 246.5 C -68 212, -88 192, -112 176"/>
+            <path class="t-t" data-k="b" data-f="0.079" data-len="93" d="M-20.6 245.7 C -16 276, -30 302, -54 326"/>
+            <path class="t-t" data-k="b" data-f="0.937" data-len="90" d="M1245.8 188.1 C 1252 156, 1272 138, 1300 124"/>
+            <path class="t-t" data-k="b" data-f="0.972" data-len="88" d="M1297.4 190.8 C 1302 222, 1318 244, 1340 262"/>
+            <path class="t-s pf-run" data-k="s" d="M-140 252 C -20 236, 150 262, 293 210 C 420 160, 480 280, 600 240 C 720 200, 790 150, 907 190 C 1010 225, 1160 168, 1340 196"/>
+            <path class="t-s t-s2 pf-run pf-run2" data-k="s" d="M-140 252 C -20 236, 150 262, 293 210 C 420 160, 480 280, 600 240 C 720 200, 790 150, 907 190 C 1010 225, 1160 168, 1340 196"/>
+            <circle class="t-tip" data-k="t" data-f="0.29" cx="298" cy="22" r="2.2"/>
+            <circle class="t-tip" data-k="t" data-f="0.29" cx="288" cy="384" r="2.2"/>
+            <circle class="t-tip" data-k="t" data-f="0.5" cx="596" cy="30" r="2.2"/>
+            <circle class="t-tip" data-k="t" data-f="0.5" cx="604" cy="392" r="2.2"/>
+            <circle class="t-tip" data-k="t" data-f="0.712" cx="902" cy="14" r="2.2"/>
+            <circle class="t-tip" data-k="t" data-f="0.712" cx="910" cy="386" r="2.2"/>
+            <circle class="t-tip" data-k="t" data-f="0.051" cx="-112" cy="176" r="2"/>
+            <circle class="t-tip" data-k="t" data-f="0.079" cx="-54" cy="326" r="2"/>
+            <circle class="t-tip" data-k="t" data-f="0.937" cx="1300" cy="124" r="2"/>
+            <circle class="t-tip" data-k="t" data-f="0.972" cx="1340" cy="262" r="2"/>
+            <g class="t-node" data-k="n" data-f="0.29"><circle class="pf-pulse" cx="293" cy="210" r="5"/><circle class="t-dot" cx="293" cy="210" r="4.6"/><circle class="t-core" cx="293" cy="210" r="1.7"/></g>
+            <g class="t-node" data-k="n" data-f="0.5"><circle class="pf-pulse" cx="600" cy="240" r="5"/><circle class="t-dot" cx="600" cy="240" r="4.6"/><circle class="t-core" cx="600" cy="240" r="1.7"/></g>
+            <g class="t-node" data-k="n" data-f="0.712"><circle class="pf-pulse" cx="907" cy="190" r="5"/><circle class="t-dot" cx="907" cy="190" r="4.6"/><circle class="t-core" cx="907" cy="190" r="1.7"/></g>
           </svg>
+
+          <div class="pf-grid">
+
+            <div class="pf-rv"><div class="pf-par"><article class="pf-card">
+              <div class="pf-card-bg" aria-hidden="true"></div><div class="pf-card-glare" aria-hidden="true"></div>
+              <span class="pf-num" aria-hidden="true">01</span>
+              <div class="pf-badge" aria-hidden="true"><div class="pf-badge-bg"></div><svg class="pf-ring" viewBox="0 0 92 92"><circle cx="46" cy="46" r="44"/></svg>
+                <svg class="pf-ico" viewBox="0 0 48 48"><path d="M24 44 V13"/><path d="M24 4 C 21.8 6.8, 21.8 10.2, 24 13 C 26.2 10.2, 26.2 6.8, 24 4 Z"/><path d="M24 19 C 20.4 18.6, 17.6 15.8, 16.8 12 C 20.4 12.4, 23.2 15.2, 24 19 Z"/><path d="M24 19 C 27.6 18.6, 30.4 15.8, 31.2 12 C 27.6 12.4, 24.8 15.2, 24 19 Z"/><path d="M24 26 C 20.4 25.6, 17.6 22.8, 16.8 19 C 20.4 19.4, 23.2 22.2, 24 26 Z"/><path d="M24 26 C 27.6 25.6, 30.4 22.8, 31.2 19 C 27.6 19.4, 24.8 22.2, 24 26 Z"/><path d="M24 33 C 20.4 32.6, 17.6 29.8, 16.8 26 C 20.4 26.4, 23.2 29.2, 24 33 Z"/><path d="M24 33 C 27.6 32.6, 30.4 29.8, 31.2 26 C 27.6 26.4, 24.8 29.2, 24 33 Z"/><path d="M16.8 12 L 14 7.4 M31.2 12 L 34 7.4"/></svg>
+              </div>
+              <h3>Regionale Dinkelspelzen als Nährboden</h3>
+              <p>Wir verwenden regionale Dinkelspelzen als nachhaltiges Substrat – ein Nebenprodukt lokaler Landwirtschaft, das in unserem Kreislauf neues Leben findet und wertvolle Pilze hervorbringt.</p>
+              <div class="pf-barwrap" aria-hidden="true"><span class="pf-bar"></span></div>
+            </article></div></div>
+
+            <div class="pf-rv"><div class="pf-par"><article class="pf-card">
+              <div class="pf-card-bg" aria-hidden="true"></div><div class="pf-card-glare" aria-hidden="true"></div>
+              <span class="pf-num" aria-hidden="true">02</span>
+              <div class="pf-badge" aria-hidden="true"><div class="pf-badge-bg"></div><svg class="pf-ring" viewBox="0 0 92 92"><circle cx="46" cy="46" r="44"/></svg>
+                <svg class="pf-ico" viewBox="0 0 48 48"><path d="M37.2 19.4 A14 14 0 0 0 10.8 19.4"/><path d="M9.8 14.5 L10.8 19.4 L14.6 16.1"/><path d="M10.8 28.6 A14 14 0 0 0 37.2 28.6"/><path d="M33.4 31.9 L37.2 28.6 L38.2 33.5"/><path d="M24 31 V24"/><path d="M24 25 C 24 21.4, 26.6 19, 30 19 C 30 22.6, 27.4 25, 24 25 Z"/><path d="M24 27.4 C 24 25, 22.2 23.4, 19.8 23.4 C 19.8 25.8, 21.6 27.4, 24 27.4 Z"/></svg>
+              </div>
+              <h3>Geschlossene Kreislaufwirtschaft</h3>
+              <p>Von der Substrataufbereitung bis zur Kompostierung – unser System ist ein geschlossener Kreislauf. Kein Abfall, nur Transformation. Jeder Rest wird Ressource.</p>
+              <div class="pf-barwrap" aria-hidden="true"><span class="pf-bar"></span></div>
+            </article></div></div>
+
+            <div class="pf-rv"><div class="pf-par"><article class="pf-card">
+              <div class="pf-card-bg" aria-hidden="true"></div><div class="pf-card-glare" aria-hidden="true"></div>
+              <span class="pf-num" aria-hidden="true">03</span>
+              <div class="pf-badge" aria-hidden="true"><div class="pf-badge-bg"></div><svg class="pf-ring" viewBox="0 0 92 92"><circle cx="46" cy="46" r="44"/></svg>
+                <svg class="pf-ico" viewBox="0 0 48 48"><path d="M24 5 C 24 5, 13 17.5, 13 26.5 C 13 32.6, 17.9 37.5, 24 37.5 C 30.1 37.5, 35 32.6, 35 26.5 C 35 17.5, 24 5, 24 5 Z"/><path d="M18.6 27.4 C 18.6 30.6, 20.8 32.8, 23.6 33.2"/><path d="M10 43 C 14 41.4, 18 41.4, 22 43 C 26 44.6, 30 44.6, 34 43 C 35.6 42.4, 36.8 42.2, 38 42.4"/></svg>
+              </div>
+              <h3>Ressourcenschonende Produktion</h3>
+              <p>Minimaler Wasserverbrauch, keine Pestizide, energieeffiziente Klimasteuerung. Unsere Produktion respektiert natürliche Grenzen und maximiert biologische Effizienz.</p>
+              <div class="pf-barwrap" aria-hidden="true"><span class="pf-bar"></span></div>
+            </article></div></div>
+
+            <div class="pf-rv"><div class="pf-par"><article class="pf-card">
+              <div class="pf-card-bg" aria-hidden="true"></div><div class="pf-card-glare" aria-hidden="true"></div>
+              <span class="pf-num" aria-hidden="true">04</span>
+              <div class="pf-badge" aria-hidden="true"><div class="pf-badge-bg"></div><svg class="pf-ring" viewBox="0 0 92 92"><circle cx="46" cy="46" r="44"/></svg>
+                <svg class="pf-ico" viewBox="0 0 48 48"><path d="M4.5 24 C 9.5 15.6, 16.4 11.5, 24 11.5 C 31.6 11.5, 38.5 15.6, 43.5 24 C 38.5 32.4, 31.6 36.5, 24 36.5 C 16.4 36.5, 9.5 32.4, 4.5 24 Z"/><circle cx="24" cy="24" r="7.5"/><path d="M20.6 24.2 L23 26.6 L27.6 21.8"/></svg>
+              </div>
+              <h3>Transparente Qualitätskontrolle</h3>
+              <p>Jeder Produktionsschritt wird dokumentiert und kontrolliert. Vom Substrat bis zur Ernte – wir machen Qualität sichtbar und nachvollziehbar für unsere Partner und Kunden.</p>
+              <div class="pf-barwrap" aria-hidden="true"><span class="pf-bar"></span></div>
+            </article></div></div>
+
+          </div>
         </div>
+      </div>
+
+      <div class="pf-front" aria-hidden="true">
+        <div class="pf-anchor pf-at-hl pf-headmush"><div class="pf-move" data-move="hl">
+          <div class="pf-mush pf-mush-hl">
+            <div class="pf-grow" style="width:100%;height:100%;transition-delay:.85s">
+              <svg class="pf-ms pf-msvg" viewBox="0 0 180 260" width="180" height="260">
+                <path class="g" d="M18 252 C 60 247, 122 247, 166 252"/>
+                <g transform="rotate(-10 52 252)"><path class="f" d="M42 252 C 40 222, 46 190, 45 158 L 61 158 C 61 190, 66 222, 64 252 C 57 255, 49 255, 42 252 Z"/><path class="f" d="M30 160 C 32 146, 42 138, 53 138 C 64 138, 74 146, 76 158 C 70 162, 64 158, 58 160 C 53 162, 49 162, 44 160 C 39 158, 34 162, 30 160 Z"/><path class="l" d="M49 163 V 178 M55 163 V 180"/></g>
+                <g transform="rotate(9 146 252)"><path class="f" d="M141 252 C 140 238, 143 226, 142 214 L 151 214 C 151 226, 154 238, 153 252 C 149 254, 145 254, 141 252 Z"/><path class="f" d="M133 216 C 135 207, 140 202, 146.5 202 C 153 202, 158 207, 160 216 C 154 219, 139 219, 133 216 Z"/></g>
+                <path class="f" d="M84 252 C 80 208, 90 158, 88 102 L 114 102 C 114 158, 122 208, 118 252 C 107 257, 95 257, 84 252 Z"/>
+                <path class="f" d="M64 104 C 66 86, 84 74, 101 74 C 118 74, 136 86, 138 102 C 130 106, 120 102, 112 104 C 104 107, 98 107, 90 104 C 82 102, 72 107, 64 104 Z"/>
+                <path class="l" d="M93 107 C 94 118, 95 128, 96 140 M101 108 V 142 M109 107 C 108 118, 107 128, 106 140"/>
+                <circle class="d" cx="93" cy="87" r="1.8"/><circle class="d" cx="110" cy="84" r="1.3"/>
+              </svg>
+            </div>
+            <div class="pf-puff" style="left:101px;top:76px"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+        </div></div>
+
+        <div class="pf-anchor pf-at-hr pf-headmush"><div class="pf-move" data-move="hr">
+          <div class="pf-mush pf-mush-hr">
+            <div class="pf-grow" style="width:100%;height:100%;transition-delay:1.05s">
+              <svg class="pf-ms pf-msvg" viewBox="0 0 200 240" width="200" height="240">
+                <path class="g" d="M36 232 C 80 227, 128 227, 170 232"/>
+                <g transform="rotate(-14 72 232)"><path class="f" d="M62 232 C 60 206, 66 182, 64 160 L 80 160 C 80 182, 84 206, 82 232 C 75 235, 69 235, 62 232 Z"/><path class="k" d="M44 164 C 44 144, 56 132, 72 132 C 88 132, 100 144, 100 164 C 92 169, 52 169, 44 164 Z"/><path class="h" d="M55 150 C 59 143, 65 139, 72 138"/></g>
+                <g transform="rotate(12 135 232)"><path class="f" d="M128 232 C 127 214, 130 198, 129 184 L 141 184 C 141 198, 144 214, 143 232 C 138 234, 133 234, 128 232 Z"/><path class="k" d="M114 188 C 114 172, 123 163, 135 163 C 147 163, 156 172, 156 188 C 150 192, 120 192, 114 188 Z"/><path class="h" d="M122 178 C 125 172, 129 169, 135 168"/></g>
+                <path class="f" d="M90 232 C 86 194, 96 150, 94 112 L 116 112 C 116 150, 124 194, 120 232 C 110 236, 100 236, 90 232 Z"/>
+                <path class="l" d="M99 124 C 100 136, 100 146, 101 156 M105 124 V 160 M111 124 C 110 136, 110 146, 109 156"/>
+                <path class="k" d="M66 116 C 66 90, 84 74, 105 74 C 126 74, 144 90, 144 116 C 132 122, 78 122, 66 116 Z"/>
+                <path class="h" d="M80 98 C 85 88, 94 82, 104 80"/>
+              </svg>
+            </div>
+            <div class="pf-puff" style="left:105px;top:76px"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+        </div></div>
+
+        <div class="pf-anchor pf-at-bl"><div class="pf-move" data-move="bl" data-mush="bl"></div></div>
+        <div class="pf-anchor pf-at-bc"><div class="pf-move" data-move="bc" data-mush="bc"></div></div>
+        <div class="pf-anchor pf-at-br"><div class="pf-move" data-move="br" data-mush="br"></div></div>
+        <div data-spores="front"></div>
       </div>
     </section>
 
@@ -908,6 +993,7 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="philosophie.js"></script>
 </body>
 
 </html>
