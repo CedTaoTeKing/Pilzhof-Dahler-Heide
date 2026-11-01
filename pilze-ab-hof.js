@@ -16,8 +16,8 @@
 
   var CONFIG = {
     phone: '0152 03200446',                       // wie im Impressum; wird zu +49 umgerechnet
-    message: 'Moin! Ich würde gern Pilze bei euch am Hof abholen. Was habt ihr gerade da – und wann passt es euch?',
-    reply: 'Moin! Gerne – komm vorbei, wir legen dir frische Pilze zurück. Passt dir morgen Nachmittag?',
+    message: 'Moin! Ich würde gern 1 kg Black Pearl bei euch am Hof abholen. Wann passt es euch?',   // ändert sich phone oder message: img/whatsapp-qr.png neu erzeugen
+    reply: 'Moin! Gerne – wir legen dir 1 kg frische Black Pearl zurück. Passt dir morgen Nachmittag?',
     followUp: 'Perfekt, bis morgen!',
     address: 'Dahler Heide 19, 33100 Paderborn',   // Google-Maps-Ziel (Hof-Adresse wie im Impressum)
     market: { day: 5, startHour: 7, endHour: 13, places: 'Paderborn & Detmold' } // Live-Hinweis; day: 0 = Mo … 5 = Sa, 6 = So
